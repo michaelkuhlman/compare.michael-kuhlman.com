@@ -1,0 +1,65 @@
+---
+import '../styles/global.css';
+import Topbar from '../components/Topbar.astro';
+import Hero from '../components/Hero.astro';
+import Scoreboard from '../components/Scoreboard.astro';
+import Vitals from '../components/Vitals.astro';
+import Race from '../components/Race.astro';
+import Journey from '../components/Journey.astro';
+import Weight from '../components/Weight.astro';
+import Quality from '../components/Quality.astro';
+import Stacks from '../components/Stacks.astro';
+import Method from '../components/Method.astro';
+import Footer from '../components/Footer.astro';
+import { clientData, avg, ranking, measured } from '../lib/data';
+import { verdicts } from '../lib/story';
+import { STACK_META } from '../lib/model';
+const payload = JSON.stringify({ ...clientData, verdicts }).replace(/</g, '\\u003c');
+const w = ranking('mobile')[0];
+const title = 'Speed Trial: Magento 2 vs headless vs Shopify, the same store measured';
+const desc = `One pickleball store built three ways, timed with ${measured.totalRuns} Lighthouse runs, real-browser filmstrips and a scripted shopper. On mobile, ${STACK_META[w].name} averages ${Math.round(avg.mobile[w].perf ?? 0)}.`;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={desc} />
+    <link rel="canonical" href="https://compare.michael-kuhlman.com/" />
+    <meta name="theme-color" content="#f4f2ec" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f0f0e" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preload" href="/fonts/instrument-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/instrument-serif-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://compare.michael-kuhlman.com/" />
+    <meta property="og:title" content="Same store. Three stacks. One stopwatch." />
+    <meta property="og:description" content={desc} />
+    <meta property="og:image" content="https://compare.michael-kuhlman.com/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script is:inline>document.documentElement.classList.add('js')</script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to the results</a>
+    <Topbar />
+    <main id="main">
+      <Hero />
+      <Scoreboard />
+      <Vitals />
+      <Race />
+      <Journey />
+      <Weight />
+      <Quality />
+      <Stacks />
+      <Method />
+    </main>
+    <Footer />
+    <script type="application/json" id="data" set:html={payload}></script>
+    <script>import '../scripts/app.ts';</script>
+  </body>
+</html>

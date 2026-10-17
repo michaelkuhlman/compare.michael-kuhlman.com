@@ -1,0 +1,85 @@
+---
+import { STACK_IDS, STACK_META, WEIGHT_KEYS, fmtBytes, pct, bestOf, PAGE_META } from '../lib/model';
+import { lh } from '../lib/data';
+import PageTabs from './PageTabs.astro';
+const form = 'mobile', page = 'home';
+const v = (s: string, k: string) => lh[form][page][s]?.w[k] ?? null;
+const fmt = (k: string, x: number | null) => (x == null ? '–' : k === 'requests' ? String(Math.round(x)) : fmtBytes(x));
+const shop = lh[form][page].shopify;
+---
+<section class="sec" id="weight">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="kicker rv"><b>05</b> Page weight</p>
+      <h2 class="sec-title rv">What each page <em>costs</em> to download</h2>
+      <p class="dek rv">Compressed bytes over the wire, split by type. Heavier pages hurt most on slow or metered phone connections, and every script also has to be parsed and run.</p>
+    </header>
+    <div class="ctl rv">
+      <PageTabs label="Page type for the vitals and weight charts" />
+      <p class="note page-note" data-page-note>{PAGE_META[page].note}</p>
+    </div>
+    <div class="tiles">
+      {WEIGHT_KEYS.map((k, ki) => {
+        const vals = STACK_IDS.map(s => v(s, k.id));
+        const max = Math.max(1, ...(vals.filter(x => x != null) as number[]));
+        const b = bestOf(vals);
+        return (
+          <article class={`card tile rv ${k.id === 'total' ? 'is-total' : ''}`} data-wk={k.id} style={`--d:${(ki % 4) * 0.05}s`}>
+            <h3>{k.name}</h3>
+            <p class="tnote">{k.note}</p>
+            {STACK_IDS.map((s, i) => (
+              <div class="wrow" data-stack={s}>
+                <i class={`glyph ${STACK_META[s].shape}`}></i>
+                <div class="wtrack"><i class="wbar" style={`--w:${pct(((vals[i] ?? 0) / max) * 100)}`}></i></div>
+                <span class={`wv num ${b === i ? 'is-best' : ''}`}>{fmt(k.id, vals[i])}</span>
+              </div>
+            ))}
+          </article>
+        );
+      })}
+    </div>
+    <aside class="card callout rv" data-callout>
+      <h3><span class="key" data-stack="shopify"><i class="glyph triangle"></i>Inside Shopify’s download</span></h3>
+      <p>Of the <b class="num" data-co="total">{fmtBytes(shop?.w.total)}</b> a Shopify page transfers, <b class="num" data-co="platform">{fmtBytes(shop?.w.platform)}</b> comes from the platform itself rather than the theme: analytics (Trekkie, web pixels, Monorail beacons), Shop Pay / Shop app helpers and, the biggest part, <b class="num" data-co="idle">{fmtBytes(shop?.w.idle)}</b> of <em>checkout assets prefetched in the background</em> so checkout opens fast later. They load at the lowest priority, so they barely delay the first paint, but they are real bytes on a phone plan and real work for the CPU. A theme developer cannot switch them off.</p>
+    </aside>
+    <details class="tv rv">
+      <summary>Show as a table</summary>
+      <div tabindex="0" role="region" aria-label="Page weight table" class="tbl-wrap"><table class="data" data-table="weight"><thead><tr><th>Type</th>{STACK_IDS.map(s => <th>{STACK_META[s].name}</th>)}</tr></thead>
+      <tbody>{WEIGHT_KEYS.map(k => <tr data-wk={k.id}><td>{k.name}</td>{STACK_IDS.map(s => <td data-stack={s}>{fmt(k.id, v(s, k.id))}</td>)}</tr>)}</tbody></table></div>
+    </details>
+  </div>
+</section>
+<style>
+  .ctl { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin-bottom: 22px; position: sticky; top: 63px; z-index: 5; padding: 10px 0; background: color-mix(in srgb, var(--page) 96%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+  .page-note { margin: 0; }
+  .tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+  .tile { padding: 18px 18px 14px; }
+  .tile.is-total { background: var(--ink); color: var(--page); border-color: var(--ink); --surface: var(--ink); }
+  .tile.is-total .tnote { color: color-mix(in srgb, var(--page) 70%, transparent); }
+  .tile.is-total .wtrack { background: color-mix(in srgb, var(--page) 14%, transparent); }
+  .tile h3 { font: 400 26px/1.05 var(--serif); }
+  .tnote { font-size: 12.5px; color: var(--muted); margin: 3px 0 12px; }
+  .wrow { display: grid; grid-template-columns: 14px minmax(0, 1fr) 78px; align-items: center; gap: 8px; height: 28px; }
+  .wrow .glyph { width: 10px; height: 10px; }
+  .wtrack { height: 10px; background: var(--surface-2); border-radius: 0 4px 4px 0; overflow: hidden; }
+  .wbar { display: block; height: 100%; width: var(--w); background: var(--c); border-radius: 0 4px 4px 0; transition: width 1s var(--ease); }
+  .js .tile:not(.in) .wbar { width: 0; }
+  .wv { text-align: right; font-size: 14px; font-weight: 600; }
+  .wv.is-best { text-decoration: underline; text-decoration-color: var(--volt); text-decoration-thickness: 3px; text-underline-offset: 4px; }
+  .callout { margin-top: 18px; padding: 20px 24px; border-left: 4px solid var(--shopify); max-width: 900px; }
+  .callout h3 { font-size: 16px; margin-bottom: 8px; }
+  .callout p { margin: 0; font-size: 15.5px; color: var(--ink-2); }
+  .callout b { color: var(--ink); }
+  @media (max-width: 1000px) { .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 480px) {
+    .tiles { gap: 10px; }
+    .tile { padding: 14px 12px 10px; }
+    .tile h3 { font-size: 22px; }
+    .wrow { grid-template-columns: 10px minmax(0, 1fr) 62px; gap: 6px; }
+    .wv { font-size: 12.5px; }
+    .ctl { top: 62px; margin-inline: -20px; padding-inline: 20px; }
+    .ctl :global(.tabs) { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-inline: -20px; padding-inline: 20px; }
+    .ctl :global(.tabs button) { flex: none; }
+    .page-note { display: none; }
+  }
+</style>

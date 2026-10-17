@@ -1,0 +1,147 @@
+---
+import { STACK_IDS, STACK_META, PAGE_IDS, PAGE_META, fmtMs, fmtBytes, fmtSec } from '../lib/model';
+import { race } from '../lib/data';
+const page = 'home';
+const res = (p: string, s: string) => race?.results?.[`${p}/${s}`];
+const maxT = (p: string) => Math.max(...STACK_IDS.map(s => { const r = res(p, s); return r ? Math.max(r.median.vc, r.median.lcp, r.median.fcp) : 0; }));
+const T = Math.ceil((maxT(page) + 600) / 500) * 500;
+// visual-progress curve paths for the SVG chart (viewBox 0..1000 x 0..200)
+const curve = (p: string, s: string, Tm: number) => {
+  const r = res(p, s); if (!r) return '';
+  const f = r.film; let d = `M0 200`; let prevY = 200;
+  f.times.forEach((t: number, i: number) => { const x = (t / Tm) * 1000; const y = 200 - f.done[i] * 200; d += ` L${x.toFixed(1)} ${prevY.toFixed(1)} L${x.toFixed(1)} ${y.toFixed(1)}`; prevY = y; });
+  return d + ` L1000 ${prevY.toFixed(1)}`;
+};
+const rows = [
+  ['fcp', 'First paint (FCP)', fmtMs], ['lcp', 'Main content (LCP)', fmtMs], ['si', 'Speed Index', fmtMs], ['vc', 'Visually complete', fmtMs], ['tbt', 'Blocking time', fmtMs], ['bytes', 'Transferred', fmtBytes], ['requests', 'Requests', (v: number) => String(Math.round(v))],
+] as const;
+---
+<section class="sec" id="race">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="kicker rv"><b>03</b> The race</p>
+      <h2 class="sec-title rv">Watch them <em>load</em></h2>
+      <p class="dek rv">Filmstrips recorded in a real Chrome on a throttled connection (slow 4G, 4× slower CPU, phone screen), every frame time-stamped. Press play to replay all three side by side, or drag the scrubber.</p>
+    </header>
+    {race ? (
+    <div class="card racebox rv" data-race data-t={T}>
+      <div class="race-ctl">
+        <div class="tabs" role="tablist" aria-label="Page to race" data-race-tabs>
+          {PAGE_IDS.map((p, i) => <button type="button" role="tab" data-rpage={p} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{PAGE_META[p].name}</button>)}
+        </div>
+        <div class="player">
+          <button type="button" class="btn play" data-play aria-label="Play the race">
+            <svg viewBox="0 0 16 16" aria-hidden="true" class="i-play"><path d="M4 2.5v11l9-5.5z" fill="currentColor" /></svg>
+            <svg viewBox="0 0 16 16" aria-hidden="true" class="i-pause"><path d="M4 2.5h3v11H4zM9 2.5h3v11H9z" fill="currentColor" /></svg>
+            <svg viewBox="0 0 16 16" aria-hidden="true" class="i-replay"><path d="M3.2 8a4.8 4.8 0 1 0 1.5-3.5M3 2.2v3h3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            <span data-play-label>Play</span>
+          </button>
+          <label class="scrub"><span class="sr-only">Time</span><input type="range" min="0" max={T} step="10" value={T} data-scrub /></label>
+          <output class="clock num" data-clock>{fmtSec(T, 1)}</output>
+          <div class="seg speed" role="group" aria-label="Playback speed">
+            <button type="button" data-speed="0.5" aria-pressed="false">½×</button>
+            <button type="button" data-speed="1" aria-pressed="true">1×</button>
+          </div>
+        </div>
+      </div>
+      <div class="lanes">
+        {STACK_IDS.map(s => {
+          const r = res(page, s);
+          return (
+            <figure class="lane" data-stack={s}>
+              <figcaption class="key"><i class={`glyph ${STACK_META[s].shape}`}></i>{STACK_META[s].name}</figcaption>
+              <div class="phone">
+                <div class="screen" role="img" aria-label={`${STACK_META[s].name} loading filmstrip`} data-film style={r ? `--n:${r.film.times.length};--i:${r.film.times.length - 1}` : ''} data-src={r ? `/race/${r.film.file}?v=${Date.parse(race.measured) / 1000 | 0}` : ''}></div>
+                <span class="done-flag" data-flag>Done {r ? fmtSec(r.median.vc, 1) : ''}</span>
+              </div>
+              <ol class="miles">
+                <li data-mile="fcp"><span>First paint</span><b class="num">{r ? fmtSec(r.median.fcp, 1) : '–'}</b></li>
+                <li data-mile="lcp"><span>Main content</span><b class="num">{r ? fmtSec(r.median.lcp, 1) : '–'}</b></li>
+                <li data-mile="vc"><span>Complete</span><b class="num">{r ? fmtSec(r.median.vc, 1) : '–'}</b></li>
+              </ol>
+            </figure>
+          );
+        })}
+      </div>
+      <div class="progress-chart">
+        <p class="pc-title">Visual progress <span class="note">share of the final screen already painted</span></p>
+        <svg viewBox="0 0 1000 200" preserveAspectRatio="none" class="pc" aria-hidden="true" data-curves>
+          <path d="M0 0H1000M0 100H1000M0 200H1000" class="pc-grid" vector-effect="non-scaling-stroke" />
+          {STACK_IDS.map(s => <path data-stack={s} class="pc-line" d={curve(page, s, T)} vector-effect="non-scaling-stroke" />)}
+          <path class="pc-head" d="M1000 0V200" data-head vector-effect="non-scaling-stroke" />
+        </svg>
+        <div class="pc-axis num" data-pc-axis aria-hidden="true"></div>
+        <div class="legend" aria-hidden="true">{STACK_IDS.map(s => <span class="key" data-stack={s}><i class={`glyph ${STACK_META[s].shape}`}></i>{STACK_META[s].name}</span>)}</div>
+      </div>
+      <div tabindex="0" role="region" aria-label="Real-browser results table" class="tbl-wrap rb-table">
+        <table class="data" data-table="race">
+          <caption class="sr-only">Real-browser measurements, median of 3 runs</caption>
+          <thead><tr><th>Real browser · median of {race.runs}</th>{STACK_IDS.map(s => <th><span class="key" data-stack={s}><i class={`glyph ${STACK_META[s].shape}`}></i><span class="kt">{STACK_META[s].short}</span></span></th>)}</tr></thead>
+          <tbody>{rows.map(([k, label, f]) => <tr data-k={k}><td>{label}</td>{STACK_IDS.map(s => <td data-stack={s}>{res(page, s) ? (f as any)(res(page, s).median[k]) : '–'}</td>)}</tr>)}</tbody>
+        </table>
+      </div>
+    </div>
+    ) : <p class="note">Race data has not been measured yet.</p>}
+    <p class="note foot rv">Applied throttling (what DevTools does) rather than Lighthouse’s simulation: 562 ms request latency, 1.47 Mbps down, CPU slowed 4×, 412×823 screen, cache disabled. Three runs per page; the film is the median run by LCP. “Complete” is the moment the screen stops changing visibly.</p>
+  </div>
+</section>
+<style>
+  .racebox { padding: 20px 22px 22px; }
+  .race-ctl { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: center; margin-bottom: 20px; }
+  .player { display: flex; align-items: center; gap: 12px; flex: 1 1 380px; justify-content: flex-end; }
+  .play { min-width: 104px; justify-content: center; }
+  .play .i-pause, .play .i-replay { display: none; }
+  .racebox.playing .play .i-play { display: none; } .racebox.playing .play .i-pause { display: block; }
+  .racebox.ended .play .i-play { display: none; } .racebox.ended .play .i-replay { display: block; }
+  .scrub { flex: 1 1 160px; max-width: 320px; display: flex; }
+  .scrub input { width: 100%; accent-color: var(--ink); height: 28px; }
+  .clock { font-size: 22px; font-weight: 650; min-width: 64px; text-align: right; letter-spacing: -0.02em; }
+  .speed button { padding: 6px 11px; min-height: 30px; }
+  .lanes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(10px, 3vw, 40px); max-width: 860px; margin: 0 auto; }
+  .lane { margin: 0; display: flex; flex-direction: column; align-items: center; min-width: 0; }
+  .lane figcaption { font-size: 15px; margin-bottom: 10px; }
+  .phone { position: relative; width: 100%; max-width: 240px; padding: 7px; border-radius: 22px; background: var(--ink); box-shadow: 0 0 0 1px var(--hair), 0 18px 40px -18px rgba(0, 0, 0, 0.5); }
+  .screen { aspect-ratio: 240 / 479; border-radius: 15px; background-color: #fff; background-repeat: no-repeat; background-size: calc(var(--n, 1) * 100%) 100%; background-position: calc(var(--i, 0) / max(var(--n, 1) - 1, 1) * 100%) 0; overflow: hidden; }
+  .done-flag { position: absolute; left: 50%; bottom: 18px; transform: translate(-50%, 8px) scale(0.92); opacity: 0; background: var(--volt); color: var(--volt-ink); font: 650 12.5px/1 var(--sans); padding: 7px 11px; border-radius: 999px; white-space: nowrap; transition: opacity 0.3s, transform 0.4s var(--ease); box-shadow: 0 6px 16px -6px rgba(0, 0, 0, 0.4); }
+  .lane.finished .done-flag { opacity: 1; transform: translate(-50%, 0) scale(1); }
+  .miles { list-style: none; padding: 0; margin: 14px 0 0; width: 100%; max-width: 240px; font-size: 13px; }
+  .miles li { display: flex; justify-content: space-between; gap: 6px; padding: 5px 2px; border-bottom: 1px solid var(--grid); color: var(--muted); transition: color 0.3s; }
+  .miles li::before { content: ''; width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid var(--axis); align-self: center; flex: none; transition: all 0.3s; }
+  .miles li span { margin-right: auto; }
+  .miles li.hit { color: var(--ink); }
+  .miles li.hit::before { background: var(--c); border-color: var(--c); }
+  .miles b { font-weight: 600; }
+  .progress-chart { margin-top: 26px; }
+  .pc-title { font-weight: 600; font-size: 15px; margin: 0 0 8px; }
+  .pc { width: 100%; height: 150px; overflow: visible; }
+  .pc-grid { stroke: var(--grid); stroke-width: 1; fill: none; }
+  .pc-line { fill: none; stroke: var(--c); stroke-width: 2.5; stroke-linejoin: round; }
+  .pc-head { stroke: var(--ink); stroke-width: 1.5; }
+  .pc-axis { position: relative; height: 18px; border-top: 1px solid var(--axis); font-size: 11.5px; color: var(--muted); }
+  .pc-axis :global(span) { position: absolute; top: 3px; transform: translateX(-50%); white-space: nowrap; }
+  .pc-axis :global(span:first-child) { transform: none; }
+  .pc-axis :global(span:last-child:not(:first-child)) { transform: translateX(-100%); }
+  .progress-chart .legend { display: flex; gap: 18px; flex-wrap: wrap; font-size: 13.5px; margin-top: 10px; }
+  .rb-table { margin-top: 22px; }
+  .rb-table .key { gap: 6px; }
+  .rb-table .glyph { width: 9px; height: 9px; }
+  .foot { margin-top: 16px; max-width: 820px; }
+  @media (max-width: 640px) {
+    .racebox { padding: 14px 12px 16px; }
+    .race-ctl .tabs { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; width: calc(100% + 24px); margin: 0 -12px; padding: 0 12px; }
+    .race-ctl .tabs button { flex: none; }
+    .player { flex-wrap: wrap; justify-content: flex-start; gap: 10px; }
+    .scrub { order: 3; max-width: none; flex-basis: 100%; }
+    .speed { margin-left: auto; }
+    .phone { padding: 4px; border-radius: 14px; }
+    .screen { border-radius: 10px; }
+    .lane figcaption { font-size: 12.5px; gap: 5px; }
+    .lane figcaption .glyph { width: 9px; height: 9px; }
+    .miles { font-size: 11px; }
+    .miles li { flex-wrap: wrap; gap: 0 4px; }
+    .miles li::before { display: none; }
+    .miles li span { width: 100%; }
+    .done-flag { font-size: 10.5px; padding: 5px 7px; bottom: 10px; }
+    .pc { height: 110px; }
+  }
+</style>

@@ -1,0 +1,27 @@
+---
+// Small request-flow diagram: four tiers, top (browser) to bottom (data).
+const { tiers, stack } = Astro.props as { tiers: { t: string; d: string }[]; stack: string };
+const H = 74, G = 26;
+const total = tiers.length * H + (tiers.length - 1) * G;
+---
+<svg class="flow" viewBox={`0 0 300 ${total}`} role="img" aria-label={tiers.map(x => x.t).join(' → ')} data-stack={stack}>
+  {tiers.map((x, i) => {
+    const y = i * (H + G);
+    return (
+      <g>
+        <rect x="1" y={y + 1} width="298" height={H - 2} rx="12" class={i === 0 ? 'fb fb0' : 'fb'} />
+        <text x="18" y={y + 30} class="ft">{x.t}</text>
+        <text x="18" y={y + 53} class="fd">{x.d}</text>
+        {i < tiers.length - 1 && <g class="fa"><path d={`M150 ${y + H + 3}V${y + H + G - 4}`} /><path d={`M144 ${y + H + G - 10}l6 6 6-6`} /></g>}
+      </g>
+    );
+  })}
+</svg>
+<style>
+  .flow { width: 100%; height: auto; overflow: visible; }
+  .fb { fill: var(--surface); stroke: var(--hair); stroke-width: 1.5; }
+  .fb0 { fill: color-mix(in srgb, var(--c) 12%, var(--surface)); stroke: var(--c); }
+  .ft { font: 650 15px var(--sans); fill: var(--ink); }
+  .fd { font: 400 12.5px var(--sans); fill: var(--muted); }
+  .fa path { stroke: var(--axis); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+</style>

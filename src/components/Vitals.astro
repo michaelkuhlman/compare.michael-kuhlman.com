@@ -1,0 +1,115 @@
+---
+import { STACK_IDS, STACK_META, METRICS, PAGE_META, fmtMetric, metricMax, ticks, tickLabel, pct, bestOf, type Form, type PageId } from '../lib/model';
+import { lh } from '../lib/data';
+import PageTabs from './PageTabs.astro';
+const form: Form = 'mobile';
+const page: PageId = 'home';
+---
+<section class="sec" id="vitals">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="kicker rv"><b>02</b> Core Web Vitals &amp; friends</p>
+      <h2 class="sec-title rv">Where the <em>milliseconds</em> go</h2>
+      <p class="dek rv">The metrics behind the score, page by page. Shaded zones are Google’s thresholds: <span class="zl g">good</span>, <span class="zl a">needs work</span>, <span class="zl p">poor</span>. Ticks on each bar are the five individual runs.</p>
+    </header>
+    <div class="ctl rv">
+      <PageTabs label="Page type for the vitals and weight charts" />
+      <p class="note page-note" data-page-note>{PAGE_META[page].note}</p>
+    </div>
+    <div class="metrics">
+      {METRICS.map((m, mi) => {
+        const cells = STACK_IDS.map(s => lh[form][page][s]);
+        const vals = cells.map(c => c?.m[m.id] ?? null);
+        const runs = cells.flatMap(c => (c?.r[m.id] ?? []).filter((v): v is number => v != null));
+        const max = metricMax(m.id, m.poor, [...(vals.filter(v => v != null) as number[]), ...runs]);
+        const best = bestOf(vals, false, m.id === 'cls' ? 0.005 : 0);
+        return (
+          <article class="card metric rv" data-metric={m.id} style={`--d:${(mi % 2) * 0.06}s`}>
+            <header>
+              <h3><span class="abbr">{m.abbr}</span> {m.name}</h3>
+              {m.cwv && <span class="cwv" title="Core Web Vital (TBT stands in for INP in the lab)">Core Web Vital</span>}
+            </header>
+            <p class="what">{m.what}</p>
+            <div class="chart" style={`--good:${pct((m.good / max) * 100)};--poor:${pct((m.poor / max) * 100)}`}>
+              {STACK_IDS.map((s, si) => {
+                const v = vals[si];
+                const rr = cells[si]?.r[m.id] ?? [];
+                return (
+                  <div class="brow" data-stack={s}>
+                    <span class="bl key"><i class={`glyph ${STACK_META[s].shape}`}></i><span>{STACK_META[s].short}</span></span>
+                    <div class="btrack">
+                      <i class="zg"></i><i class="za"></i><i class="zp"></i>
+                      <i class="bar" style={`--w:${pct(((v ?? 0) / max) * 100)}`}></i>
+                      <span class="runs">{rr.map(r => <i style={`left:${pct((((r as number) ?? 0) / max) * 100)}`}></i>)}</span>
+                      <span class={`bv num ${best === si ? 'is-best' : ''}`} style={`--w:${pct(((v ?? 0) / max) * 100)}`}>{fmtMetric(m.id, v)}{best === si && <em> best</em>}</span>
+                    </div>
+                  </div>
+                );
+              })}
+              <div class="bticks" aria-hidden="true">
+                {ticks(max, m.id).map(t => <span style={`left:${pct((t / max) * 100)}`}>{tickLabel(m.id, t)}</span>)}
+              </div>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+    <p class="note foot rv">Lighthouse lab data with <strong>simulated throttling</strong> (the method PageSpeed Insights uses). A second opinion from a real, throttled browser is in the race below. There is no real-user (CrUX) data: demo stores get too little traffic and are not indexed.</p>
+    <details class="tv rv">
+      <summary>Show as a table</summary>
+      <div tabindex="0" role="region" aria-label="Vitals table" class="tbl-wrap"><table class="data" data-table="vitals"><thead><tr><th>Metric</th>{STACK_IDS.map(s => <th>{STACK_META[s].name}</th>)}</tr></thead>
+      <tbody>{METRICS.map(m => <tr data-metric={m.id}><td>{m.abbr} · {m.name}</td>{STACK_IDS.map(s => <td data-stack={s}>{fmtMetric(m.id, lh[form][page][s]?.m[m.id])}</td>)}</tr>)}</tbody></table></div>
+    </details>
+  </div>
+</section>
+<style>
+  .zl { padding: 1px 6px; border-radius: 4px; }
+  .zl.g { background: var(--zone-good); box-shadow: inset 0 -2px 0 var(--good); }
+  .zl.a { background: var(--zone-average); box-shadow: inset 0 -2px 0 var(--average); }
+  .zl.p { background: var(--zone-poor); box-shadow: inset 0 -2px 0 var(--poor); }
+  .ctl { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin-bottom: 22px; position: sticky; top: 63px; z-index: 5; padding: 10px 0; background: color-mix(in srgb, var(--page) 96%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+  .page-note { margin: 0; }
+  .metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+  .metric { padding: 20px 22px 14px; }
+  .metric header { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+  .metric h3 { font-size: 16px; font-weight: 600; letter-spacing: -0.005em; }
+  .abbr { font: 400 30px/1 var(--serif); margin-right: 4px; letter-spacing: 0; }
+  .cwv { font: 600 10.5px/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--hair); padding: 5px 7px; border-radius: 999px; white-space: nowrap; }
+  .what { font-size: 14px; color: var(--muted); margin: 6px 0 14px; min-height: 2.9em; }
+  .chart { position: relative; }
+  .brow { display: grid; grid-template-columns: 92px minmax(0, 1fr); align-items: center; gap: 10px; height: 34px; }
+  .bl { font-size: 13.5px; font-weight: 600; gap: 7px; }
+  .bl .glyph { width: 10px; height: 10px; }
+  .btrack { position: relative; height: 100%; margin-right: 76px; }
+  .zg, .za, .zp { position: absolute; top: 3px; bottom: 3px; }
+  .zg { left: 0; width: var(--good); background: var(--zone-good); }
+  .za { left: var(--good); width: calc(var(--poor) - var(--good)); background: var(--zone-average); }
+  .zp { left: var(--poor); right: -76px; background: var(--zone-poor); }
+  .bar { position: absolute; left: 0; top: 50%; height: 14px; margin-top: -7px; width: var(--w); background: var(--c); border-radius: 0 4px 4px 0; transition: width 1s var(--ease); }
+  .runs :global(i) { position: absolute; top: 50%; width: 1.5px; height: 22px; margin: -11px 0 0 -0.75px; background: var(--ink); opacity: 0.38; transition: left 1s var(--ease); }
+  .bv { position: absolute; top: 50%; left: var(--w); transform: translate(10px, -50%); font-size: 14px; font-weight: 600; white-space: nowrap; transition: left 1s var(--ease); background: color-mix(in srgb, var(--surface) 80%, transparent); padding: 0 3px; border-radius: 3px; }
+  .bv :global(em) { font: 600 10px/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; font-style: normal; background: var(--volt); color: var(--volt-ink); padding: 3px 5px; border-radius: 999px; margin-left: 4px; vertical-align: 1px; }
+  .js .metric:not(.in) .bar { width: 0; }
+  .js .metric:not(.in) .bv, .js .metric:not(.in) .runs :global(i) { left: 0; }
+  .bticks { position: relative; height: 22px; margin: 4px 76px 0 102px; border-top: 1px solid var(--axis); }
+  .bticks :global(span) { position: absolute; top: 4px; transform: translateX(-50%); font-size: 11.5px; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .bticks :global(span:first-child) { transform: none; }
+  .foot { margin-top: 18px; max-width: 820px; }
+  @media (max-width: 900px) {
+    .metrics { grid-template-columns: 1fr; }
+    .what { min-height: 0; }
+  }
+  @media (max-width: 480px) {
+    .metric header { flex-direction: column-reverse; align-items: flex-start; gap: 6px; }
+    .metric { padding: 16px 14px 10px; }
+    .brow { grid-template-columns: 74px minmax(0, 1fr); gap: 6px; }
+    .bl { font-size: 12.5px; }
+    .btrack { margin-right: 70px; }
+    .zp { right: -70px; }
+    .bticks { margin: 4px 70px 0 80px; }
+    .ctl { top: 62px; margin-inline: -20px; padding-inline: 20px; }
+    .ctl :global(.tabs) { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-inline: -20px; padding-inline: 20px; }
+    .ctl :global(.tabs button) { flex: none; }
+    .page-note { display: none; }
+  }
+</style>

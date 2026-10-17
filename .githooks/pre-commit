@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Blocks secrets, build output and leftover copies from being committed (compare.michael-kuhlman.com).
+set -e
+fail=0
+files=$(git diff --cached --name-only --diff-filter=ACM)
+for f in $files; do
+  [ "$f" = .githooks/pre-commit ] && continue
+  case "$f" in
+    node_modules/*|dist/*|runs/*|public/reports/*) echo "pre-commit: $f is generated, do not commit"; fail=1;;
+    *.bak|*.old|*.orig|*.production|*.env) echo "pre-commit: leftover/secret file $f"; fail=1;;
+  esac
+  if git show ":$f" 2>/dev/null | grep -nE '(shpat_|shpss_|shpca_|STOREFRONT_PASSWORD=[A-Za-z0-9]|SHOPIFY_ACCOUNT_PASSWORD=[A-Za-z0-9]|CF_API_TOKEN=[A-Za-z0-9]|BEGIN (RSA|OPENSSH|EC) PRIVATE KEY)' >/dev/null; then
+    echo "pre-commit: possible secret in $f"; fail=1
+  fi
+done
+exit $fail

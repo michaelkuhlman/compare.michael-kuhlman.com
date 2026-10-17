@@ -1,0 +1,112 @@
+---
+import { STACK_IDS, STACK_META, PAGE_IDS, PAGE_META, type Form } from '../lib/model';
+import { lh, avg, forms } from '../lib/data';
+const form: Form = 'mobile';
+const all: number[] = [];
+for (const f of forms) for (const p of PAGE_IDS) for (const s of STACK_IDS) { const c = lh[f][p][s]; if (c) all.push(...c.ps); }
+const lo = Math.max(0, Math.floor((Math.min(...all) - 4) / 10) * 10);
+const x = (v: number | null | undefined) => (v == null ? 0 : ((v - lo) / (100 - lo)) * 100);
+const ticks = [lo, 50, 60, 70, 80, 90, 100].filter((t, i, arr) => t >= lo && arr.indexOf(t) === i);
+const rows = [...PAGE_IDS.map(p => ({ id: p, name: PAGE_META[p].name, note: PAGE_META[p].note })), { id: 'avg', name: 'Average', note: 'all six pages' }];
+const val = (f: Form, row: string, s: string) => (row === 'avg' ? avg[f][s].perf : lh[f][row][s]?.s[0] ?? null);
+const spread = (f: Form, row: string, s: string) => (row === 'avg' ? null : lh[f][row][s]?.ps ?? null);
+---
+<section class="sec" id="scoreboard" data-lo={lo}>
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="kicker rv"><b>01</b> The scoreboard</p>
+      <h2 class="sec-title rv">Every page, <em>scored</em></h2>
+      <p class="dek rv">Google Lighthouse performance score (0–100) for each page type. Each mark is the median of five runs; the faint line behind it spans the slowest to the fastest run, so you can see how steady each stack is.</p>
+    </header>
+    <div class="card board rv">
+      <div class="legend" aria-hidden="true">
+        {STACK_IDS.map(s => <span class="key" data-stack={s}><i class={`glyph ${STACK_META[s].shape}`}></i>{STACK_META[s].name}</span>)}
+      </div>
+      <div class="grid-head" aria-hidden="true">
+        <span></span>
+        <div class="axis">
+          {ticks.map(t => <span class="tick num" style={`left:${x(t)}%`}>{t}</span>)}
+        </div>
+        <div class="vals">{STACK_IDS.map(s => <span data-stack={s}><i class={`glyph ${STACK_META[s].shape}`}></i></span>)}</div>
+      </div>
+      <ul class="rows" role="list">
+        {rows.map((row, ri) => (
+          <li class={`row ${row.id === 'avg' ? 'is-avg' : ''}`} data-row={row.id} style={`--i:${ri}`}>
+            <div class="lab"><b>{row.name}</b><span>{row.note}</span></div>
+            <div class="track" aria-hidden="true">
+              <i class="zone z-poor" style={`left:0;width:${x(50)}%`}></i>
+              <i class="zone z-avg" style={`left:${x(50)}%;width:${x(90) - x(50)}%`}></i>
+              <i class="zone z-good" style={`left:${x(90)}%;right:0`}></i>
+              {ticks.map(t => <i class="gl" style={`left:${x(t)}%`}></i>)}
+              {STACK_IDS.map((s, si) => {
+                const sp = spread(form, row.id, s);
+                const v = val(form, row.id, s);
+                return (
+                  <span class="lane" data-stack={s} style={`--lane:${si}`}>
+                    <i class="rng" style={sp ? `--a:${x(Math.min(...sp))}%;--b:${x(Math.max(...sp))}%` : '--a:0%;--b:0%'}></i>
+                    <i class={`dot glyph ${STACK_META[s].shape}`} style={`--x:${x(v)}%`}></i>
+                  </span>
+                );
+              })}
+            </div>
+            <div class="vals num">
+              {STACK_IDS.map(s => <span data-stack={s} data-v>{val(form, row.id, s) == null ? '–' : Math.round(val(form, row.id, s) as number)}</span>)}
+            </div>
+          </li>
+        ))}
+      </ul>
+      <div class="bands note" aria-hidden="true"><span><i class="sw z-poor"></i>0–49 poor</span><span><i class="sw z-avg"></i>50–89 needs work</span><span><i class="sw z-good"></i>90–100 good</span><span class="axis-note">Axis starts at {lo}.</span></div>
+    </div>
+    <details class="tv rv">
+      <summary>Show as a table</summary>
+      <div tabindex="0" role="region" aria-label="Scores table" class="tbl-wrap"><table class="data" data-table="scores"><thead><tr><th>Page</th>{STACK_IDS.map(s => <th>{STACK_META[s].name}</th>)}</tr></thead>
+        <tbody>{rows.map(row => <tr data-row={row.id}><td>{row.name}</td>{STACK_IDS.map(s => <td data-stack={s}>{val(form, row.id, s) == null ? '–' : Math.round(val(form, row.id, s) as number)}</td>)}</tr>)}</tbody></table></div>
+    </details>
+  </div>
+</section>
+<style>
+  .board { padding: 22px 26px 18px; }
+  .legend { display: flex; gap: 22px; flex-wrap: wrap; font-size: 14px; margin-bottom: 16px; }
+  .grid-head, .row { display: grid; grid-template-columns: 170px minmax(0, 1fr) 150px; gap: 22px; align-items: center; }
+  .axis { position: relative; height: 18px; }
+  .tick { position: absolute; transform: translateX(-50%); font-size: 12px; color: var(--muted); }
+  .vals { display: grid; grid-template-columns: repeat(3, 1fr); text-align: right; font-size: 17px; font-weight: 600; }
+  .grid-head .vals span { display: flex; justify-content: flex-end; }
+  .rows { list-style: none; margin: 0; padding: 0; }
+  .row { padding: 10px 0; border-top: 1px solid var(--grid); }
+  .row.is-avg { border-top: 1.5px solid var(--ink); margin-top: 4px; }
+  .row.is-avg .lab b { font-size: 17px; }
+  .row.is-avg .vals { font-size: 20px; }
+  .lab b { display: block; font-weight: 600; font-size: 16px; }
+  .lab span { display: block; font-size: 12.5px; color: var(--muted); line-height: 1.3; }
+  .track { position: relative; height: 48px; }
+  .zone { position: absolute; top: 0; bottom: 0; }
+  .z-poor { background: var(--zone-poor); } .z-avg { background: var(--zone-average); } .z-good { background: var(--zone-good); }
+  .gl { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--grid); }
+  .lane { position: absolute; left: 0; right: 0; top: calc(8px + var(--lane) * 16px); height: 0; }
+  .rng { position: absolute; top: -1px; height: 2px; left: var(--a); width: calc(var(--b) - var(--a)); background: var(--c); opacity: 0.35; border-radius: 2px; transition: left 0.9s var(--ease), width 0.9s var(--ease); }
+  .dot { position: absolute; left: var(--x); top: 0; width: 12px; height: 12px; margin: -6px 0 0 -6px; box-shadow: 0 0 0 2px var(--surface); transition: left 0.9s var(--ease); }
+  .dot.triangle { box-shadow: none; filter: drop-shadow(0 0 1.2px var(--surface)) drop-shadow(0 0 1px var(--surface)); }
+  .dot.square { transform: rotate(45deg) scale(0.86); }
+  .js .board:not(.in) .dot { left: 0; }
+  .js .board:not(.in) .rng { width: 0; left: 0; }
+  .js .board .dot, .js .board .rng { transition-delay: calc(var(--i) * 0.06s); }
+  .js .board.ready .dot, .js .board.ready .rng { transition-delay: 0s; }
+  .vals span { padding-left: 4px; }
+  .bands { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 14px; font-size: 12.5px; align-items: center; }
+  .bands span { display: inline-flex; align-items: center; gap: 6px; }
+  .sw { width: 14px; height: 10px; border-radius: 2px; display: inline-block; border: 1px solid var(--hair); }
+  .axis-note { margin-left: auto; }
+  @media (max-width: 760px) {
+    .board { padding: 16px 14px 14px; }
+    .grid-head, .row { grid-template-columns: minmax(0, 1fr) 118px; gap: 6px 12px; }
+    .grid-head > span:first-child { display: none; }
+    .grid-head .axis { grid-column: 1; }
+    .lab { grid-column: 1 / -1; display: flex; gap: 8px; align-items: baseline; }
+    .lab span { display: inline; }
+    .vals { font-size: 15px; }
+    .row.is-avg .vals { font-size: 17px; }
+    .track { height: 46px; }
+    .axis-note { margin-left: 0; }
+  }
+</style>

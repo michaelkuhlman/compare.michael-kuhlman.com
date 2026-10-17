@@ -1,0 +1,21 @@
+---
+import Logo from './Logo.astro';
+---
+<footer class="foot-site">
+  <div class="wrap fs-in">
+    <div class="fs-brand"><Logo size={36} /><div><p class="fs-name">Speed Trial</p><p class="note">A side project by <a href="https://www.michael-kuhlman.com" rel="noopener">Michael Kuhlman</a>. The stores are demos: nothing is for sale.</p></div></div>
+    <ul class="fs-links">
+      <li><a href="https://m2.michael-kuhlman.com" rel="noopener" target="_blank">Magento 2 store ↗</a></li>
+      <li><a href="https://headless.michael-kuhlman.com" rel="noopener" target="_blank">Headless store ↗</a></li>
+      <li><a href="https://shopify.michael-kuhlman.com" rel="noopener" target="_blank">Shopify store ↗</a> <span class="note">password thirdshot</span></li>
+    </ul>
+  </div>
+</footer>
+<style>
+  .foot-site { margin-top: clamp(72px, 9vw, 128px); border-top: 1px solid var(--hair); padding: 36px 0 48px; }
+  .fs-in { display: flex; justify-content: space-between; gap: 28px; flex-wrap: wrap; align-items: flex-start; }
+  .fs-brand { display: flex; gap: 14px; align-items: flex-start; max-width: 480px; }
+  .fs-name { font: 400 28px/1 var(--serif); margin: 2px 0 6px; }
+  .fs-brand .note { margin: 0; }
+  .fs-links { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 15px; font-weight: 550; }
+</style>

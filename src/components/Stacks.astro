@@ -1,0 +1,71 @@
+---
+import Flow from './Flow.astro';
+import { STACK_META } from '../lib/model';
+const cards = [
+  { s: 'm2', how: 'The server builds every page as finished HTML; the browser then loads a large JavaScript toolkit (RequireJS, jQuery, Knockout) that wires up menus, swatches and the mini cart.',
+    tiers: [{ t: 'Browser', d: 'HTML + RequireJS, jQuery, Knockout' }, { t: 'Cloudflare CDN', d: 'caches images, CSS and JS' }, { t: 'nginx + PHP-FPM', d: 'Magento renders, full-page cache' }, { t: 'MySQL · OpenSearch · Redis', d: 'on our own server' }],
+    pros: ['Total control of code, data and hosting', 'Huge extension ecosystem, strong for complex catalogues and B2B', 'No platform fees'],
+    cons: ['Heavy default front end; speed needs expert tuning', 'You run and patch everything', 'Every full click reloads the page'] },
+  { s: 'headless', how: 'The same Magento becomes a pure data API. A separate Next.js app renders pages with React Server Components, then the browser takes over and swaps pages in place without reloading.',
+    tiers: [{ t: 'Browser', d: 'React app, prefetching, in-place navigation' }, { t: 'Cloudflare CDN', d: 'passes pages, caches assets' }, { t: 'Next.js server', d: 'Server Components, cached queries' }, { t: 'Magento GraphQL API', d: 'same catalogue, cart and checkout' }],
+    pros: ['Lightest pages and the most control over every byte', 'App-like navigation after the first page', 'Modern developer tooling'],
+    cons: ['Two systems to build, host and keep in sync', 'Store features must be rebuilt in React', 'The most developer effort of the three'] },
+  { s: 'shopify', how: 'Shopify hosts everything. Its servers render the Liquid theme on a global edge network; the page also carries Shopify’s own analytics, wallet and checkout-preload scripts.',
+    tiers: [{ t: 'Browser', d: 'Liquid HTML, theme JS + platform scripts' }, { t: 'Shopify edge', d: 'global CDN, TLS, caching' }, { t: 'Storefront renderer', d: 'Liquid, multi-tenant, managed' }, { t: 'Shopify platform', d: 'catalogue, checkout, apps' }],
+    pros: ['Nothing to host, patch or scale', 'Fast global infrastructure, excellent checkout', 'Quickest to launch and run'],
+    cons: ['Platform scripts you cannot remove add weight', 'Customisation bounded by themes, apps and APIs', 'Monthly plan, app and payment fees'] },
+] as const;
+const rows = [
+  ['Who runs it', 'You: server, PHP, MySQL, search, updates', 'You, twice: Magento plus a Node.js app', 'Shopify'],
+  ['Running cost', 'Hosting (this demo shares a small VPS); upkeep is the real cost', 'Magento’s costs plus Node hosting and a second codebase', 'Monthly plan (about $30–40 entry), apps, payment fees'],
+  ['Build effort', 'Medium: themes and extensions', 'High: storefront built from scratch', 'Low: theme and apps'],
+  ['Flexibility', 'Anything, it is your code', 'Anything, front and back', 'Within platform limits'],
+  ['Speed ceiling', 'Good with tuning', 'Highest: every byte is yours', 'Good, minus platform overhead'],
+  ['Best for', 'Complex catalogues, B2B, in-house PHP team', 'Brands wanting an app-like store, with developers', 'Most small and mid-size shops'],
+];
+---
+<section class="sec" id="stacks">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="kicker rv"><b>07</b> The three stacks</p>
+      <h2 class="sec-title rv">How each one <em>builds</em> a page</h2>
+      <p class="dek rv">Speed is one trade-off among several. Here is what sits behind each storefront, and what it costs to own.</p>
+    </header>
+    <div class="arch">
+      {cards.map((c, i) => (
+        <article class="card ac rv" data-stack={c.s} style={`--d:${i * 0.07}s`}>
+          <h3 class="key"><i class={`glyph ${STACK_META[c.s].shape}`}></i>{STACK_META[c.s].name}</h3>
+          <p class="how">{c.how}</p>
+          <Flow tiers={[...c.tiers]} stack={c.s} />
+          <div class="pc">
+            <ul class="pros" aria-label="Strengths">{c.pros.map(p => <li>{p}</li>)}</ul>
+            <ul class="cons" aria-label="Weaknesses">{c.cons.map(p => <li>{p}</li>)}</ul>
+          </div>
+        </article>
+      ))}
+    </div>
+    <div tabindex="0" role="region" aria-label="Trade-offs table" class="tbl-wrap trade rv">
+      <table class="data">
+        <caption class="sr-only">Trade-offs between the three stacks</caption>
+        <thead><tr><th><span class="sr-only">Aspect</span></th><th>Magento 2</th><th>Headless</th><th>Shopify</th></tr></thead>
+        <tbody>{rows.map(r => <tr><th scope="row">{r[0]}</th><td>{r[1]}</td><td>{r[2]}</td><td>{r[3]}</td></tr>)}</tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<style>
+  .arch { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  .ac { padding: 22px; display: flex; flex-direction: column; gap: 14px; border-top: 4px solid var(--c); }
+  .ac h3 { font-size: 20px; }
+  .how { font-size: 14.5px; color: var(--ink-2); margin: 0; min-height: 7.5em; }
+  .pc { display: grid; gap: 10px; font-size: 14px; }
+  .pc ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+  .pc li { padding-left: 22px; position: relative; line-height: 1.45; }
+  .pros li::before, .cons li::before { position: absolute; left: 0; top: 1px; width: 16px; height: 16px; border-radius: 50%; display: grid; place-items: center; font-size: 11px; font-weight: 700; }
+  .pros li::before { content: '+'; background: var(--zone-good); color: var(--good-text); }
+  .cons li::before { content: '–'; background: var(--zone-poor); color: var(--poor-text); }
+  .trade { margin-top: 22px; }
+  .trade table.data th, .trade table.data td { white-space: normal; text-align: left; vertical-align: top; min-width: 170px; line-height: 1.45; }
+  .trade tbody th { font-weight: 600; color: var(--ink); min-width: 120px !important; }
+  @media (max-width: 960px) { .arch { grid-template-columns: 1fr; } .how { min-height: 0; } .ac { display: grid; grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,7 @@
+---
+import { PAGE_IDS, PAGE_META } from '../lib/model';
+const { label = 'Page type', id } = Astro.props;
+---
+<div class="tabs" role="tablist" aria-label={label} data-page-tabs id={id}>
+  {PAGE_IDS.map((p, i) => <button type="button" role="tab" data-page={p} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{PAGE_META[p].name}</button>)}
+</div>

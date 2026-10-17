@@ -1,0 +1,40 @@
+---
+import Logo from './Logo.astro';
+const links = [['#scoreboard', 'Scores'], ['#vitals', 'Vitals'], ['#race', 'Race'], ['#journey', 'Journey'], ['#weight', 'Weight'], ['#stacks', 'Stacks'], ['#method', 'Method']];
+---
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a class="brand" href="#top" aria-label="Speed Trial, back to top">
+      <Logo size={30} />
+      <span class="brand-name">Speed&nbsp;Trial</span>
+    </a>
+    <nav class="nav" aria-label="Sections">
+      {links.map(([href, label]) => <a href={href}>{label}</a>)}
+    </nav>
+    <div class="seg device" role="group" aria-label="Device profile for all charts">
+      <button type="button" data-form="mobile" aria-pressed="true">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><rect x="4" y="1.5" width="8" height="13" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.5" /><path d="M7 12.3h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" /></svg>
+        <span>Mobile</span>
+      </button>
+      <button type="button" data-form="desktop" aria-pressed="false">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1.5" y="2.5" width="13" height="8.5" rx="1.4" fill="none" stroke="currentColor" stroke-width="1.5" /><path d="M5.5 13.8h5M8 11v2.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" /></svg>
+        <span>Desktop</span>
+      </button>
+    </div>
+  </div>
+  <div class="progress" aria-hidden="true"><i></i></div>
+</header>
+<style>
+  .topbar { position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--page) 94%, transparent); backdrop-filter: saturate(1.4) blur(14px); -webkit-backdrop-filter: saturate(1.4) blur(14px); border-bottom: 1px solid var(--hair); }
+  .topbar-in { display: flex; align-items: center; gap: 24px; height: 62px; }
+  .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+  .brand-name { font: 400 25px/1 var(--serif); letter-spacing: -0.01em; }
+  .nav { display: flex; gap: 4px; margin-left: auto; }
+  .nav a { text-decoration: none; font-size: 14px; font-weight: 550; color: var(--ink-2); padding: 8px 11px; border-radius: 999px; transition: background 0.2s, color 0.2s; }
+  .nav a:hover, .nav a.on { color: var(--ink); background: var(--hair); }
+  .device { flex: none; }
+  .progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; }
+  .progress i { display: block; height: 100%; width: 100%; transform-origin: 0 50%; transform: scaleX(var(--p, 0)); background: linear-gradient(90deg, var(--m2), var(--headless), var(--shopify)); }
+  @media (max-width: 1060px) { .nav { display: none; } .device { margin-left: auto; } }
+  @media (max-width: 420px) { .brand-name { font-size: 22px; } .device button { padding: 7px 11px; } .topbar-in { gap: 12px; } }
+</style>

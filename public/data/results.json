@@ -1,0 +1,9176 @@
+{
+ "generated": "2026-10-17T04:04:29.801Z",
+ "measured": {
+  "from": "2026-10-17T02:50:39.146Z",
+  "to": "2026-10-17T03:52:09.580Z",
+  "lighthouse": "13.4.1",
+  "runsPerCombo": 5,
+  "totalRuns": 180,
+  "benchmarkIndex": 2448,
+  "chrome": "148.0.7778.167"
+ },
+ "stacks": [
+  {
+   "id": "m2",
+   "name": "Magento 2 (Luma)",
+   "short": "Magento",
+   "origin": "https://m2.michael-kuhlman.com"
+  },
+  {
+   "id": "headless",
+   "name": "Headless (Next.js + Magento)",
+   "short": "Headless",
+   "origin": "https://headless.michael-kuhlman.com"
+  },
+  {
+   "id": "shopify",
+   "name": "Shopify (custom theme)",
+   "short": "Shopify",
+   "origin": "https://shopify.michael-kuhlman.com"
+  }
+ ],
+ "pages": [
+  {
+   "id": "home",
+   "name": "Home",
+   "paths": {
+    "m2": "/",
+    "headless": "/",
+    "shopify": "/"
+   }
+  },
+  {
+   "id": "category",
+   "name": "Category",
+   "note": "Paddles",
+   "paths": {
+    "m2": "/paddles.html",
+    "headless": "/paddles.html",
+    "shopify": "/collections/paddles"
+   }
+  },
+  {
+   "id": "product",
+   "name": "Product",
+   "note": "Kitchen Line Carbon 16 (configurable)",
+   "paths": {
+    "m2": "/kitchen-line-carbon-16.html",
+    "headless": "/kitchen-line-carbon-16.html",
+    "shopify": "/products/kitchen-line-carbon-16"
+   }
+  },
+  {
+   "id": "cms",
+   "name": "Content",
+   "note": "Our Story",
+   "paths": {
+    "m2": "/about",
+    "headless": "/about",
+    "shopify": "/pages/about"
+   }
+  },
+  {
+   "id": "search",
+   "name": "Search",
+   "note": "\"paddle\"",
+   "paths": {
+    "m2": "/catalogsearch/result/?q=paddle",
+    "headless": "/catalogsearch/result?q=paddle",
+    "shopify": "/search?q=paddle"
+   }
+  },
+  {
+   "id": "cart",
+   "name": "Cart",
+   "note": "empty bag",
+   "paths": {
+    "m2": "/checkout/cart/",
+    "headless": "/checkout/cart",
+    "shopify": "/cart"
+   }
+  }
+ ],
+ "forms": [
+  "mobile",
+  "desktop"
+ ],
+ "lh": {
+  "mobile/home/m2": {
+   "m": {
+    "fcp": 1510,
+    "lcp": 2807,
+    "tbt": 232,
+    "cls": 0,
+    "si": 1957,
+    "tti": 9819,
+    "ttfb": 109,
+    "mainThread": 7612,
+    "bootup": 3225,
+    "dom": 909,
+    "unusedJs": 0,
+    "obsFcp": 432,
+    "obsLcp": 432,
+    "obsLoad": 411
+   },
+   "spread": {
+    "fcp": [
+     1500,
+     1510,
+     1674,
+     1248,
+     1514
+    ],
+    "lcp": [
+     2732,
+     2807,
+     2969,
+     2968,
+     2788
+    ],
+    "tbt": [
+     164,
+     232,
+     1010,
+     745,
+     219
+    ],
+    "cls": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "si": [
+     2340,
+     1957,
+     1750,
+     1499,
+     2295
+    ],
+    "tti": [
+     9819,
+     8880,
+     11224,
+     11496,
+     7872
+    ],
+    "ttfb": [
+     147,
+     97,
+     109,
+     87,
+     125
+    ],
+    "mainThread": [
+     7612,
+     7073,
+     10896,
+     9140,
+     7243
+    ],
+    "bootup": [
+     3225,
+     2812,
+     4862,
+     3810,
+     2900
+    ],
+    "dom": [
+     909,
+     909,
+     909,
+     909,
+     909
+    ],
+    "unusedJs": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "obsFcp": [
+     430,
+     410,
+     556,
+     458,
+     432
+    ],
+    "obsLcp": [
+     430,
+     410,
+     556,
+     458,
+     432
+    ],
+    "obsLoad": [
+     412,
+     393,
+     496,
+     410,
+     411
+    ]
+   },
+   "scores": {
+    "performance": 91,
+    "accessibility": 100,
+    "bestPractices": 100,
+    "seo": 63
+   },
+   "perfSpread": [
+    94,
+    91,
+    72,
+    77,
+    92
+   ],
+   "weight": {
+    "total": 1177970,
+    "requests": 227,
+    "platform": 0,
+    "idle": 0,
+    "thirdParty": 0,
+    "hinted": 0,
+    "byType": {
+     "html": {
+      "bytes": 49131,
+      "count": 1
+     },
+     "js": {
+      "bytes": 434460,
+      "count": 191
+     },
+     "css": {
+      "bytes": 91319,
+      "count": 3
+     },
+     "img": {
+      "bytes": 463061,
+      "count": 19
+     },
+     "font": {
+      "bytes": 120577,
+      "count": 3
+     },
+     "other": {
+      "bytes": 19427,
+      "count": 10
+     }
+    }
+   },
+   "lcp": {
+    "selector": "div.column > section.ts-hero > picture > img.ts-hero__img",
+    "snippet": "<img sizes=\"100vw\" srcset=\"https://m2.michael-kuhlman.com/media/wysiwyg/thirdshot/hero.jpg.w480.webp …\" class=\"ts-hero__img\" src=\"https://m2.michael-kuhlman.com",
+    "isImage": true,
+    "label": "Signature Raw Carbon, Kitchen Line Carbon and Apex paddles with Tour 40 balls o…",
+    "parts": {
+     "timeToFirstByte": 137.42700024414063,
+     "resourceLoadDelay": 16.594999755859376,
+     "resourceLoadDuration": 47.976,
+     "elementRenderDelay": 207.761
+    }
+   },
+   "failing": {
+    "accessibility": [],
+    "bestPractices": [],
+    "seo": [
+     {
+      "id": "is-crawlable",
+      "title": "Page is blocked from indexing",
+      "weight": 4.043478260869565
+     }
+    ]
+   },
+   "report": "reports/mobile-home-m2.html",
+   "url": "https://m2.michael-kuhlman.com/",
+   "n": 5
+  },
+  "mobile/home/headless": {
+   "m": {
+    "fcp": 1214,
+    "lcp": 2923,
+    "tbt": 106,
+    "cls": 0.001,
+    "si": 1310,
+    "tti": 3764,
+    "ttfb": 43,
+    "mainThread": 2650,
+    "bootup": 880,
+    "dom": 607,
+    "unusedJs": 22825,
+    "obsFcp": 334,
+    "obsLcp": 334,
+    "obsLoad": 475
+   },
+   "spread": {
+    "fcp": [
+     1214,
+     1204,
+     1298,
+     1203,
+     1310
+    ],
+    "lcp": [
+     2419,
+     3088,
+     3713,
+     2923,
+     2380
+    ],
+    "tbt": [
+     66,
+     101,
+     106,
+     112,
+     241
+    ],
+    "cls": [
+     0.001,
+     0.001,
+     0.001,
+     0.001,
+     0.001
+    ],
+    "si": [
+     1382,
+     1456,
+     1298,
+     1203,
+     1310
+    ],
+    "tti": [
+     3723,
+     3764,
+     3812,
+     3666,
+     4734
+    ],
+    "ttfb": [
+     47,
+     43,
+     43,
+     73,
+     42
+    ],
+    "mainThread": [
+     2650,
+     2646,
+     3460,
+     2537,
+     3937
+    ],
+    "bootup": [
+     880,
+     867,
+     1140,
+     715,
+     1546
+    ],
+    "dom": [
+     607,
+     607,
+     607,
+     607,
+     607
+    ],
+    "unusedJs": [
+     22825,
+     22825,
+     22829,
+     22866,
+     22825
+    ],
+    "obsFcp": [
+     339,
+     249,
+     385,
+     297,
+     334
+    ],
+    "obsLcp": [
+     339,
+     275,
+     407,
+     324,
+     334
+    ],
+    "obsLoad": [
+     475,
+     390,
+     502,
+     441,
+     571
+    ]
+   },
+   "scores": {
+    "performance": 93,
+    "accessibility": 100,
+    "bestPractices": 100,
+    "seo": 69
+   },
+   "perfSpread": [
+    97,
+    93,
+    89,
+    94,
+    93
+   ],
+   "weight": {
+    "total": 599600,
+    "requests": 50,
+    "platform": 0,
+    "idle": 0,
+    "thirdParty": 0,
+    "hinted": 0,
+    "byType": {
+     "html": {
+      "bytes": 17166,
+      "count": 1
+     },
+     "js": {
+      "bytes": 161049,
+      "count": 12
+     },
+     "css": {
+      "bytes": 19372,
+      "count": 1
+     },
+     "img": {
+      "bytes": 247124,
+      "count": 17
+     },
+     "font": {
+      "bytes": 116604,
+      "count": 2
+     },
+     "other": {
+      "bytes": 38274,
+      "count": 17
+     }
+    }
+   },
+   "lcp": {
+    "selector": "div.ts-container > section.ts-hero > picture > img.ts-hero__img",
+    "snippet": "<img alt=\"Signature Raw Carbon, Kitchen Line Carbon and Apex paddles with Tour 40 ba…\" width=\"1920\" height=\"960\" decoding=\"async\" style=\"color:transparent\" size",
+    "isImage": true,
+    "label": "Signature Raw Carbon, Kitchen Line Carbon and Apex paddles with Tour 40 balls o…",
+    "parts": {
+     "timeToFirstByte": 54.12999975585937,
+     "resourceLoadDelay": 15.075000244140625,
+     "resourceLoadDuration": 43.901,
+     "elementRenderDelay": 161.843
+    }
+   },
+   "failing": {
+    "accessibility": [],
+    "bestPractices": [],
+    "seo": [
+     {
+      "id": "is-crawlable",
+      "title": "Page is blocked from indexing",
+      "weight": 4.043478260869565
+     }
+    ]
+   },
+   "report": "reports/mobile-home-headless.html",
+   "url": "https://headless.michael-kuhlman.com/",
+   "n": 5
+  },
+  "mobile/home/shopify": {
+   "m": {
+    "fcp": 2029,
+    "lcp": 3363,
+    "tbt": 392,
+    "cls": 0,
+    "si": 2040,
+    "tti": 5086,
+    "ttfb": 18,
+    "mainThread": 4435,
+    "bootup": 1098,
+    "dom": 599,
+    "unusedJs": 40540,
+    "obsFcp": 481,
+    "obsLcp": 599,
+    "obsLoad": 1089
+   },
+   "spread": {
+    "fcp": [
+     2040,
+     1960,
+     2029,
+     2102,
+     2029
+    ],
+    "lcp": [
+     4485,
+     2877,
+     4573,
+     3058,
+     3363
+    ],
+    "tbt": [
+     297,
+     346,
+     706,
+     1651,
+     392
+    ],
+    "cls": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "si": [
+     2040,
+     1960,
+     2195,
+     2330,
+     2029
+    ],
+    "tti": [
+     5086,
+     4920,
+     5639,
+     6589,
+     4871
+    ],
+    "ttfb": [
+     20,
+     22,
+     9,
+     18,
+     12
+    ],
+    "mainThread": [
+     4435,
+     3828,
+     5473,
+     8977,
+     3928
+    ],
+    "bootup": [
+     1098,
+     1082,
+     1838,
+     3260,
+     1022
+    ],
+    "dom": [
+     599,
+     599,
+     599,
+     599,
+     599
+    ],
+    "unusedJs": [
+     40540,
+     40207,
+     40541,
+     40543,
+     40211
+    ],
+    "obsFcp": [
+     509,
+     465,
+     481,
+     690,
+     414
+    ],
+    "obsLcp": [
+     627,
+     465,
+     599,
+     690,
+     414
+    ],
+    "obsLoad": [
+     1089,
+     966,
+     1094,
+     1936,
+     864
+    ]
+   },
+   "scores": {
+    "performance": 76,
+    "accessibility": 100,
+    "bestPractices": 73,
+    "seo": 69
+   },
+   "perfSpread": [
+    76,
+    86,
+    65,
+    65,
+    81
+   ],
+   "weight": {
+    "total": 1769722,
+    "requests": 180,
+    "platform": 1091226,
+    "idle": 833843,
+    "thirdParty": 54773,
+    "hinted": 22451,
+    "byType": {
+     "html": {
+      "bytes": 56428,
+      "count": 3
+     },
+     "js": {
+      "bytes": 223500,
+      "count": 29
+     },
+     "css": {
+      "bytes": 22451,
+      "count": 3
+     },
+     "img": {
+      "bytes": 506167,
+      "count": 18
+     },
+     "font": {
+      "bytes": 117095,
+      "count": 2
+     },
+     "other": {
+      "bytes": 847781,
+      "count": 125
+     }
+    }
+   },
+   "lcp": {
+    "selector": "div.ts-container > section.ts-hero > picture > img.ts-hero__img",
+    "snippet": "<img src=\"https://shopify.michael-kuhlman.com/cdn/shop/files/hero_mobile.jpg?v=17922…\" alt=\"hero\" srcset=\"//shopify.michael-kuhlman.com/cdn/shop/files/hero.jpg?",
+    "isImage": true,
+    "label": "hero",
+    "parts": {
+     "timeToFirstByte": 78.409,
+     "resourceLoadDelay": 129.89,
+     "resourceLoadDuration": 96.012,
+     "elementRenderDelay": 323.061
+    }
+   },
+   "failing": {
+    "accessibility": [],
+    "bestPractices": [
+     {
+      "id": "third-party-cookies",
+      "title": "Uses third-party cookies",
+      "weight": 5
+     },
+     {
+      "id": "errors-in-console",
+      "title": "Browser errors were logged to the console",
+      "weight": 1
+     },
+     {
+      "id": "inspector-issues",
+      "title": "Issues were logged in the `Issues` panel in Chrome Devtools",
+      "weight": 1
+     }
+    ],
+    "seo": [
+     {
+      "id": "is-crawlable",
+      "title": "Page is blocked from indexing",
+      "weight": 4.043478260869565
+     }
+    ]
+   },
+   "report": "reports/mobile-home-shopify.html",
+   "url": "https://shopify.michael-kuhlman.com/",
+   "n": 5
+  },
+  "mobile/category/m2": {
+   "m": {
+    "fcp": 1431,
+    "lcp": 2657,
+    "tbt": 134,
+    "cls": 0,
+    "si": 1702,
+    "tti": 7544,
+    "ttfb": 113,
+    "mainThread": 6656,
+    "bootup": 3109,
+    "dom": 834,
+    "unusedJs": 0,
+    "obsFcp": 365,
+    "obsLcp": 365,
+    "obsLoad": 343
+   },
+   "spread": {
+    "fcp": [
+     1431,
+     1394,
+     1452,
+     1585,
+     1143
+    ],
+    "lcp": [
+     2669,
+     2653,
+     2657,
+     2655,
+     2657
+    ],
+    "tbt": [
+     79,
+     134,
+     328,
+     113,
+     145
+    ],
+    "cls": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "si": [
+     1979,
+     1641,
+     1702,
+     1745,
+     1567
+    ],
+    "tti": [
+     8217,
+     7096,
+     9560,
+     7544,
+     7135
+    ],
+    "ttfb": [
+     144,
+     113,
+     94,
+     132,
+     99
+    ],
+    "mainThread": [
+     6713,
+     6616,
+     8672,
+     6573,
+     6656
+    ],
+    "bootup": [
+     3109,
+     2882,
+     4213,
+     2898,
+     3154
+    ],
+    "dom": [
+     834,
+     834,
+     834,
+     834,
+     834
+    ],
+    "unusedJs": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "obsFcp": [
+     398,
+     356,
+     365,
+     404,
+     269
+    ],
+    "obsLcp": [
+     398,
+     356,
+     365,
+     404,
+     269
+    ],
+    "obsLoad": [
+     385,
+     343,
+     324,
+     385,
+     248
+    ]
+   },
+   "scores": {
+    "performance": 95,
+    "accessibility": 97,
+    "bestPractices": 100,
+    "seo": 63
+   },
+   "perfSpread": [
+    96,
+    95,
+    89,
+    95,
+    95
+   ],
+   "weight": {
+    "total": 945026,
+    "requests": 235,
+    "platform": 0,
+    "idle": 0,
+    "thirdParty": 0,
+    "hinted": 0,
+    "byType": {
+     "html": {
+      "bytes": 48269,
+      "count": 1
+     },
+     "js": {
+      "bytes": 468798,
+      "count": 205
+     },
+     "css": {
+      "bytes": 91306,
+      "count": 3
+     },
+     "img": {
+      "bytes": 196629,
+      "count": 13
+     },
+     "font": {
+      "bytes": 120576,
+      "count": 3
+     },
+     "other": {
+      "bytes": 19435,
+      "count": 10
+     }
+    }
+   },
+   "lcp": {
+    "selector": "main#maincontent > div.category-view > div.category-image > img.image",
+    "snippet": "<img fetchpriority=\"high\" sizes=\"100vw\" srcset=\"https://m2.michael-kuhlman.com/media/catalog/category/ts-paddles.jpg.w480.…\" height=\"700\" width=\"1600\" src=\"http",
+    "isImage": true,
+    "label": "Paddles",
+    "parts": {
+     "timeToFirstByte": 111.908,
+     "resourceLoadDelay": 21.346,
+     "resourceLoadDuration": 41.664,
+     "elementRenderDelay": 94.082
+    }
+   },
+   "failing": {
+    "accessibility": [
+     {
+      "id": "target-size",
+      "title": "Touch targets do not have sufficient size or spacing.",
+      "weight": 7
+     }
+    ],
+    "bestPractices": [],
+    "seo": [
+     {
+      "id": "is-crawlable",
+      "title": "Page is blocked from indexing",
+      "weight": 4.043478260869565
+     }
+    ]
+   },
+   "report": "reports/mobile-category-m2.html",
+   "url": "https://m2.michael-kuhlman.com/paddles.html",
+   "n": 5
+  },
+  "mobile/category/headless": {
+   "m": {
+    "fcp": 1108,
+    "lcp": 3295,
+    "tbt": 88,
+    "cls": 0,
+    "si": 1108,
+    "tti": 3772,
+    "ttfb": 40,
+    "mainThread": 2059,
+    "bootup": 1005,
+    "dom": 509,
+    "unusedJs": 22549,
+    "obsFcp": 225,
+    "obsLcp": 231,
+    "obsLoad": 363
+   },
+   "spread": {
+    "fcp": [
+     1130,
+     1100,
+     1108,
+     1736,
+     1086
+    ],
+    "lcp": [
+     4001,
+     2900,
+     3295,
+     3458,
+     3179
+    ],
+    "tbt": [
+     113,
+     53,
+     88,
+     263,
+     51
+    ],
+    "cls": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "si": [
+     1130,
+     1100,
+     1108,
+     1736,
+     1086
+    ],
+    "tti": [
+     4159,
+     3739,
+     3862,
+     3772,
+     3545
+    ],
+    "ttfb": [
+     19,
+     59,
+     39,
+     72,
+     40
+    ],
+    "mainThread": [
+     2411,
+     1727,
+     2059,
+     3440,
+     1657
+    ],
+    "bootup": [
+     1274,
+     823,
+     1005,
+     2117,
+     748
+    ],
+    "dom": [
+     509,
+     509,
+     509,
+     509,
+     509
+    ],
+    "unusedJs": [
+     22548,
+     22551,
+     22549,
+     22551,
+     22548
+    ],
+    "obsFcp": [
+     189,
+     227,
+     225,
+     495,
+     214
+    ],
+    "obsLcp": [
+     360,
+     227,
+     231,
+     495,
+     214
+    ],
+    "obsLoad": [
+     363,
+     364,
+     318,
+     581,
+     290
+    ]
+   },
+   "scores": {
+    "performance": 92,
+    "accessibility": 100,
+    "bestPractices": 100,
+    "seo": 69
+   },
+   "perfSpread": [
+    86,
+    95,
+    92,
+    85,
+    93
+   ],
+   "weight": {
+    "total": 514944,
+    "requests": 49,
+    "platform": 0,
+    "idle": 6121,
+    "thirdParty": 0,
+    "hinted": 0,
+    "byType": {
+     "html": {
+      "bytes": 13593,
+      "count": 1
+     },
+     "js": {
+      "bytes": 161042,
+      "count": 12
+     },
+     "css": {
+      "bytes": 19373,
+      "count": 1
+     },
+     "img": {
+      "bytes": 148317,
+      "count": 15
+     },
+     "font": {
+      "bytes": 116606,
+      "count": 2
+     },
+     "other": {
+      "bytes": 56033,
+      "count": 18
+     }
+    }
+   },
+   "lcp": {
+    "selector": "div.ts-container > section.ts-cat-hero > figure.ts-cat-hero__media > img",
+    "snippet": "<img alt=\"\" decoding=\"async\" data-nimg=\"fill\" style=\"position: absolute; height: 100%; width: 100%; inset: 0px;\" sizes=\"(max-width: 767px) 100vw, (max-width: 10",
+    "isImage": true,
+    "label": "div.ts-container > section.ts-cat-hero > figure.ts-cat-hero__media > img",
+    "parts": {
+     "timeToFirstByte": 54.428,
+     "resourceLoadDelay": 19.195,
+     "resourceLoadDuration": 101.977,
+     "elementRenderDelay": 54.936
+    }
+   },
+   "failing": {
+    "accessibility": [],
+    "bestPractices": [],
+    "seo": [
+     {
+      "id": "is-crawlable",
+      "title": "Page is blocked from indexing",
+      "weight": 4.043478260869565
+     }
+    ]
+   },
+   "report": "reports/mobile-category-headless.html",
+   "url": "https://headless.michael-kuhlman.com/paddles.html",
+   "n": 5
+  },
+  "mobile/category/shopify": {
+   "m": {
+    "fcp": 2004,
+    "lcp": 3321,
+    "tbt": 515,
+    "cls": 0,
+    "si": 2004,
+    "tti": 5168,
+    "ttfb": 20,
+    "mainThread": 5105,
+    "bootup": 1788,
+    "dom": 788,
+    "unusedJs": 36374,
+    "obsFcp": 457,
+    "obsLcp": 457,
+    "obsLoad": 1053
+   },
+   "spread": {
+    "fcp": [
+     2206,
+     2004,
+     2014,
+     1979,
+     1966
+    ],
+    "lcp": [
+     3358,
+     3330,
+     3321,
+     3091,
+     2729
+    ],
+    "tbt": [
+     515,
+     252,
+     660,
+     663,
+     327
+    ],
+    "cls": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "si": [
+     2206,
+     2004,
+     2014,
+     1979,
+     1966
+    ],
+    "tti": [
+     5123,
+     5911,
+     5168,
+     5775,
+     5022
+    ],
+    "ttfb": [
+     13,
+     20,
+     18,
+     32,
+     22
+    ],
+    "mainThread": [
+     5637,
+     4676,
+     5105,
+     5674,
+     4247
+    ],
+    "bootup": [
+     1788,
+     1377,
+     1887,
+     1935,
+     1221
+    ],
+    "dom": [
+     788,
+     788,
+     788,
+     788,
+     788
+    ],
+    "unusedJs": [
+     36369,
+     36374,
+     36374,
+     36698,
+     36373
+    ],
+    "obsFcp": [
+     587,
+     403,
+     457,
+     525,
+     349
+    ],
+    "obsLcp": [
+     587,
+     403,
+     457,
+     525,
+     386
+    ],
+    "obsLoad": [
+     1290,
+     862,
+     1053,
+     1131,
+     837
+    ]
+   },
+   "scores": {
+    "performance": 77,
+    "accessibility": 100,
+    "bestPractices": 73,
+    "seo": 69
+   },
+   "perfSpread": [
+    77,
+    86,
+    74,
+    76,
+    87
+   ],
+   "weight": {
+    "total": 1836892,
+    "requests": 218,
+    "platform": 1335745,
+    "idle": 1069637,
+    "thirdParty": 54990,
+    "hinted": 22451,
+    "byType": {
+     "html": {
+      "bytes": 57226,
+      "count": 3
+     },
+     "js": {
+      "bytes": 217114,
+      "count": 29
+     },
+     "css": {
+      "bytes": 22451,
+      "count": 3
+     },
+     "img": {
+      "bytes": 327648,
+      "count": 15
+     },
+     "font": {
+      "bytes": 117321,
+      "count": 2
+     },
+     "other": {
+      "bytes": 1088596,
+      "count": 166
+     }
+    }
+   },
+   "lcp": {
+    "selector": "div.ts-container > section.ts-cat-hero > figure.ts-cat-hero__media > img",
+    "snippet": "<img src=\"https://shopify.michael-kuhlman.com/cdn/shop/collections/ts-paddles.jpg?v=…\" alt=\"\" srcset=\"//shopify.michael-kuhlman.com/cdn/shop/collections/ts-padd",
+    "isImage": true,
+    "label": "div.ts-container > section.ts-cat-hero > figure.ts-cat-hero__media > img",
+    "parts": {
+     "timeToFirstByte": 63.221,
+     "resourceLoadDelay": 185.399,
+     "resourceLoadDuration": 126.965,
+     "elementRenderDelay": 211.585
+    }
+   },
+   "failing": {
+    "accessibility": [],
+    "bestPractices": [
+     {
+      "id": "third-party-cookies",
+      "title": "Uses third-party cookies",
+      "weight": 5
+     },
+     {
+      "id": "errors-in-console",
+      "title": "Browser errors were logged to the console",
+      "weight": 1
+     },
+     {
+      "id": "inspector-issues",
+      "title": "Issues were logged in the `Issues` panel in Chrome Devtools",
+      "weight": 1
+     }
+    ],
+    "seo": [
+     {
+      "id": "is-crawlable",
+      "title": "Page is blocked from indexing",
+      "weight": 4.043478260869565
+     }
+    ]
+   },
+   "report": "reports/mobile-category-shopify.html",
+   "url": "https://shopify.michael-kuhlman.com/collections/paddles",
+   "n": 5
+  },
+  "mobile/product/m2": {
+   "m": {
+    "fcp": 1469,
+    "lcp": 2660,
+    "tbt": 339,
+    "cls": 0.012,
+    "si": 2713,
+    "tti": 10955,
+    "ttfb": 125,
+    "mainThread": 8417,
+    "bootup": 3667,
+    "dom": 608,
+    "unusedJs": 0,
+    "obsFcp": 443,
+    "obsLcp": 443,
+    "obsLoad": 392
+   },
+   "spread": {
+    "fcp": [
+     1521,
+     1452,
+     1626,
+     1454,
+     1469
+    ],
+    "lcp": [
+     2650,
+     2669,
+     2657,
+     2660,
+     2718
+    ],
+    "tbt": [
+     345,
+     264,
+     267,
+     339,
+     380
+    ],
+    "cls": [
+     0.012,
+     0.012,
+     0.012,
+     0.012,
+     0.012
+    ],
+    "si": [
+     3011,
+     2254,
+     3490,
+     2628,
+     2713
+    ],
+    "tti": [
+     10746,
+     11068,
+     10955,
+     11025,
+     10533
+    ],
+    "ttfb": [
+     132,
+     116,
+     139,
+     125,
+     112
+    ],
+    "mainThread": [
+     7619,
+     7610,
+     8567,
+     8558,
+     8417
+    ],
+    "bootup": [
+     3285,
+     3511,
+     3667,
+     3870,
+     3933
+    ],
+    "dom": [
+     608,
+     608,
+     608,
+     608,
+     608
+    ],
+    "unusedJs": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "obsFcp": [
+     453,
+     443,
+     953,
+     436,
+     413
+    ],
+    "obsLcp": [
+     453,
+     443,
+     953,
+     436,
+     413
+    ],
+    "obsLoad": [
+     420,
+     351,
+     522,
+     384,
+     392
+    ]
+   },
+   "scores": {
+    "performance": 88,
+    "accessibility": 96,
+    "bestPractices": 100,
+    "seo": 63
+   },
+   "perfSpread": [
+    88,
+    91,
+    89,
+    88,
+    86
+   ],
+   "weight": {
+    "total": 1091666,
+    "requests": 252,
+    "platform": 0,
+    "idle": 0,
+    "thirdParty": 0,
+    "hinted": 0,
+    "byType": {
+     "html": {
+      "bytes": 50383,
+      "count": 1
+     },
+     "js": {
+      "bytes": 500088,
+      "count": 217
+     },
+     "css": {
+      "bytes": 95887,
+      "count": 4
+     },
+     "img": {
+      "bytes": 301648,
+      "count": 13
+     },
+     "font": {
+      "bytes": 120580,
+      "count": 3
+     },
+     "other": {
+      "bytes": 23066,
+      "count": 14
+     }
+    }
+   },
+   "lcp": {
+    "selector": "div.column > div.product > div.gallery-placeholder > img.gallery-placeholder__image",
+    "snippet": "<img fetchpriority=\"high\" alt=\"main product photo\" class=\"gallery-placeholder__image\" src=\"https://m2.michael-kuhlman.com/media/catalog/product/cache/62f9117ad8",
+    "isImage": true,
+    "label": "main product photo",
+    "parts": {
+     "timeToFirstByte": 145.5229997558594,
+     "resourceLoadDelay": 16.859000244140624,
+     "resourceLoadDuration": 68.95,
+     "elementRenderDelay": 204.916
+    }
+   },
+   "failing": {
+    "accessibility": [
+     {
+      "id": "aria-required-children",
+      "title": "Elements with an ARIA `[role]` that require children to contain a specific `[role]` are missing some or all of those required children.",
+      "weight": 10
+     }
+    ],
+    "bestPractices": [],
+    "seo": [
+     {
+      "id": "is-crawlable",
+      "title": "Page is blocked from indexing",
+      "weight": 4.043478260869565
+     }
+    ]
+   },
+   "report": "reports/mobile-product-m2.html",
+   "url": "https://m2.michael-kuhlman.com/kitchen-line-carbon-16.html",
+   "n": 5
+  },
+  "mobile/product/headless": {
+   "m": {
+    "fcp": 1100,
+    "lcp": 3494,
+    "tbt": 58,
+    "cls": 0,
+    "si": 1100,
+    "tti": 3736,
+    "ttfb": 39,
+    "mainThread": 1844,
+    "bootup": 743,
+    "dom": 466,
+    "unusedJs": 22503,
+    "obsFcp": 229,
+    "obsLcp": 277,
+    "obsLoad": 335
+   },
+   "spread": {
+    "fcp": [
+     1103,
+     1103,
+     1053,
+     1100,
+     1091
+    ],
+    "lcp": [
+     3910,
+     3431,
+     3724,
+     3494,
+     3201
+    ],
+    "tbt": [
+     68,
+     56,
+     58,
+     57,
+     79
+    ],
+    "cls": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "si": [
+     1103,
+     1103,
+     1053,
+     1100,
+     1091
+    ],
+    "tti": [
+     3952,
+     3736,
+     3758,
+     3729,
+     3731
+    ],
+    "ttfb": [
+     39,
+     38,
+     39,
+     50,
+     23
+    ],
+    "mainThread": [
+     2175,
+     1768,
+     1887,
+     1823,
+     1844
+    ],
+    "bootup": [
+     934,
+     735,
+     833,
+     714,
+     743
+    ],
+    "dom": [
+     466,
+     466,
+     466,
+     466,
+     466
+    ],
+    "unusedJs": [
+     22503,
+     22503,
+     22503,
+     22504,
+     22538
+    ],
+    "obsFcp": [
+     218,
+     229,
+     238,
+     285,
+     224
+    ],
+    "obsLcp": [
+     339,
+     229,
+     277,
+     285,
+     224
+    ],
+    "obsLoad": [
+     335,
+     304,
+     345,
+     340,
+     314
+    ]
+   },
+   "scores": {
+    "performance": 91,
+    "accessibility": 100,
+    "bestPractices": 100,
+    "seo": 69
+   },
+   "perfSpread": [
+    88,
+    91,
+    89,
+    91,
+    93
+   ],
+   "weight": {
+    "total": 594763,
+    "requests": 40,
+    "platform": 0,
+    "idle": 0,
+    "thirdParty": 0,
+    "hinted": 0,
+    "byType": {
+     "html": {
+      "bytes": 15921,
+      "count": 1
+     },
+     "js": {
+      "bytes": 161047,
+      "count": 12
+     },
+     "css": {
+      "bytes": 19372,
+      "count": 1
+     },
+     "img": {
+      "bytes": 239598,
+      "count": 9
+     },
+     "font": {
+      "bytes": 116602,
+      "count": 2
+     },
+     "other": {
+      "bytes": 42216,
+      "count": 15
+     }
+    }
+   },
+   "lcp": {
+    "selector": "div.ts-gallery__stage > div.ts-gallery__track > div.ts-gallery__slide > img",
+    "snippet": "<img alt=\"Kitchen Line Carbon 16\" decoding=\"async\" data-nimg=\"fill\" style=\"position: absolute; height: 100%; width: 100%; inset: 0px;\" sizes=\"(max-width: 767px)",
+    "isImage": true,
+    "label": "Kitchen Line Carbon 16",
+    "parts": {
+     "timeToFirstByte": 88.94300024414062,
+     "resourceLoadDelay": 15.664999755859375,
+     "resourceLoadDuration": 87.866,
+     "elementRenderDelay": 92.732
+    }
+   },
+   "failing": {
+    "accessibility": [],
+    "bestPractices": [],
+    "seo": [
+     {
+      "id": "is-crawlable",
+      "title": "Page is blocked from indexing",
+      "weight": 4.043478260869565
+     }
+    ]
+   },
+   "report": "reports/mobile-product-headless.html",
+   "url": "https://headless.michael-kuhlman.com/kitchen-line-carbon-16.html",
+   "n": 5
+  },
+  "mobile/product/shopify": {
+   "m": {
+    "fcp": 2007,
+    "lcp": 5029,
+    "tbt": 315,
+    "cls": 0,
+    "si": 2033,
+    "tti": 8401,
+    "ttfb": 20,
+    "mainThread": 3931,
+    "bootup": 1245,
+    "dom": 520,
+    "unusedJs": 38987,
+    "obsFcp": 397,
+    "obsLcp": 480,
+    "obsLoad": 980
+   },
+   "spread": {
+    "fcp": [
+     2007,
+     1941,
+     1930,
+     2013,
+     2033
+    ],
+    "lcp": [
+     5029,
+     2588,
+     4899,
+     5207,
+     5197
+    ],
+    "tbt": [
+     297,
+     103,
+     315,
+     372,
+     340
+    ],
+    "cls": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "si": [
+     2007,
+     3230,
+     1930,
+     3052,
+     2033
+    ],
+    "tti": [
+     8401,
+     7885,
+     8585,
+     8900,
+     8335
+    ],
+    "ttfb": [
+     21,
+     33,
+     20,
+     18,
+     15
+    ],
+    "mainThread": [
+     3633,
+     3538,
+     4032,
+     3931,
+     4525
+    ],
+    "bootup": [
+     1170,
+     1062,
+     1245,
+     1653,
+     1472
+    ],
+    "dom": [
+     520,
+     520,
+     520,
+     520,
+     520
+    ],
+    "unusedJs": [
+     38987,
+     38981,
+     39314,
+     39311,
+     38982
+    ],
+    "obsFcp": [
+     393,
+     679,
+     397,
+     388,
+     480
+    ],
+    "obsLcp": [
+     696,
+     679,
+     397,
+     388,
+     480
+    ],
+    "obsLoad": [
+     1120,
+     1157,
+     882,
+     860,
+     980
+    ]
+   },
+   "scores": {
+    "performance": 74,
+    "accessibility": 100,
+    "bestPractices": 73,
+    "seo": 69
+   },
+   "perfSpread": [
+    74,
+    94,
+    74,
+    70,
+    71
+   ],
+   "weight": {
+    "total": 2580284,
+    "requests": 175,
+    "platform": 1044536,
+    "idle": 784808,
+    "thirdParty": 50290,
+    "hinted": 22451,
+    "byType": {
+     "html": {
+      "bytes": 57723,
+      "count": 3
+     },
+     "js": {
+      "bytes": 218967,
+      "count": 29
+     },
+     "css": {
+      "bytes": 22451,
+      "count": 3
+     },
+     "img": {
+      "bytes": 1361931,
+      "count": 14
+     },
+     "font": {
+      "bytes": 117016,
+      "count": 2
+     },
+     "other": {
+      "bytes": 802100,
+      "count": 124
+     }
+    }
+   },
+   "lcp": {
+    "selector": "div.ts-gallery__stage > div.ts-gallery__track > div.ts-gallery__slide > img",
+    "snippet": "<img src=\"https://shopify.michael-kuhlman.com/cdn/shop/files/kitchen-line-carbon-16-…\" alt=\"Kitchen Line Carbon 16\" srcset=\"//shopify.michael-kuhlman.com/cdn/sh",
+    "isImage": true,
+    "label": "Kitchen Line Carbon 16",
+    "parts": {
+     "timeToFirstByte": 59.675,
+     "resourceLoadDelay": 167.689,
+     "resourceLoadDuration": 385.492,
+     "elementRenderDelay": 82.672
+    }
+   },
+   "failing": {
+    "accessibility": [],
+    "bestPractices": [
+     {
+      "id": "third-party-cookies",
+      "title": "Uses third-party cookies",
+      "weight": 5
+     },
+     {
+      "id": "errors-in-console",
+      "title": "Browser errors were logged to the console",
+      "weight": 1
+     },
+     {
+      "id": "inspector-issues",
+      "title": "Issues were logged in the `Issues` panel in Chrome Devtools",
+      "weight": 1
+     }
+    ],
+    "seo": [
+     {
+      "id": "is-crawlable",
+      "title": "Page is blocked from indexing",
+      "weight": 4.043478260869565
+     }
+    ]
+   },
+   "report": "reports/mobile-product-shopify.html",
+   "url": "https://shopify.michael-kuhlman.com/products/kitchen-line-carbon-16",
+   "n": 5
+  },
+  "mobile/cms/m2": {
+   "m": {
+    "fcp": 1249,
+    "lcp": 3263,
+    "tbt": 270,
+    "cls": 0,
+    "si": 1526,
+    "tti": 8852,
+    "ttfb": 105,
+    "mainThread": 6221,
+    "bootup": 2639,
+    "dom": 264,
+    "unusedJs": 0,
+    "obsFcp": 387,
+    "obsLcp": 461,
+    "obsLoad": 323
+   },
+   "spread": {
+    "fcp": [
+     1249,
+     1305,
+     1330,
+     1216,
+     1232
+    ],
+    "lcp": [
+     3543,
+     3263,
+     3103,
+     3094,
+     3410
+    ],
+    "tbt": [
+     2836,
+     41,
+     595,
+     270,
+     217
+    ],
+    "cls": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "si": [
+     1616,
+     1305,
+     1729,
+     1216,
+     1526
+    ],
+    "tti": [
+     9421,
+     7719,
+     8852,
+     7472,
+     9437
+    ],
+    "ttfb": [
+     105,
+     145,
+     97,
+     147,
+     83
+    ],
+    "mainThread": [
+     8575,
+     6152,
+     8352,
+     5975,
+     6221
+    ],
+    "bootup": [
+     5048,
+     2639,
+     3828,
+     2500,
+     2626
+    ],
+    "dom": [
+     264,
+     264,
+     264,
+     264,
+     264
+    ],
+    "unusedJs": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "obsFcp": [
+     342,
+     398,
+     387,
+     404,
+     319
+    ],
+    "obsLcp": [
+     490,
+     461,
+     447,
+     483,
+     367
+    ],
+    "obsLoad": [
+     323,
+     375,
+     323,
+     389,
+     281
+    ]
+   },
+   "scores": {
+    "performance": 88,
+    "accessibility": 100,
+    "bestPractices": 100,
+    "seo": 63
+   },
+   "perfSpread": [
+    61,
+    93,
+    79,
+    88,
+    88
+   ],
+   "weight": {
+    "total": 787293,
+    "requests": 197,
+    "platform": 0,
+    "idle": 0,
+    "thirdParty": 0,
+    "hinted": 0,
+    "byType": {
+     "html": {
+      "bytes": 42531,
+      "count": 1
+     },
+     "js": {
+      "bytes": 411742,
+      "count": 176
+     },
+     "css": {
+      "bytes": 91306,
+      "count": 3
+     },
+     "img": {
+      "bytes": 101704,
+      "count": 4
+     },
+     "font": {
+      "bytes": 120574,
+      "count": 3
+     },
+     "other": {
+      "bytes": 19432,
+      "count": 10
+     }
+    }
+   },
+   "lcp": {
+    "selector": "div.columns > div.column > figure.ts-wide-figure > img",
+    "snippet": "<img sizes=\"100vw\" srcset=\"https://m2.michael-kuhlman.com/media/wysiwyg/thirdshot/workshop.jpg.w480.w…\" src=\"https://m2.michael-kuhlman.com/media/wysiwyg/thirds",
+    "isImage": true,
+    "label": "Two Third Shot paddles hanging on a walnut wall mount",
+    "parts": {
+     "timeToFirstByte": 98.668,
+     "resourceLoadDelay": 180.247,
+     "resourceLoadDuration": 44.795,
+     "elementRenderDelay": 42.856
+    }
+   },
+   "failing": {
+    "accessibility": [],
+    "bestPractices": [],
+    "seo": [
+     {
+      "id": "is-crawlable",
+      "title": "Page is blocked from indexing",
+      "weight": 4.043478260869565
+     }
+    ]
+   },
+   "report": "reports/mobile-cms-m2.html",
+   "url": "https://m2.michael-kuhlman.com/about",
+   "n": 5
+  },
+  "mobile/cms/headless": {
+   "m": {
+    "fcp": 1100,
+    "lcp": 3524,
+    "tbt": 90,
+    "cls": 0,
+    "si": 1100,
+    "tti": 3697,
+    "ttfb": 45,
+    "mainThread": 1601,
+    "bootup": 865,
+    "dom": 221,
+    "unusedJs": 22972,
+    "obsFcp": 227,
+    "obsLcp": 295,
+    "obsLoad": 299
+   },
+   "spread": {
+    "fcp": [
+     1100,
+     1100,
+     1099,
+     1121,
+     1094
+    ],
+    "lcp": [
+     3961,
+     3524,
+     3569,
+     3455,
+     3406
+    ],
+    "tbt": [
+     90,
+     88,
+     285,
+     33,
+     101
+    ],
+    "cls": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "si": [
+     1100,
+     1100,
+     1099,
+     1121,
+     1094
+    ],
+    "tti": [
+     3968,
+     3689,
+     3854,
+     3572,
+     3697
+    ],
+    "ttfb": [
+     32,
+     39,
+     58,
+     56,
+     45
+    ],
+    "mainThread": [
+     1396,
+     1593,
+     2404,
+     1601,
+     1727
+    ],
+    "bootup": [
+     649,
+     795,
+     1102,
+     870,
+     865
+    ],
+    "dom": [
+     221,
+     221,
+     221,
+     221,
+     221
+    ],
+    "unusedJs": [
+     22848,
+     22972,
+     22973,
+     22970,
+     22972
+    ],
+    "obsFcp": [
+     181,
+     206,
+     359,
+     227,
+     234
+    ],
+    "obsLcp": [
+     459,
+     295,
+     468,
+     290,
+     278
+    ],
+    "obsLoad": [
+     233,
+     299,
+     459,
+     267,
+     342
+    ]
+   },
+   "scores": {
+    "performance": 90,
+    "accessibility": 97,
+    "bestPractices": 100,
+    "seo": 69
+   },
+   "perfSpread": [
+    87,
+    90,
+    84,
+    91,
+    91
+   ],
+   "weight": {
+    "total": 414776,
+    "requests": 35,
+    "platform": 0,
+    "idle": 0,
+    "thirdParty": 0,
+    "hinted": 0,
+    "byType": {
+     "html": {
+      "bytes": 9289,
+      "count": 1
+     },
+     "js": {
+      "bytes": 161039,
+      "count": 12
+     },
+     "css": {
+      "bytes": 19372,
+      "count": 1
+     },
+     "img": {
+      "bytes": 66249,
+      "count": 4
+     },
+     "font": {
+      "bytes": 116603,
+      "count": 2
+     },
+     "other": {
+      "bytes": 42222,
+      "count": 15
+     }
+    }
+   },
+   "lcp": {
+    "selector": "main#main > div.ts-container > figure.ts-wide-figure > img",
+    "snippet": "<img alt=\"Two Third Shot paddles hanging on a walnut wall mount\" loading=\"lazy\" width=\"1600\" height=\"1000\" decoding=\"async\" data-nimg=\"1\" style=\"color:transpare",
+    "isImage": true,
+    "label": "Two Third Shot paddles hanging on a walnut wall mount",
+    "parts": {
+     "timeToFirstByte": 54.433,
+     "resourceLoadDelay": 136.095,
+     "resourceLoadDuration": 27.712,
+     "elementRenderDelay": 77.213
+    }
+   },
+   "failing": {
+    "accessibility": [
+     {
+      "id": "link-in-text-block",
+      "title": "Links rely on color to be distinguishable.",
+      "weight": 7
+     }
+    ],
+    "bestPractices": [],
+    "seo": [
+     {
+      "id": "is-crawlable",
+      "title": "Page is blocked from indexing",
+      "weight": 4.043478260869565
+     }
+    ]
+   },
+   "report": "reports/mobile-cms-headless.html",
+   "url": "https://headless.michael-kuhlman.com/about",
+   "n": 5
+  },
+  "mobile/cms/shopify": {
+   "m": {
+    "fcp": 1999,
+    "lcp": 4798,
+    "tbt": 266,
+    "cls": 0,
+    "si": 1999,
+    "tti": 5179,
+    "ttfb": 16,
+    "mainThread": 3447,
+    "bootup": 1102,
+    "dom": 244,
+    "unusedJs": 41622,
+    "obsFcp": 362,
+    "obsLcp": 525,
+    "obsLoad": 827
+   },
+   "spread": {
+    "fcp": [
+     1983,
+     2030,
+     1913,
+     1999,
+     2013
+    ],
+    "lcp": [
+     4316,
+     4798,
+     5015,
+     4789,
+     4865
+    ],
+    "tbt": [
+     185,
+     222,
+     427,
+     266,
+     413
+    ],
+    "cls": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "si": [
+     1983,
+     2030,
+     1913,
+     1999,
+     2013
+    ],
+    "tti": [
+     5070,
+     5169,
+     5723,
+     5406,
+     5179
+    ],
+    "ttfb": [
+     131,
+     16,
+     9,
+     15,
+     18
+    ],
+    "mainThread": [
+     3331,
+     2880,
+     4718,
+     4039,
+     3447
+    ],
+    "bootup": [
+     1102,
+     900,
+     1498,
+     1079,
+     1197
+    ],
+    "dom": [
+     244,
+     244,
+     244,
+     244,
+     244
+    ],
+    "unusedJs": [
+     41630,
+     41622,
+     41296,
+     41329,
+     41632
+    ],
+    "obsFcp": [
+     330,
+     388,
+     362,
+     361,
+     431
+    ],
+    "obsLcp": [
+     486,
+     518,
+     635,
+     525,
+     592
+    ],
+    "obsLoad": [
+     698,
+     891,
+     827,
+     717,
+     950
+    ]
+   },
+   "scores": {
+    "performance": 76,
+    "accessibility": 96,
+    "bestPractices": 73,
+    "seo": 69
+   },
+   "perfSpread": [
+    81,
+    77,
+    70,
+    76,
+    70
+   ],
+   "weight": {
+    "total": 1555080,
+    "requests": 165,
+    "platform": 1375493,
+    "idle": 833693,
+    "thirdParty": 338126,
+    "hinted": 22451,
+    "byType": {
+     "html": {
+      "bytes": 52850,
+      "count": 3
+     },
+     "js": {
+      "bytes": 219003,
+      "count": 29
+     },
+     "css": {
+      "bytes": 22451,
+      "count": 3
+     },
+     "img": {
+      "bytes": 293195,
+      "count": 3
+     },
+     "font": {
+      "bytes": 116869,
+      "count": 2
+     },
+     "other": {
+      "bytes": 847656,
+      "count": 125
+     }
+    }
+   },
+   "lcp": {
+    "selector": "div#shopify-section-template--24212677886177__main > div.ts-container > figure.ts-wide-figure > img",
+    "snippet": "<img src=\"https://cdn.shopify.com/s/files/1/0861/3888/0225/files/workshop.jpg\" alt=\"Two Third Shot paddles hanging on a walnut wall mount\" loading=\"lazy\" width=",
+    "isImage": true,
+    "label": "Two Third Shot paddles hanging on a walnut wall mount",
+    "parts": {
+     "timeToFirstByte": 53.74500024414063,
+     "resourceLoadDelay": 286.83599975585935,
+     "resourceLoadDuration": 99.415,
+     "elementRenderDelay": 85.286
+    }
+   },
+   "failing": {
+    "accessibility": [
+     {
+      "id": "link-in-text-block",
+      "title": "Links rely on color to be distinguishable.",
+      "weight": 7
+     }
+    ],
+    "bestPractices": [
+     {
+      "id": "third-party-cookies",
+      "title": "Uses third-party cookies",
+      "weight": 5
+     },
+     {
+      "id": "errors-in-console",
+      "title": "Browser errors were logged to the console",
+      "weight": 1
+     },
+     {
+      "id": "inspector-issues",
+      "title": "Issues were logged in the `Issues` panel in Chrome Devtools",
+      "weight": 1
+     }
+    ],
+    "seo": [
+     {
+      "id": "is-crawlable",
+      "title": "Page is blocked from indexing",
+      "weight": 4.043478260869565
+     }
+    ]
+   },
+   "report": "reports/mobile-cms-shopify.html",
+   "url": "https://shopify.michael-kuhlman.com/pages/about",
+   "n": 5
+  },
+  "mobile/search/m2": {
+   "m": {
+    "fcp": 1405,
+    "lcp": 3103,
+    "tbt": 167,
+    "cls": 0.008,
+    "si": 1925,
+    "tti": 9181,
+    "ttfb": 123,
+    "mainThread": 7012,
+    "bootup": 3173,
+    "dom": 764,
+    "unusedJs": 0,
+    "obsFcp": 369,
+    "obsLcp": 397,
+    "obsLoad": 335
+   },
+   "spread": {
+    "fcp": [
+     1167,
+     1428,
+     1414,
+     1405,
+     1248
+    ],
+    "lcp": [
+     3760,
+     2655,
+     2948,
+     3187,
+     3103
+    ],
+    "tbt": [
+     449,
+     398,
+     68,
+     134,
+     167
+    ],
+    "cls": [
+     0.008,
+     0.008,
+     0.008,
+     0.008,
+     0.008
+    ],
+    "si": [
+     2181,
+     2450,
+     1915,
+     1925,
+     1656
+    ],
+    "tti": [
+     9181,
+     10376,
+     9676,
+     8112,
+     8581
+    ],
+    "ttfb": [
+     123,
+     132,
+     80,
+     133,
+     113
+    ],
+    "mainThread": [
+     8214,
+     7469,
+     6796,
+     7012,
+     6716
+    ],
+    "bootup": [
+     3606,
+     3398,
+     3022,
+     2911,
+     3173
+    ],
+    "dom": [
+     764,
+     764,
+     764,
+     764,
+     764
+    ],
+    "unusedJs": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "obsFcp": [
+     433,
+     413,
+     321,
+     369,
+     282
+    ],
+    "obsLcp": [
+     535,
+     436,
+     353,
+     397,
+     333
+    ],
+    "obsLoad": [
+     372,
+     373,
+     297,
+     335,
+     251
+    ]
+   },
+   "scores": {
+    "performance": 92,
+    "accessibility": 97,
+    "bestPractices": 100,
+    "seo": 63
+   },
+   "perfSpread": [
+    78,
+    86,
+    94,
+    92,
+    92
+   ],
+   "weight": {
+    "total": 885532,
+    "requests": 227,
+    "platform": 0,
+    "idle": 0,
+    "thirdParty": 0,
+    "hinted": 0,
+    "byType": {
+     "html": {
+      "bytes": 47506,
+      "count": 1
+     },
+     "js": {
+      "bytes": 446724,
+      "count": 197
+     },
+     "css": {
+      "bytes": 91308,
+      "count": 3
+     },
+     "img": {
+      "bytes": 157302,
+      "count": 12
+     },
+     "font": {
+      "bytes": 120579,
+      "count": 3
+     },
+     "other": {
+      "bytes": 22125,
+      "count": 11
+     }
+    }
+   },
+   "lcp": {
+    "selector": "a.product > span.product-image-container > span.product-image-wrapper > img.product-image-photo",
+    "snippet": "<img class=\"product-image-photo\" src=\"https://m2.michael-kuhlman.com/media/catalog/product/cache/cd00546abb5729d…\" loading=\"lazy\" width=\"480\" height=\"600\" alt=\"",
+    "isImage": true,
+    "label": "Coach's Weighted Trainer",
+    "parts": {
+     "timeToFirstByte": 128.996,
+     "resourceLoadDelay": 133.112,
+     "resourceLoadDuration": 38.494,
+     "elementRenderDelay": 31.967
+    }
+   },
+   "failing": {
+    "accessibility": [
+     {
+      "id": "target-size",
+      "title": "Touch targets do not have sufficient size or spacing.",
+      "weight": 7
+     }
+    ],
+    "bestPractices": [],
+    "seo": [
+     {
+      "id": "is-crawlable",
+      "title": "Page is blocked from indexing",
+      "weight": 4.043478260869565
+     }
+    ]
+   },
+   "report": "reports/mobile-search-m2.html",
+   "url": "https://m2.michael-kuhlman.com/catalogsearch/result/?q=paddle",
+   "n": 5
+  },
+  "mobile/search/headless": {
+   "m": {
+    "fcp": 1109,
+    "lcp": 3562,
+    "tbt": 197,
+    "cls": 0,
+    "si": 1109,
+    "tti": 3955,
+    "ttfb": 32,
+    "mainThread": 3015,
+    "bootup": 1367,
+    "dom": 778,
+    "unusedJs": 21481,
+    "obsFcp": 173,
+    "obsLcp": 564,
+    "obsLoad": 247
+   },
+   "spread": {
+    "fcp": [
+     1109,
+     1104,
+     1106,
+     1114,
+     1111
+    ],
+    "lcp": [
+     3721,
+     3782,
+     3562,
+     3504,
+     3496
+    ],
+    "tbt": [
+     212,
+     256,
+     197,
+     128,
+     144
+    ],
+    "cls": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "si": [
+     1109,
+     1104,
+     1106,
+     1114,
+     1111
+    ],
+    "tti": [
+     3955,
+     4013,
+     3980,
+     3805,
+     3834
+    ],
+    "ttfb": [
+     131,
+     53,
+     30,
+     26,
+     32
+    ],
+    "mainThread": [
+     3530,
+     3345,
+     3015,
+     2683,
+     2679
+    ],
+    "bootup": [
+     1595,
+     1382,
+     1367,
+     1140,
+     1154
+    ],
+    "dom": [
+     778,
+     778,
+     778,
+     778,
+     778
+    ],
+    "unusedJs": [
+     21481,
+     21481,
+     21481,
+     21481,
+     21482
+    ],
+    "obsFcp": [
+     290,
+     281,
+     171,
+     173,
+     168
+    ],
+    "obsLcp": [
+     1221,
+     680,
+     564,
+     483,
+     514
+    ],
+    "obsLoad": [
+     375,
+     370,
+     243,
+     247,
+     244
+    ]
+   },
+   "scores": {
+    "performance": 87,
+    "accessibility": 100,
+    "bestPractices": 100,
+    "seo": 66
+   },
+   "perfSpread": [
+    86,
+    84,
+    87,
+    90,
+    89
+   ],
+   "weight": {
+    "total": 588625,
+    "requests": 68,
+    "platform": 0,
+    "idle": 23783,
+    "thirdParty": 0,
+    "hinted": 0,
+    "byType": {
+     "html": {
+      "bytes": 8778,
+      "count": 1
+     },
+     "js": {
+      "bytes": 161047,
+      "count": 12
+     },
+     "css": {
+      "bytes": 19371,
+      "count": 1
+     },
+     "img": {
+      "bytes": 187506,
+      "count": 22
+     },
+     "font": {
+      "bytes": 116597,
+      "count": 2
+     },
+     "other": {
+      "bytes": 95318,
+      "count": 30
+     }
+    }
+   },
+   "lcp": {
+    "selector": "div.ts-card > div.ts-card__top > a.ts-card__media > img",
+    "snippet": "<img alt=\"\" decoding=\"async\" data-nimg=\"fill\" sizes=\"(max-width: 767px) 46vw, (max-width: 1023px) 31vw, (max-width: 1320px) 24v…\" srcset=\"/_next/image?url=https",
+    "isImage": true,
+    "label": "div.ts-card > div.ts-card__top > a.ts-card__media > img",
+    "parts": {
+     "timeToFirstByte": 61.067,
+     "resourceLoadDelay": 368.624,
+     "resourceLoadDuration": 37.998,
+     "elementRenderDelay": 96.151
+    }
+   },
+   "failing": {
+    "accessibility": [],
+    "bestPractices": [],
+    "seo": [
+     {
+      "id": "is-crawlable",
+      "title": "Page is blocked from indexing",
+      "weight": 4.043478260869565
+     }
+    ]
+   },
+   "report": "reports/mobile-search-headless.html",
+   "url": "https://headless.michael-kuhlman.com/catalogsearch/result?q=paddle",
+   "n": 5
+  },
+  "mobile/search/shopify": {
+   "m": {
+    "fcp": 1956,
+    "lcp": 3234,
+    "tbt": 381,
+    "cls": 0,
+    "si": 1976,
+    "tti": 5549,
+    "ttfb": 255,
+    "mainThread": 4739,
+    "bootup": 1488,
+    "dom": 1037,
+    "unusedJs": 38214,
+    "obsFcp": 537,
+    "obsLcp": 556,
+    "obsLoad": 1162
+   },
+   "spread": {
+    "fcp": [
+     1956,
+     1945,
+     1976,
+     1881,
+     1994
+    ],
+    "lcp": [
+     3205,
+     3194,
+     3250,
+     3234,
+     3405
+    ],
+    "tbt": [
+     335,
+     363,
+     725,
+     381,
+     536
+    ],
+    "cls": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "si": [
+     1956,
+     1945,
+     1976,
+     2000,
+     1994
+    ],
+    "tti": [
+     5378,
+     5795,
+     5549,
+     5248,
+     5967
+    ],
+    "ttfb": [
+     255,
+     263,
+     395,
+     242,
+     251
+    ],
+    "mainThread": [
+     4106,
+     4739,
+     5412,
+     4088,
+     5406
+    ],
+    "bootup": [
+     1326,
+     1436,
+     1857,
+     1488,
+     1690
+    ],
+    "dom": [
+     1037,
+     1030,
+     1030,
+     1041,
+     1037
+    ],
+    "unusedJs": [
+     38207,
+     38241,
+     38216,
+     38214,
+     37912
+    ],
+    "obsFcp": [
+     556,
+     532,
+     707,
+     501,
+     537
+    ],
+    "obsLcp": [
+     556,
+     568,
+     725,
+     543,
+     537
+    ],
+    "obsLoad": [
+     1052,
+     1522,
+     2050,
+     1113,
+     1162
+    ]
+   },
+   "scores": {
+    "performance": 82,
+    "accessibility": 100,
+    "bestPractices": 73,
+    "seo": 69
+   },
+   "perfSpread": [
+    84,
+    83,
+    73,
+    82,
+    76
+   ],
+   "weight": {
+    "total": 1775203,
+    "requests": 207,
+    "platform": 1173042,
+    "idle": 917431,
+    "thirdParty": 54869,
+    "hinted": 0,
+    "byType": {
+     "html": {
+      "bytes": 59064,
+      "count": 3
+     },
+     "js": {
+      "bytes": 218925,
+      "count": 29
+     },
+     "css": {
+      "bytes": 24098,
+      "count": 3
+     },
+     "img": {
+      "bytes": 428935,
+      "count": 22
+     },
+     "font": {
+      "bytes": 117058,
+      "count": 2
+     },
+     "other": {
+      "bytes": 934151,
+      "count": 147
+     }
+    }
+   },
+   "lcp": {
+    "selector": "div.ts-card > div.ts-card__top > a.ts-card__media > img",
+    "snippet": "<img src=\"https://shopify.michael-kuhlman.com/cdn/shop/files/drop-zone-control-16-1_…\" alt=\"\" srcset=\"//shopify.michael-kuhlman.com/cdn/shop/files/drop-zone-con",
+    "isImage": true,
+    "label": "div.ts-card > div.ts-card__top > a.ts-card__media > img",
+    "parts": {
+     "timeToFirstByte": 288.7660002441406,
+     "resourceLoadDelay": 116.88799975585937,
+     "resourceLoadDuration": 103.823,
+     "elementRenderDelay": 33.499
+    }
+   },
+   "failing": {
+    "accessibility": [],
+    "bestPractices": [
+     {
+      "id": "third-party-cookies",
+      "title": "Uses third-party cookies",
+      "weight": 5
+     },
+     {
+      "id": "errors-in-console",
+      "title": "Browser errors were logged to the console",
+      "weight": 1
+     },
+     {
+      "id": "inspector-issues",
+      "title": "Issues were logged in the `Issues` panel in Chrome Devtools",
+      "weight": 1
+     }
+    ],
+    "seo": [
+     {
+      "id": "is-crawlable",
+      "title": "Page is blocked from indexing",
+      "weight": 4.043478260869565
+     }
+    ]
+   },
+   "report": "reports/mobile-search-shopify.html",
+   "url": "https://shopify.michael-kuhlman.com/search?q=paddle",
+   "n": 5
+  },
+  "mobile/cart/m2": {
+   "m": {
+    "fcp": 1024,
+    "lcp": 2740,
+    "tbt": 87,
+    "cls": 0,
+    "si": 1043,
+    "tti": 6561,
+    "ttfb": 185,
+    "mainThread": 5424,
+    "bootup": 2771,
+    "dom": 246,
+    "unusedJs": 0,
+    "obsFcp": 354,
+    "obsLcp": 354,
+    "obsLoad": 941
+   },
+   "spread": {
+    "fcp": [
+     1043,
+     1024,
+     1138,
+     1014,
+     1010
+    ],
+    "lcp": [
+     2740,
+     2735,
+     2803,
+     2796,
+     2726
+    ],
+    "tbt": [
+     212,
+     44,
+     134,
+     50,
+     87
+    ],
+    "cls": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "si": [
+     1043,
+     1563,
+     1203,
+     1014,
+     1010
+    ],
+    "tti": [
+     8646,
+     6561,
+     7107,
+     6035,
+     6040
+    ],
+    "ttfb": [
+     185,
+     205,
+     288,
+     183,
+     163
+    ],
+    "mainThread": [
+     6183,
+     5424,
+     6026,
+     5034,
+     5184
+    ],
+    "bootup": [
+     3213,
+     2771,
+     2796,
+     2638,
+     2566
+    ],
+    "dom": [
+     246,
+     246,
+     246,
+     246,
+     246
+    ],
+    "unusedJs": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "obsFcp": [
+     354,
+     326,
+     507,
+     365,
+     308
+    ],
+    "obsLcp": [
+     354,
+     326,
+     507,
+     365,
+     308
+    ],
+    "obsLoad": [
+     1030,
+     921,
+     1215,
+     897,
+     941
+    ]
+   },
+   "scores": {
+    "performance": 96,
+    "accessibility": 100,
+    "bestPractices": 100,
+    "seo": 63
+   },
+   "perfSpread": [
+    92,
+    96,
+    94,
+    96,
+    96
+   ],
+   "weight": {
+    "total": 714453,
+    "requests": 198,
+    "platform": 0,
+    "idle": 0,
+    "thirdParty": 0,
+    "hinted": 0,
+    "byType": {
+     "html": {
+      "bytes": 41065,
+      "count": 1
+     },
+     "js": {
+      "bytes": 414724,
+      "count": 178
+     },
+     "css": {
+      "bytes": 91307,
+      "count": 3
+     },
+     "img": {
+      "bytes": 27357,
+      "count": 3
+     },
+     "font": {
+      "bytes": 120579,
+      "count": 3
+     },
+     "other": {
+      "bytes": 19434,
+      "count": 10
+     }
+    }
+   },
+   "lcp": {
+    "selector": "div.ts-footer > div.ts-footer__news > div.ts-footer__news-copy > h2",
+    "snippet": "<h2>",
+    "isImage": false,
+    "label": "Drills, gear drops and court notes. Twice a month, never more.",
+    "parts": {
+     "timeToFirstByte": 217.791,
+     "elementRenderDelay": 107.893
+    }
+   },
+   "failing": {
+    "accessibility": [],
+    "bestPractices": [],
+    "seo": [
+     {
+      "id": "is-crawlable",
+      "title": "Page is blocked from indexing",
+      "weight": 4.043478260869565
+     }
+    ]
+   },
+   "report": "reports/mobile-cart-m2.html",
+   "url": "https://m2.michael-kuhlman.com/checkout/cart/",
+   "n": 5
+  },
+  "mobile/cart/headless": {
+   "m": {
+    "fcp": 1098,
+    "lcp": 3401,
+    "tbt": 81,
+    "cls": 0,
+    "si": 1098,
+    "tti": 3456,
+    "ttfb": 67,
+    "mainThread": 1985,
+    "bootup": 820,
+    "dom": 189,
+    "unusedJs": 22233,
+    "obsFcp": 253,
+    "obsLcp": 485,
+    "obsLoad": 328
+   },
+   "spread": {
+    "fcp": [
+     1098,
+     1084,
+     1098,
+     1099,
+     1092
+    ],
+    "lcp": [
+     3424,
+     3322,
+     3516,
+     3148,
+     3401
+    ],
+    "tbt": [
+     87,
+     68,
+     106,
+     40,
+     81
+    ],
+    "cls": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "si": [
+     1098,
+     1217,
+     1098,
+     1099,
+     1092
+    ],
+    "tti": [
+     3587,
+     3402,
+     3629,
+     3396,
+     3456
+    ],
+    "ttfb": [
+     66,
+     86,
+     59,
+     67,
+     88
+    ],
+    "mainThread": [
+     1985,
+     1500,
+     2031,
+     1594,
+     1988
+    ],
+    "bootup": [
+     1024,
+     746,
+     1011,
+     717,
+     820
+    ],
+    "dom": [
+     189,
+     189,
+     189,
+     189,
+     189
+    ],
+    "unusedJs": [
+     22233,
+     22232,
+     22232,
+     22236,
+     22235
+    ],
+    "obsFcp": [
+     268,
+     239,
+     196,
+     253,
+     357
+    ],
+    "obsLcp": [
+     493,
+     415,
+     485,
+     403,
+     550
+    ],
+    "obsLoad": [
+     351,
+     328,
+     301,
+     302,
+     439
+    ]
+   },
+   "scores": {
+    "performance": 91,
+    "accessibility": 100,
+    "bestPractices": 100,
+    "seo": 66
+   },
+   "perfSpread": [
+    91,
+    92,
+    90,
+    93,
+    91
+   ],
+   "weight": {
+    "total": 364764,
+    "requests": 37,
+    "platform": 0,
+    "idle": 0,
+    "thirdParty": 0,
+    "hinted": 0,
+    "byType": {
+     "html": {
+      "bytes": 8316,
+      "count": 1
+     },
+     "js": {
+      "bytes": 165330,
+      "count": 13
+     },
+     "css": {
+      "bytes": 19371,
+      "count": 1
+     },
+     "img": {
+      "bytes": 9764,
+      "count": 2
+     },
+     "font": {
+      "bytes": 116606,
+      "count": 2
+     },
+     "other": {
+      "bytes": 45391,
+      "count": 18
+     }
+    }
+   },
+   "lcp": {
+    "selector": "main#main > div.ts-container > div.ts-cart-empty > p",
+    "snippet": "<p>",
+    "isImage": false,
+    "label": "Start with a paddle, a sleeve of balls or something for the bag.",
+    "parts": {
+     "timeToFirstByte": 135.625,
+     "elementRenderDelay": 414.23
+    }
+   },
+   "failing": {
+    "accessibility": [],
+    "bestPractices": [],
+    "seo": [
+     {
+      "id": "is-crawlable",
+      "title": "Page is blocked from indexing",
+      "weight": 4.043478260869565
+     }
+    ]
+   },
+   "report": "reports/mobile-cart-headless.html",
+   "url": "https://headless.michael-kuhlman.com/checkout/cart",
+   "n": 5
+  },
+  "mobile/cart/shopify": {
+   "m": {
+    "fcp": 1993,
+    "lcp": 2571,
+    "tbt": 583,
+    "cls": 0,
+    "si": 1993,
+    "tti": 4791,
+    "ttfb": 15,
+    "mainThread": 3916,
+    "bootup": 1172,
+    "dom": 213,
+    "unusedJs": 41623,
+    "obsFcp": 407,
+    "obsLcp": 407,
+    "obsLoad": 828
+   },
+   "spread": {
+    "fcp": [
+     1980,
+     1993,
+     2013,
+     2017,
+     1974
+    ],
+    "lcp": [
+     2887,
+     2994,
+     2571,
+     2570,
+     2425
+    ],
+    "tbt": [
+     735,
+     2744,
+     256,
+     201,
+     583
+    ],
+    "cls": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "si": [
+     1980,
+     1993,
+     2013,
+     2017,
+     1974
+    ],
+    "tti": [
+     4791,
+     5016,
+     4410,
+     4432,
+     4911
+    ],
+    "ttfb": [
+     13,
+     15,
+     15,
+     15,
+     14
+    ],
+    "mainThread": [
+     4558,
+     6630,
+     3140,
+     3115,
+     3916
+    ],
+    "bootup": [
+     1172,
+     1514,
+     913,
+     918,
+     1313
+    ],
+    "dom": [
+     213,
+     213,
+     213,
+     213,
+     213
+    ],
+    "unusedJs": [
+     41637,
+     41294,
+     41623,
+     41303,
+     41630
+    ],
+    "obsFcp": [
+     388,
+     414,
+     407,
+     368,
+     413
+    ],
+    "obsLcp": [
+     388,
+     414,
+     407,
+     368,
+     413
+    ],
+    "obsLoad": [
+     789,
+     972,
+     828,
+     712,
+     928
+    ]
+   },
+   "scores": {
+    "performance": 81,
+    "accessibility": 100,
+    "bestPractices": 73,
+    "seo": 61
+   },
+   "perfSpread": [
+    76,
+    64,
+    90,
+    92,
+    81
+   ],
+   "weight": {
+    "total": 1309415,
+    "requests": 172,
+    "platform": 1131623,
+    "idle": 870665,
+    "thirdParty": 50350,
+    "hinted": 22451,
+    "byType": {
+     "html": {
+      "bytes": 51832,
+      "count": 3
+     },
+     "js": {
+      "bytes": 219068,
+      "count": 29
+     },
+     "css": {
+      "bytes": 22451,
+      "count": 3
+     },
+     "img": {
+      "bytes": 10135,
+      "count": 2
+     },
+     "font": {
+      "bytes": 117024,
+      "count": 2
+     },
+     "other": {
+      "bytes": 884667,
+      "count": 133
+     }
+    }
+   },
+   "lcp": {
+    "selector": "div#shopify-section-template--24212677787873__main > div.ts-container > div.ts-cart-empty > p",
+    "snippet": "<p>",
+    "isImage": false,
+    "label": "Start with a paddle, a sleeve of balls or something for the bag.",
+    "parts": {
+     "timeToFirstByte": 75.618,
+     "elementRenderDelay": 337.844
+    }
+   },
+   "failing": {
+    "accessibility": [],
+    "bestPractices": [
+     {
+      "id": "third-party-cookies",
+      "title": "Uses third-party cookies",
+      "weight": 5
+     },
+     {
+      "id": "errors-in-console",
+      "title": "Browser errors were logged to the console",
+      "weight": 1
+     },
+     {
+      "id": "inspector-issues",
+      "title": "Issues were logged in the `Issues` panel in Chrome Devtools",
+      "weight": 1
+     }
+    ],
+    "seo": [
+     {
+      "id": "is-crawlable",
+      "title": "Page is blocked from indexing",
+      "weight": 4.043478260869565
+     },
+     {
+      "id": "meta-description",
+      "title": "Document does not have a meta description",
+      "weight": 1
+     }
+    ]
+   },
+   "report": "reports/mobile-cart-shopify.html",
+   "url": "https://shopify.michael-kuhlman.com/cart",
+   "n": 5
+  },
+  "desktop/home/m2": {
+   "m": {
+    "fcp": 400,
+    "lcp": 780,
+    "tbt": 0,
+    "cls": 0,
+    "si": 800,
+    "tti": 786,
+    "ttfb": 106,
+    "mainThread": 2017,
+    "bootup": 769,
+    "dom": 909,
+    "unusedJs": 0,
+    "obsFcp": 474,
+    "obsLcp": 474,
+    "obsLoad": 377
+   },
+   "spread": {
+    "fcp": [
+     450,
+     351,
+     452,
+     400,
+     383
+    ],
+    "lcp": [
+     851,
+     780,
+     826,
+     760,
+     732
+    ],
+    "tbt": [
+     0,
+     16,
+     0,
+     0,
+     0
+    ],
+    "cls": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "si": [
+     800,
+     623,
+     880,
+     837,
+     502
+    ],
+    "tti": [
+     857,
+     786,
+     828,
+     766,
+     738
+    ],
+    "ttfb": [
+     106,
+     120,
+     100,
+     138,
+     98
+    ],
+    "mainThread": [
+     2017,
+     2716,
+     2279,
+     1870,
+     1863
+    ],
+    "bootup": [
+     755,
+     1057,
+     832,
+     707,
+     769
+    ],
+    "dom": [
+     909,
+     909,
+     909,
+     909,
+     909
+    ],
+    "unusedJs": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "obsFcp": [
+     474,
+     508,
+     465,
+     494,
+     364
+    ],
+    "obsLcp": [
+     474,
+     508,
+     465,
+     494,
+     364
+    ],
+    "obsLoad": [
+     369,
+     384,
+     377,
+     444,
+     308
+    ]
+   },
+   "scores": {
+    "performance": 99,
+    "accessibility": 100,
+    "bestPractices": 100,
+    "seo": 63
+   },
+   "perfSpread": [
+    99,
+    100,
+    99,
+    99,
+    100
+   ],
+   "weight": {
+    "total": 1983237,
+    "requests": 228,
+    "platform": 0,
+    "idle": 0,
+    "thirdParty": 0,
+    "hinted": 0,
+    "byType": {
+     "html": {
+      "bytes": 49130,
+      "count": 1
+     },
+     "js": {
+      "bytes": 434432,
+      "count": 191
+     },
+     "css": {
+      "bytes": 91298,
+      "count": 3
+     },
+     "img": {
+      "bytes": 1268361,
+      "count": 20
+     },
+     "font": {
+      "bytes": 120581,
+      "count": 3
+     },
+     "other": {
+      "bytes": 19434,
+      "count": 10
+     }
+    }
+   },
+   "lcp": {
+    "selector": "div.column > section.ts-hero > picture > img.ts-hero__img",
+    "snippet": "<img sizes=\"100vw\" srcset=\"https://m2.michael-kuhlman.com/media/wysiwyg/thirdshot/hero.jpg.w480.webp …\" class=\"ts-hero__img\" src=\"https://m2.michael-kuhlman.com",
+    "isImage": true,
+    "label": "Signature Raw Carbon, Kitchen Line Carbon and Apex paddles with Tour 40 balls o…",
+    "parts": {
+     "timeToFirstByte": 213.982,
+     "resourceLoadDelay": 27.536,
+     "resourceLoadDuration": 90.067,
+     "elementRenderDelay": 162.297
+    }
+   },
+   "failing": {
+    "accessibility": [],
+    "bestPractices": [],
+    "seo": [
+     {
+      "id": "is-crawlable",
+      "title": "Page is blocked from indexing",
+      "weight": 4.043478260869565
+     }
+    ]
+   },
+   "report": "reports/desktop-home-m2.html",
+   "url": "https://m2.michael-kuhlman.com/",
+   "n": 5
+  },
+  "desktop/home/headless": {
+   "m": {
+    "fcp": 363,
+    "lcp": 695,
+    "tbt": 3,
+    "cls": 0.001,
+    "si": 531,
+    "tti": 762,
+    "ttfb": 55,
+    "mainThread": 831,
+    "bootup": 218,
+    "dom": 607,
+    "unusedJs": 22828,
+    "obsFcp": 358,
+    "obsLcp": 387,
+    "obsLoad": 511
+   },
+   "spread": {
+    "fcp": [
+     418,
+     343,
+     365,
+     361,
+     363
+    ],
+    "lcp": [
+     676,
+     718,
+     753,
+     660,
+     695
+    ],
+    "tbt": [
+     82,
+     3,
+     0,
+     0,
+     3
+    ],
+    "cls": [
+     0.001,
+     0.001,
+     0.001,
+     0,
+     0.001
+    ],
+    "si": [
+     531,
+     481,
+     527,
+     532,
+     560
+    ],
+    "tti": [
+     678,
+     885,
+     762,
+     664,
+     888
+    ],
+    "ttfb": [
+     55,
+     33,
+     50,
+     78,
+     57
+    ],
+    "mainThread": [
+     967,
+     932,
+     831,
+     819,
+     816
+    ],
+    "bootup": [
+     211,
+     356,
+     212,
+     218,
+     268
+    ],
+    "dom": [
+     607,
+     607,
+     607,
+     607,
+     607
+    ],
+    "unusedJs": [
+     22865,
+     22825,
+     22866,
+     22827,
+     22828
+    ],
+    "obsFcp": [
+     358,
+     288,
+     352,
+     393,
+     425
+    ],
+    "obsLcp": [
+     358,
+     307,
+     387,
+     393,
+     441
+    ],
+    "obsLoad": [
+     511,
+     462,
+     488,
+     550,
+     552
+    ]
+   },
+   "scores": {
+    "performance": 100,
+    "accessibility": 100,
+    "bestPractices": 100,
+    "seo": 69
+   },
+   "perfSpread": [
+    99,
+    100,
+    100,
+    100,
+    100
+   ],
+   "weight": {
+    "total": 634049,
+    "requests": 60,
+    "platform": 0,
+    "idle": 11682,
+    "thirdParty": 0,
+    "hinted": 0,
+    "byType": {
+     "html": {
+      "bytes": 17164,
+      "count": 1
+     },
+     "js": {
+      "bytes": 161044,
+      "count": 12
+     },
+     "css": {
+      "bytes": 19372,
+      "count": 1
+     },
+     "img": {
+      "bytes": 263724,
+      "count": 17
+     },
+     "font": {
+      "bytes": 116605,
+      "count": 2
+     },
+     "other": {
+      "bytes": 56133,
+      "count": 27
+     }
+    }
+   },
+   "lcp": {
+    "selector": "div.ts-container > section.ts-hero > picture > img.ts-hero__img",
+    "snippet": "<img alt=\"Signature Raw Carbon, Kitchen Line Carbon and Apex paddles with Tour 40 ba…\" width=\"1920\" height=\"960\" decoding=\"async\" style=\"color:transparent\" size",
+    "isImage": true,
+    "label": "Signature Raw Carbon, Kitchen Line Carbon and Apex paddles with Tour 40 balls o…",
+    "parts": {
+     "timeToFirstByte": 116.23000024414063,
+     "resourceLoadDelay": 15.446999755859375,
+     "resourceLoadDuration": 127.913,
+     "elementRenderDelay": 181.457
+    }
+   },
+   "failing": {
+    "accessibility": [],
+    "bestPractices": [],
+    "seo": [
+     {
+      "id": "is-crawlable",
+      "title": "Page is blocked from indexing",
+      "weight": 4.043478260869565
+     }
+    ]
+   },
+   "report": "reports/desktop-home-headless.html",
+   "url": "https://headless.michael-kuhlman.com/",
+   "n": 5
+  },
+  "desktop/home/shopify": {
+   "m": {
+    "fcp": 614,
+    "lcp": 746,
+    "tbt": 17,
+    "cls": 0,
+    "si": 644,
+    "tti": 1151,
+    "ttfb": 19,
+    "mainThread": 1136,
+    "bootup": 281,
+    "dom": 599,
+    "unusedJs": 40544,
+    "obsFcp": 499,
+    "obsLcp": 547,
+    "obsLoad": 1017
+   },
+   "spread": {
+    "fcp": [
+     614,
+     606,
+     652,
+     615,
+     597
+    ],
+    "lcp": [
+     849,
+     709,
+     740,
+     746,
+     1031
+    ],
+    "tbt": [
+     207,
+     9,
+     25,
+     12,
+     17
+    ],
+    "cls": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "si": [
+     760,
+     618,
+     744,
+     641,
+     644
+    ],
+    "tti": [
+     1467,
+     1120,
+     1220,
+     1050,
+     1151
+    ],
+    "ttfb": [
+     13,
+     18,
+     19,
+     21,
+     19
+    ],
+    "mainThread": [
+     1872,
+     1136,
+     1578,
+     1042,
+     1136
+    ],
+    "bootup": [
+     763,
+     225,
+     366,
+     261,
+     281
+    ],
+    "dom": [
+     599,
+     599,
+     599,
+     599,
+     599
+    ],
+    "unusedJs": [
+     40544,
+     40544,
+     40237,
+     40546,
+     40220
+    ],
+    "obsFcp": [
+     650,
+     471,
+     550,
+     499,
+     449
+    ],
+    "obsLcp": [
+     650,
+     471,
+     550,
+     499,
+     547
+    ],
+    "obsLoad": [
+     1621,
+     1017,
+     1117,
+     984,
+     971
+    ]
+   },
+   "scores": {
+    "performance": 99,
+    "accessibility": 100,
+    "bestPractices": 73,
+    "seo": 69
+   },
+   "perfSpread": [
+    92,
+    100,
+    99,
+    99,
+    98
+   ],
+   "weight": {
+    "total": 1778477,
+    "requests": 163,
+    "platform": 1009168,
+    "idle": 751618,
+    "thirdParty": 44691,
+    "hinted": 22451,
+    "byType": {
+     "html": {
+      "bytes": 56433,
+      "count": 3
+     },
+     "js": {
+      "bytes": 213343,
+      "count": 29
+     },
+     "css": {
+      "bytes": 22451,
+      "count": 3
+     },
+     "img": {
+      "bytes": 596917,
+      "count": 18
+     },
+     "font": {
+      "bytes": 116984,
+      "count": 2
+     },
+     "other": {
+      "bytes": 766700,
+      "count": 108
+     }
+    }
+   },
+   "lcp": {
+    "selector": "div.ts-container > section.ts-hero > picture > img.ts-hero__img",
+    "snippet": "<img src=\"https://shopify.michael-kuhlman.com/cdn/shop/files/hero.jpg?v=1792202926&amp;w…\" alt=\"hero\" srcset=\"//shopify.michael-kuhlman.com/cdn/shop/files/hero.",
+    "isImage": true,
+    "label": "hero",
+    "parts": {
+     "timeToFirstByte": 58.479,
+     "resourceLoadDelay": 159.221,
+     "resourceLoadDuration": 79.348,
+     "elementRenderDelay": 201.669
+    }
+   },
+   "failing": {
+    "accessibility": [],
+    "bestPractices": [
+     {
+      "id": "third-party-cookies",
+      "title": "Uses third-party cookies",
+      "weight": 5
+     },
+     {
+      "id": "errors-in-console",
+      "title": "Browser errors were logged to the console",
+      "weight": 1
+     },
+     {
+      "id": "inspector-issues",
+      "title": "Issues were logged in the `Issues` panel in Chrome Devtools",
+      "weight": 1
+     }
+    ],
+    "seo": [
+     {
+      "id": "is-crawlable",
+      "title": "Page is blocked from indexing",
+      "weight": 4.043478260869565
+     }
+    ]
+   },
+   "report": "reports/desktop-home-shopify.html",
+   "url": "https://shopify.michael-kuhlman.com/",
+   "n": 5
+  },
+  "desktop/category/m2": {
+   "m": {
+    "fcp": 389,
+    "lcp": 701,
+    "tbt": 0,
+    "cls": 0,
+    "si": 707,
+    "tti": 703,
+    "ttfb": 123,
+    "mainThread": 1842,
+    "bootup": 774,
+    "dom": 833,
+    "unusedJs": 0,
+    "obsFcp": 393,
+    "obsLcp": 393,
+    "obsLoad": 341
+   },
+   "spread": {
+    "fcp": [
+     310,
+     316,
+     453,
+     389,
+     415
+    ],
+    "lcp": [
+     678,
+     688,
+     746,
+     711,
+     701
+    ],
+    "tbt": [
+     0,
+     17,
+     0,
+     0,
+     0
+    ],
+    "cls": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "si": [
+     598,
+     589,
+     813,
+     707,
+     841
+    ],
+    "tti": [
+     680,
+     690,
+     750,
+     715,
+     703
+    ],
+    "ttfb": [
+     124,
+     107,
+     123,
+     99,
+     169
+    ],
+    "mainThread": [
+     1774,
+     1550,
+     2335,
+     1842,
+     2194
+    ],
+    "bootup": [
+     744,
+     637,
+     966,
+     774,
+     885
+    ],
+    "dom": [
+     833,
+     833,
+     833,
+     833,
+     833
+    ],
+    "unusedJs": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "obsFcp": [
+     357,
+     365,
+     572,
+     393,
+     567
+    ],
+    "obsLcp": [
+     357,
+     365,
+     572,
+     393,
+     567
+    ],
+    "obsLoad": [
+     321,
+     341,
+     523,
+     327,
+     535
+    ]
+   },
+   "scores": {
+    "performance": 100,
+    "accessibility": 97,
+    "bestPractices": 100,
+    "seo": 63
+   },
+   "perfSpread": [
+    100,
+    100,
+    99,
+    100,
+    100
+   ],
+   "weight": {
+    "total": 1012519,
+    "requests": 235,
+    "platform": 0,
+    "idle": 0,
+    "thirdParty": 0,
+    "hinted": 0,
+    "byType": {
+     "html": {
+      "bytes": 48273,
+      "count": 1
+     },
+     "js": {
+      "bytes": 468766,
+      "count": 205
+     },
+     "css": {
+      "bytes": 91304,
+      "count": 3
+     },
+     "img": {
+      "bytes": 264126,
+      "count": 13
+     },
+     "font": {
+      "bytes": 120585,
+      "count": 3
+     },
+     "other": {
+      "bytes": 19436,
+      "count": 10
+     }
+    }
+   },
+   "lcp": {
+    "selector": "main#maincontent > div.category-view > div.category-image > img.image",
+    "snippet": "<img fetchpriority=\"high\" sizes=\"100vw\" srcset=\"https://m2.michael-kuhlman.com/media/catalog/category/ts-paddles.jpg.w480.…\" height=\"700\" width=\"1600\" src=\"http",
+    "isImage": true,
+    "label": "Paddles",
+    "parts": {
+     "timeToFirstByte": 197.472,
+     "resourceLoadDelay": 40.442,
+     "resourceLoadDuration": 64.617,
+     "elementRenderDelay": 264.303
+    }
+   },
+   "failing": {
+    "accessibility": [
+     {
+      "id": "target-size",
+      "title": "Touch targets do not have sufficient size or spacing.",
+      "weight": 7
+     }
+    ],
+    "bestPractices": [],
+    "seo": [
+     {
+      "id": "is-crawlable",
+      "title": "Page is blocked from indexing",
+      "weight": 4.043478260869565
+     }
+    ]
+   },
+   "report": "reports/desktop-category-m2.html",
+   "url": "https://m2.michael-kuhlman.com/paddles.html",
+   "n": 5
+  },
+  "desktop/category/headless": {
+   "m": {
+    "fcp": 325,
+    "lcp": 711,
+    "tbt": 0,
+    "cls": 0,
+    "si": 327,
+    "tti": 715,
+    "ttfb": 38,
+    "mainThread": 551,
+    "bootup": 254,
+    "dom": 509,
+    "unusedJs": 22551,
+    "obsFcp": 274,
+    "obsLcp": 274,
+    "obsLoad": 341
+   },
+   "spread": {
+    "fcp": [
+     327,
+     320,
+     325,
+     325,
+     326
+    ],
+    "lcp": [
+     710,
+     711,
+     757,
+     688,
+     771
+    ],
+    "tbt": [
+     0,
+     0,
+     2,
+     0,
+     0
+    ],
+    "cls": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "si": [
+     327,
+     320,
+     325,
+     341,
+     359
+    ],
+    "tti": [
+     715,
+     714,
+     788,
+     690,
+     773
+    ],
+    "ttfb": [
+     32,
+     32,
+     38,
+     40,
+     70
+    ],
+    "mainThread": [
+     544,
+     487,
+     551,
+     617,
+     614
+    ],
+    "bootup": [
+     199,
+     167,
+     265,
+     254,
+     267
+    ],
+    "dom": [
+     509,
+     509,
+     509,
+     509,
+     509
+    ],
+    "unusedJs": [
+     22548,
+     22549,
+     22551,
+     22551,
+     22551
+    ],
+    "obsFcp": [
+     225,
+     208,
+     274,
+     300,
+     331
+    ],
+    "obsLcp": [
+     241,
+     208,
+     274,
+     300,
+     331
+    ],
+    "obsLoad": [
+     333,
+     302,
+     341,
+     385,
+     398
+    ]
+   },
+   "scores": {
+    "performance": 100,
+    "accessibility": 100,
+    "bestPractices": 100,
+    "seo": 69
+   },
+   "perfSpread": [
+    100,
+    100,
+    100,
+    100,
+    100
+   ],
+   "weight": {
+    "total": 596623,
+    "requests": 64,
+    "platform": 0,
+    "idle": 30132,
+    "thirdParty": 0,
+    "hinted": 0,
+    "byType": {
+     "html": {
+      "bytes": 13594,
+      "count": 1
+     },
+     "js": {
+      "bytes": 161051,
+      "count": 12
+     },
+     "css": {
+      "bytes": 19370,
+      "count": 1
+     },
+     "img": {
+      "bytes": 193798,
+      "count": 15
+     },
+     "font": {
+      "bytes": 116603,
+      "count": 2
+     },
+     "other": {
+      "bytes": 92242,
+      "count": 33
+     }
+    }
+   },
+   "lcp": {
+    "selector": "div.ts-container > section.ts-cat-hero > figure.ts-cat-hero__media > img",
+    "snippet": "<img alt=\"\" decoding=\"async\" data-nimg=\"fill\" style=\"position: absolute; height: 100%; width: 100%; inset: 0px;\" sizes=\"(max-width: 767px) 100vw, (max-width: 10",
+    "isImage": true,
+    "label": "div.ts-container > section.ts-cat-hero > figure.ts-cat-hero__media > img",
+    "parts": {
+     "timeToFirstByte": 48.043,
+     "resourceLoadDelay": 11.79,
+     "resourceLoadDuration": 68.214,
+     "elementRenderDelay": 79.962
+    }
+   },
+   "failing": {
+    "accessibility": [],
+    "bestPractices": [],
+    "seo": [
+     {
+      "id": "is-crawlable",
+      "title": "Page is blocked from indexing",
+      "weight": 4.043478260869565
+     }
+    ]
+   },
+   "report": "reports/desktop-category-headless.html",
+   "url": "https://headless.michael-kuhlman.com/paddles.html",
+   "n": 5
+  },
+  "desktop/category/shopify": {
+   "m": {
+    "fcp": 591,
+    "lcp": 755,
+    "tbt": 11,
+    "cls": 0,
+    "si": 624,
+    "tti": 1212,
+    "ttfb": 22,
+    "mainThread": 999,
+    "bootup": 275,
+    "dom": 788,
+    "unusedJs": 36403,
+    "obsFcp": 398,
+    "obsLcp": 407,
+    "obsLoad": 880
+   },
+   "spread": {
+    "fcp": [
+     543,
+     624,
+     591,
+     595,
+     588
+    ],
+    "lcp": [
+     789,
+     755,
+     728,
+     755,
+     749
+    ],
+    "tbt": [
+     25,
+     11,
+     14,
+     0,
+     1
+    ],
+    "cls": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "si": [
+     543,
+     624,
+     591,
+     648,
+     698
+    ],
+    "tti": [
+     1190,
+     1212,
+     1391,
+     755,
+     1269
+    ],
+    "ttfb": [
+     22,
+     22,
+     20,
+     25,
+     19
+    ],
+    "mainThread": [
+     893,
+     1042,
+     1093,
+     854,
+     999
+    ],
+    "bootup": [
+     272,
+     307,
+     275,
+     313,
+     249
+    ],
+    "dom": [
+     788,
+     788,
+     788,
+     788,
+     788
+    ],
+    "unusedJs": [
+     36067,
+     36373,
+     36712,
+     36427,
+     36403
+    ],
+    "obsFcp": [
+     398,
+     426,
+     390,
+     386,
+     407
+    ],
+    "obsLcp": [
+     439,
+     426,
+     390,
+     386,
+     407
+    ],
+    "obsLoad": [
+     948,
+     880,
+     890,
+     829,
+     767
+    ]
+   },
+   "scores": {
+    "performance": 99,
+    "accessibility": 100,
+    "bestPractices": 73,
+    "seo": 69
+   },
+   "perfSpread": [
+    99,
+    99,
+    100,
+    99,
+    99
+   ],
+   "weight": {
+    "total": 1694067,
+    "requests": 202,
+    "platform": 1193042,
+    "idle": 928277,
+    "thirdParty": 50476,
+    "hinted": 22451,
+    "byType": {
+     "html": {
+      "bytes": 57242,
+      "count": 3
+     },
+     "js": {
+      "bytes": 219040,
+      "count": 29
+     },
+     "css": {
+      "bytes": 22451,
+      "count": 3
+     },
+     "img": {
+      "bytes": 327633,
+      "count": 15
+     },
+     "font": {
+      "bytes": 117057,
+      "count": 2
+     },
+     "other": {
+      "bytes": 946133,
+      "count": 150
+     }
+    }
+   },
+   "lcp": {
+    "selector": "div.ts-container > section.ts-cat-hero > figure.ts-cat-hero__media > img",
+    "snippet": "<img src=\"https://shopify.michael-kuhlman.com/cdn/shop/collections/ts-paddles.jpg?v=…\" alt=\"\" srcset=\"//shopify.michael-kuhlman.com/cdn/shop/collections/ts-padd",
+    "isImage": true,
+    "label": "div.ts-container > section.ts-cat-hero > figure.ts-cat-hero__media > img",
+    "parts": {
+     "timeToFirstByte": 61.641,
+     "resourceLoadDelay": 153.698,
+     "resourceLoadDuration": 67.443,
+     "elementRenderDelay": 102.824
+    }
+   },
+   "failing": {
+    "accessibility": [],
+    "bestPractices": [
+     {
+      "id": "third-party-cookies",
+      "title": "Uses third-party cookies",
+      "weight": 5
+     },
+     {
+      "id": "errors-in-console",
+      "title": "Browser errors were logged to the console",
+      "weight": 1
+     },
+     {
+      "id": "inspector-issues",
+      "title": "Issues were logged in the `Issues` panel in Chrome Devtools",
+      "weight": 1
+     }
+    ],
+    "seo": [
+     {
+      "id": "is-crawlable",
+      "title": "Page is blocked from indexing",
+      "weight": 4.043478260869565
+     }
+    ]
+   },
+   "report": "reports/desktop-category-shopify.html",
+   "url": "https://shopify.michael-kuhlman.com/collections/paddles",
+   "n": 5
+  },
+  "desktop/product/m2": {
+   "m": {
+    "fcp": 397,
+    "lcp": 651,
+    "tbt": 0,
+    "cls": 0.018,
+    "si": 1095,
+    "tti": 713,
+    "ttfb": 98,
+    "mainThread": 1928,
+    "bootup": 771,
+    "dom": 602,
+    "unusedJs": 0,
+    "obsFcp": 396,
+    "obsLcp": 396,
+    "obsLoad": 347
+   },
+   "spread": {
+    "fcp": [
+     397,
+     389,
+     403,
+     391,
+     421
+    ],
+    "lcp": [
+     649,
+     794,
+     651,
+     709,
+     651
+    ],
+    "tbt": [
+     0,
+     0,
+     82,
+     0,
+     0
+    ],
+    "cls": [
+     0.018,
+     0.018,
+     0.018,
+     0.018,
+     0.018
+    ],
+    "si": [
+     1165,
+     1123,
+     1095,
+     1023,
+     984
+    ],
+    "tti": [
+     651,
+     798,
+     1580,
+     713,
+     653
+    ],
+    "ttfb": [
+     98,
+     204,
+     91,
+     70,
+     131
+    ],
+    "mainThread": [
+     1874,
+     1937,
+     2063,
+     1720,
+     1928
+    ],
+    "bootup": [
+     770,
+     853,
+     961,
+     677,
+     771
+    ],
+    "dom": [
+     602,
+     602,
+     602,
+     602,
+     602
+    ],
+    "unusedJs": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "obsFcp": [
+     396,
+     490,
+     372,
+     380,
+     435
+    ],
+    "obsLcp": [
+     396,
+     601,
+     372,
+     380,
+     435
+    ],
+    "obsLoad": [
+     347,
+     429,
+     317,
+     332,
+     413
+    ]
+   },
+   "scores": {
+    "performance": 99,
+    "accessibility": 96,
+    "bestPractices": 100,
+    "seo": 63
+   },
+   "perfSpread": [
+    99,
+    99,
+    99,
+    99,
+    99
+   ],
+   "weight": {
+    "total": 1091583,
+    "requests": 252,
+    "platform": 0,
+    "idle": 0,
+    "thirdParty": 0,
+    "hinted": 0,
+    "byType": {
+     "html": {
+      "bytes": 50382,
+      "count": 1
+     },
+     "js": {
+      "bytes": 500050,
+      "count": 217
+     },
+     "css": {
+      "bytes": 95885,
+      "count": 4
+     },
+     "img": {
+      "bytes": 301642,
+      "count": 13
+     },
+     "font": {
+      "bytes": 120580,
+      "count": 3
+     },
+     "other": {
+      "bytes": 23048,
+      "count": 14
+     }
+    }
+   },
+   "lcp": {
+    "selector": "div.column > div.product > div.gallery-placeholder > img.gallery-placeholder__image",
+    "snippet": "<img fetchpriority=\"high\" alt=\"main product photo\" class=\"gallery-placeholder__image\" src=\"https://m2.michael-kuhlman.com/media/catalog/product/cache/62f9117ad8",
+    "isImage": true,
+    "label": "main product photo",
+    "parts": {
+     "timeToFirstByte": 166.75899975585938,
+     "resourceLoadDelay": 12.055000244140626,
+     "resourceLoadDuration": 58.305,
+     "elementRenderDelay": 198.36
+    }
+   },
+   "failing": {
+    "accessibility": [
+     {
+      "id": "aria-required-children",
+      "title": "Elements with an ARIA `[role]` that require children to contain a specific `[role]` are missing some or all of those required children.",
+      "weight": 10
+     }
+    ],
+    "bestPractices": [],
+    "seo": [
+     {
+      "id": "is-crawlable",
+      "title": "Page is blocked from indexing",
+      "weight": 4.043478260869565
+     }
+    ]
+   },
+   "report": "reports/desktop-product-m2.html",
+   "url": "https://m2.michael-kuhlman.com/kitchen-line-carbon-16.html",
+   "n": 5
+  },
+  "desktop/product/headless": {
+   "m": {
+    "fcp": 320,
+    "lcp": 778,
+    "tbt": 0,
+    "cls": 0,
+    "si": 335,
+    "tti": 782,
+    "ttfb": 57,
+    "mainThread": 598,
+    "bootup": 220,
+    "dom": 466,
+    "unusedJs": 22504,
+    "obsFcp": 282,
+    "obsLcp": 282,
+    "obsLoad": 363
+   },
+   "spread": {
+    "fcp": [
+     320,
+     328,
+     330,
+     316,
+     317
+    ],
+    "lcp": [
+     741,
+     830,
+     804,
+     778,
+     701
+    ],
+    "tbt": [
+     0,
+     0,
+     2,
+     0,
+     0
+    ],
+    "cls": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "si": [
+     320,
+     370,
+     335,
+     316,
+     375
+    ],
+    "tti": [
+     743,
+     832,
+     871,
+     782,
+     703
+    ],
+    "ttfb": [
+     55,
+     68,
+     62,
+     54,
+     57
+    ],
+    "mainThread": [
+     506,
+     656,
+     598,
+     563,
+     598
+    ],
+    "bootup": [
+     189,
+     220,
+     244,
+     171,
+     223
+    ],
+    "dom": [
+     466,
+     466,
+     466,
+     466,
+     466
+    ],
+    "unusedJs": [
+     22504,
+     22504,
+     22501,
+     22505,
+     22497
+    ],
+    "obsFcp": [
+     208,
+     325,
+     282,
+     264,
+     349
+    ],
+    "obsLcp": [
+     245,
+     325,
+     282,
+     264,
+     349
+    ],
+    "obsLoad": [
+     320,
+     403,
+     363,
+     343,
+     425
+    ]
+   },
+   "scores": {
+    "performance": 100,
+    "accessibility": 100,
+    "bestPractices": 100,
+    "seo": 69
+   },
+   "perfSpread": [
+    100,
+    99,
+    100,
+    100,
+    100
+   ],
+   "weight": {
+    "total": 592976,
+    "requests": 53,
+    "platform": 0,
+    "idle": 11663,
+    "thirdParty": 0,
+    "hinted": 0,
+    "byType": {
+     "html": {
+      "bytes": 15922,
+      "count": 1
+     },
+     "js": {
+      "bytes": 161040,
+      "count": 12
+     },
+     "css": {
+      "bytes": 19371,
+      "count": 1
+     },
+     "img": {
+      "bytes": 220019,
+      "count": 12
+     },
+     "font": {
+      "bytes": 116601,
+      "count": 2
+     },
+     "other": {
+      "bytes": 60027,
+      "count": 25
+     }
+    }
+   },
+   "lcp": {
+    "selector": "div.ts-gallery__stage > div.ts-gallery__track > div.ts-gallery__slide > img",
+    "snippet": "<img alt=\"Kitchen Line Carbon 16\" decoding=\"async\" data-nimg=\"fill\" style=\"position: absolute; height: 100%; width: 100%; inset: 0px;\" sizes=\"(max-width: 767px)",
+    "isImage": true,
+    "label": "Kitchen Line Carbon 16",
+    "parts": {
+     "timeToFirstByte": 97.081,
+     "resourceLoadDelay": 11.381,
+     "resourceLoadDuration": 73.168,
+     "elementRenderDelay": 82.68
+    }
+   },
+   "failing": {
+    "accessibility": [],
+    "bestPractices": [],
+    "seo": [
+     {
+      "id": "is-crawlable",
+      "title": "Page is blocked from indexing",
+      "weight": 4.043478260869565
+     }
+    ]
+   },
+   "report": "reports/desktop-product-headless.html",
+   "url": "https://headless.michael-kuhlman.com/kitchen-line-carbon-16.html",
+   "n": 5
+  },
+  "desktop/product/shopify": {
+   "m": {
+    "fcp": 603,
+    "lcp": 905,
+    "tbt": 15,
+    "cls": 0,
+    "si": 624,
+    "tti": 1567,
+    "ttfb": 25,
+    "mainThread": 1104,
+    "bootup": 261,
+    "dom": 520,
+    "unusedJs": 37412,
+    "obsFcp": 427,
+    "obsLcp": 427,
+    "obsLoad": 896
+   },
+   "spread": {
+    "fcp": [
+     651,
+     583,
+     603,
+     589,
+     1101
+    ],
+    "lcp": [
+     744,
+     659,
+     905,
+     917,
+     1121
+    ],
+    "tbt": [
+     24,
+     9,
+     609,
+     15,
+     0
+    ],
+    "cls": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "si": [
+     651,
+     583,
+     603,
+     624,
+     1261
+    ],
+    "tti": [
+     1567,
+     1448,
+     1843,
+     1627,
+     1121
+    ],
+    "ttfb": [
+     18,
+     25,
+     21,
+     25,
+     46
+    ],
+    "mainThread": [
+     1029,
+     906,
+     2024,
+     1104,
+     1367
+    ],
+    "bootup": [
+     313,
+     261,
+     285,
+     257,
+     257
+    ],
+    "dom": [
+     520,
+     520,
+     520,
+     520,
+     520
+    ],
+    "unusedJs": [
+     37412,
+     36781,
+     37413,
+     38990,
+     37115
+    ],
+    "obsFcp": [
+     427,
+     341,
+     503,
+     400,
+     859
+    ],
+    "obsLcp": [
+     427,
+     341,
+     503,
+     400,
+     859
+    ],
+    "obsLoad": [
+     896,
+     821,
+     1040,
+     886,
+     1308
+    ]
+   },
+   "scores": {
+    "performance": 99,
+    "accessibility": 100,
+    "bestPractices": 73,
+    "seo": 69
+   },
+   "perfSpread": [
+    99,
+    100,
+    75,
+    99,
+    95
+   ],
+   "weight": {
+    "total": 2300641,
+    "requests": 190,
+    "platform": 1130245,
+    "idle": 870460,
+    "thirdParty": 53786,
+    "hinted": 22451,
+    "byType": {
+     "html": {
+      "bytes": 57707,
+      "count": 3
+     },
+     "js": {
+      "bytes": 220014,
+      "count": 29
+     },
+     "css": {
+      "bytes": 22451,
+      "count": 3
+     },
+     "img": {
+      "bytes": 996659,
+      "count": 17
+     },
+     "font": {
+      "bytes": 117006,
+      "count": 2
+     },
+     "other": {
+      "bytes": 886768,
+      "count": 136
+     }
+    }
+   },
+   "lcp": {
+    "selector": "div.ts-gallery__stage > div.ts-gallery__track > div.ts-gallery__slide > img",
+    "snippet": "<img src=\"https://shopify.michael-kuhlman.com/cdn/shop/files/kitchen-line-carbon-16-…\" alt=\"Kitchen Line Carbon 16\" srcset=\"//shopify.michael-kuhlman.com/cdn/sh",
+    "isImage": true,
+    "label": "Kitchen Line Carbon 16",
+    "parts": {
+     "timeToFirstByte": 51.75299975585938,
+     "resourceLoadDelay": 121.78600024414062,
+     "resourceLoadDuration": 60.656,
+     "elementRenderDelay": 165.776
+    }
+   },
+   "failing": {
+    "accessibility": [],
+    "bestPractices": [
+     {
+      "id": "third-party-cookies",
+      "title": "Uses third-party cookies",
+      "weight": 5
+     },
+     {
+      "id": "errors-in-console",
+      "title": "Browser errors were logged to the console",
+      "weight": 1
+     },
+     {
+      "id": "inspector-issues",
+      "title": "Issues were logged in the `Issues` panel in Chrome Devtools",
+      "weight": 1
+     }
+    ],
+    "seo": [
+     {
+      "id": "is-crawlable",
+      "title": "Page is blocked from indexing",
+      "weight": 4.043478260869565
+     }
+    ]
+   },
+   "report": "reports/desktop-product-shopify.html",
+   "url": "https://shopify.michael-kuhlman.com/products/kitchen-line-carbon-16",
+   "n": 5
+  },
+  "desktop/cms/m2": {
+   "m": {
+    "fcp": 352,
+    "lcp": 701,
+    "tbt": 0,
+    "cls": 0,
+    "si": 412,
+    "tti": 859,
+    "ttfb": 137,
+    "mainThread": 1524,
+    "bootup": 639,
+    "dom": 264,
+    "unusedJs": 0,
+    "obsFcp": 418,
+    "obsLcp": 467,
+    "obsLoad": 363
+   },
+   "spread": {
+    "fcp": [
+     374,
+     260,
+     392,
+     325,
+     352
+    ],
+    "lcp": [
+     692,
+     859,
+     701,
+     659,
+     873
+    ],
+    "tbt": [
+     28,
+     0,
+     0,
+     0,
+     6
+    ],
+    "cls": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "si": [
+     412,
+     340,
+     638,
+     410,
+     606
+    ],
+    "tti": [
+     1309,
+     859,
+     705,
+     663,
+     1192
+    ],
+    "ttfb": [
+     130,
+     96,
+     167,
+     137,
+     157
+    ],
+    "mainThread": [
+     1456,
+     1493,
+     2399,
+     1535,
+     1524
+    ],
+    "bootup": [
+     639,
+     664,
+     947,
+     596,
+     622
+    ],
+    "dom": [
+     264,
+     264,
+     264,
+     264,
+     264
+    ],
+    "unusedJs": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "obsFcp": [
+     385,
+     313,
+     569,
+     418,
+     443
+    ],
+    "obsLcp": [
+     467,
+     416,
+     744,
+     441,
+     523
+    ],
+    "obsLoad": [
+     363,
+     282,
+     537,
+     351,
+     409
+    ]
+   },
+   "scores": {
+    "performance": 100,
+    "accessibility": 100,
+    "bestPractices": 100,
+    "seo": 63
+   },
+   "perfSpread": [
+    100,
+    99,
+    100,
+    100,
+    99
+   ],
+   "weight": {
+    "total": 944716,
+    "requests": 197,
+    "platform": 0,
+    "idle": 0,
+    "thirdParty": 0,
+    "hinted": 0,
+    "byType": {
+     "html": {
+      "bytes": 42535,
+      "count": 1
+     },
+     "js": {
+      "bytes": 411711,
+      "count": 176
+     },
+     "css": {
+      "bytes": 91304,
+      "count": 3
+     },
+     "img": {
+      "bytes": 259135,
+      "count": 4
+     },
+     "font": {
+      "bytes": 120571,
+      "count": 3
+     },
+     "other": {
+      "bytes": 19434,
+      "count": 10
+     }
+    }
+   },
+   "lcp": {
+    "selector": "div.columns > div.column > figure.ts-wide-figure > img",
+    "snippet": "<img sizes=\"100vw\" srcset=\"https://m2.michael-kuhlman.com/media/wysiwyg/thirdshot/workshop.jpg.w480.w…\" src=\"https://m2.michael-kuhlman.com/media/wysiwyg/thirds",
+    "isImage": true,
+    "label": "Two Third Shot paddles hanging on a walnut wall mount",
+    "parts": {
+     "timeToFirstByte": 201.661,
+     "resourceLoadDelay": 329.005,
+     "resourceLoadDuration": 136.006,
+     "elementRenderDelay": 77.39
+    }
+   },
+   "failing": {
+    "accessibility": [],
+    "bestPractices": [],
+    "seo": [
+     {
+      "id": "is-crawlable",
+      "title": "Page is blocked from indexing",
+      "weight": 4.043478260869565
+     }
+    ]
+   },
+   "report": "reports/desktop-cms-m2.html",
+   "url": "https://m2.michael-kuhlman.com/about",
+   "n": 5
+  },
+  "desktop/cms/headless": {
+   "m": {
+    "fcp": 332,
+    "lcp": 761,
+    "tbt": 0,
+    "cls": 0,
+    "si": 334,
+    "tti": 766,
+    "ttfb": 48,
+    "mainThread": 443,
+    "bootup": 170,
+    "dom": 221,
+    "unusedJs": 22970,
+    "obsFcp": 269,
+    "obsLcp": 380,
+    "obsLoad": 328
+   },
+   "spread": {
+    "fcp": [
+     334,
+     314,
+     316,
+     336,
+     332
+    ],
+    "lcp": [
+     934,
+     701,
+     856,
+     761,
+     752
+    ],
+    "tbt": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "cls": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "si": [
+     334,
+     314,
+     334,
+     336,
+     347
+    ],
+    "tti": [
+     938,
+     704,
+     858,
+     766,
+     756
+    ],
+    "ttfb": [
+     48,
+     28,
+     39,
+     64,
+     114
+    ],
+    "mainThread": [
+     487,
+     443,
+     466,
+     417,
+     438
+    ],
+    "bootup": [
+     169,
+     151,
+     183,
+     184,
+     170
+    ],
+    "dom": [
+     221,
+     221,
+     221,
+     221,
+     221
+    ],
+    "unusedJs": [
+     22931,
+     22972,
+     22970,
+     22970,
+     22973
+    ],
+    "obsFcp": [
+     234,
+     220,
+     311,
+     269,
+     320
+    ],
+    "obsLcp": [
+     380,
+     288,
+     392,
+     343,
+     394
+    ],
+    "obsLoad": [
+     290,
+     269,
+     378,
+     328,
+     379
+    ]
+   },
+   "scores": {
+    "performance": 100,
+    "accessibility": 97,
+    "bestPractices": 100,
+    "seo": 69
+   },
+   "perfSpread": [
+    99,
+    100,
+    99,
+    100,
+    100
+   ],
+   "weight": {
+    "total": 563602,
+    "requests": 45,
+    "platform": 0,
+    "idle": 11674,
+    "thirdParty": 0,
+    "hinted": 0,
+    "byType": {
+     "html": {
+      "bytes": 9290,
+      "count": 1
+     },
+     "js": {
+      "bytes": 161047,
+      "count": 12
+     },
+     "css": {
+      "bytes": 19373,
+      "count": 1
+     },
+     "img": {
+      "bytes": 197247,
+      "count": 4
+     },
+     "font": {
+      "bytes": 116605,
+      "count": 2
+     },
+     "other": {
+      "bytes": 60059,
+      "count": 25
+     }
+    }
+   },
+   "lcp": {
+    "selector": "main#main > div.ts-container > figure.ts-wide-figure > img",
+    "snippet": "<img alt=\"Two Third Shot paddles hanging on a walnut wall mount\" loading=\"lazy\" width=\"1600\" height=\"1000\" decoding=\"async\" data-nimg=\"1\" style=\"color:transpare",
+    "isImage": true,
+    "label": "Two Third Shot paddles hanging on a walnut wall mount",
+    "parts": {
+     "timeToFirstByte": 79.401,
+     "resourceLoadDelay": 164.934,
+     "resourceLoadDuration": 39.191,
+     "elementRenderDelay": 59.925
+    }
+   },
+   "failing": {
+    "accessibility": [
+     {
+      "id": "link-in-text-block",
+      "title": "Links rely on color to be distinguishable.",
+      "weight": 7
+     }
+    ],
+    "bestPractices": [],
+    "seo": [
+     {
+      "id": "is-crawlable",
+      "title": "Page is blocked from indexing",
+      "weight": 4.043478260869565
+     }
+    ]
+   },
+   "report": "reports/desktop-cms-headless.html",
+   "url": "https://headless.michael-kuhlman.com/about",
+   "n": 5
+  },
+  "desktop/cms/shopify": {
+   "m": {
+    "fcp": 606,
+    "lcp": 888,
+    "tbt": 16,
+    "cls": 0,
+    "si": 623,
+    "tti": 927,
+    "ttfb": 18,
+    "mainThread": 882,
+    "bootup": 252,
+    "dom": 244,
+    "unusedJs": 41627,
+    "obsFcp": 416,
+    "obsLcp": 513,
+    "obsLoad": 859
+   },
+   "spread": {
+    "fcp": [
+     623,
+     577,
+     646,
+     606,
+     583
+    ],
+    "lcp": [
+     861,
+     888,
+     930,
+     885,
+     906
+    ],
+    "tbt": [
+     16,
+     0,
+     208,
+     17,
+     0
+    ],
+    "cls": [
+     0,
+     0,
+     0.001,
+     0,
+     0
+    ],
+    "si": [
+     623,
+     609,
+     669,
+     606,
+     675
+    ],
+    "tti": [
+     927,
+     897,
+     1181,
+     954,
+     908
+    ],
+    "ttfb": [
+     147,
+     18,
+     13,
+     21,
+     10
+    ],
+    "mainThread": [
+     992,
+     846,
+     1666,
+     880,
+     882
+    ],
+    "bootup": [
+     252,
+     256,
+     629,
+     149,
+     244
+    ],
+    "dom": [
+     244,
+     244,
+     244,
+     244,
+     244
+    ],
+    "unusedJs": [
+     41295,
+     41627,
+     41635,
+     41297,
+     41628
+    ],
+    "obsFcp": [
+     455,
+     377,
+     462,
+     373,
+     416
+    ],
+    "obsLcp": [
+     513,
+     565,
+     820,
+     485,
+     469
+    ],
+    "obsLoad": [
+     897,
+     859,
+     1344,
+     817,
+     777
+    ]
+   },
+   "scores": {
+    "performance": 99,
+    "accessibility": 96,
+    "bestPractices": 73,
+    "seo": 69
+   },
+   "perfSpread": [
+    99,
+    99,
+    92,
+    99,
+    99
+   ],
+   "weight": {
+    "total": 1587810,
+    "requests": 172,
+    "platform": 1407785,
+    "idle": 864687,
+    "thirdParty": 333634,
+    "hinted": 22451,
+    "byType": {
+     "html": {
+      "bytes": 52843,
+      "count": 3
+     },
+     "js": {
+      "bytes": 218941,
+      "count": 29
+     },
+     "css": {
+      "bytes": 22451,
+      "count": 3
+     },
+     "img": {
+      "bytes": 293216,
+      "count": 3
+     },
+     "font": {
+      "bytes": 117085,
+      "count": 2
+     },
+     "other": {
+      "bytes": 878706,
+      "count": 131
+     }
+    }
+   },
+   "lcp": {
+    "selector": "div#shopify-section-template--24212677886177__main > div.ts-container > figure.ts-wide-figure > img",
+    "snippet": "<img src=\"https://cdn.shopify.com/s/files/1/0861/3888/0225/files/workshop.jpg\" alt=\"Two Third Shot paddles hanging on a walnut wall mount\" loading=\"lazy\" width=",
+    "isImage": true,
+    "label": "Two Third Shot paddles hanging on a walnut wall mount",
+    "parts": {
+     "timeToFirstByte": 47.745,
+     "resourceLoadDelay": 306.174,
+     "resourceLoadDuration": 95.44,
+     "elementRenderDelay": 115.519
+    }
+   },
+   "failing": {
+    "accessibility": [
+     {
+      "id": "link-in-text-block",
+      "title": "Links rely on color to be distinguishable.",
+      "weight": 7
+     }
+    ],
+    "bestPractices": [
+     {
+      "id": "third-party-cookies",
+      "title": "Uses third-party cookies",
+      "weight": 5
+     },
+     {
+      "id": "errors-in-console",
+      "title": "Browser errors were logged to the console",
+      "weight": 1
+     },
+     {
+      "id": "inspector-issues",
+      "title": "Issues were logged in the `Issues` panel in Chrome Devtools",
+      "weight": 1
+     }
+    ],
+    "seo": [
+     {
+      "id": "is-crawlable",
+      "title": "Page is blocked from indexing",
+      "weight": 4.043478260869565
+     }
+    ]
+   },
+   "report": "reports/desktop-cms-shopify.html",
+   "url": "https://shopify.michael-kuhlman.com/pages/about",
+   "n": 5
+  },
+  "desktop/search/m2": {
+   "m": {
+    "fcp": 392,
+    "lcp": 815,
+    "tbt": 0,
+    "cls": 0,
+    "si": 799,
+    "tti": 822,
+    "ttfb": 113,
+    "mainThread": 1705,
+    "bootup": 796,
+    "dom": 764,
+    "unusedJs": 0,
+    "obsFcp": 400,
+    "obsLcp": 481,
+    "obsLoad": 357
+   },
+   "spread": {
+    "fcp": [
+     421,
+     456,
+     379,
+     389,
+     392
+    ],
+    "lcp": [
+     832,
+     844,
+     664,
+     815,
+     696
+    ],
+    "tbt": [
+     31,
+     0,
+     0,
+     0,
+     0
+    ],
+    "cls": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "si": [
+     667,
+     835,
+     799,
+     807,
+     645
+    ],
+    "tti": [
+     1872,
+     855,
+     668,
+     822,
+     704
+    ],
+    "ttfb": [
+     104,
+     120,
+     123,
+     108,
+     113
+    ],
+    "mainThread": [
+     1705,
+     2375,
+     1626,
+     1640,
+     1963
+    ],
+    "bootup": [
+     796,
+     1002,
+     649,
+     655,
+     864
+    ],
+    "dom": [
+     764,
+     764,
+     764,
+     764,
+     764
+    ],
+    "unusedJs": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "obsFcp": [
+     385,
+     575,
+     400,
+     360,
+     421
+    ],
+    "obsLcp": [
+     481,
+     716,
+     426,
+     436,
+     491
+    ],
+    "obsLoad": [
+     323,
+     443,
+     357,
+     334,
+     395
+    ]
+   },
+   "scores": {
+    "performance": 99,
+    "accessibility": 97,
+    "bestPractices": 100,
+    "seo": 63
+   },
+   "perfSpread": [
+    99,
+    99,
+    100,
+    99,
+    100
+   ],
+   "weight": {
+    "total": 885438,
+    "requests": 227,
+    "platform": 0,
+    "idle": 0,
+    "thirdParty": 0,
+    "hinted": 0,
+    "byType": {
+     "html": {
+      "bytes": 47424,
+      "count": 1
+     },
+     "js": {
+      "bytes": 446690,
+      "count": 197
+     },
+     "css": {
+      "bytes": 91310,
+      "count": 3
+     },
+     "img": {
+      "bytes": 157286,
+      "count": 12
+     },
+     "font": {
+      "bytes": 120573,
+      "count": 3
+     },
+     "other": {
+      "bytes": 22117,
+      "count": 11
+     }
+    }
+   },
+   "lcp": {
+    "selector": "a.product > span.product-image-container > span.product-image-wrapper > img.product-image-photo",
+    "snippet": "<img class=\"product-image-photo\" src=\"https://m2.michael-kuhlman.com/media/catalog/product/cache/cd00546abb5729d…\" loading=\"lazy\" width=\"480\" height=\"600\" alt=\"",
+    "isImage": true,
+    "label": "Signature Raw Carbon 16",
+    "parts": {
+     "timeToFirstByte": 120.924,
+     "resourceLoadDelay": 211.496,
+     "resourceLoadDuration": 73.519,
+     "elementRenderDelay": 29.898
+    }
+   },
+   "failing": {
+    "accessibility": [
+     {
+      "id": "target-size",
+      "title": "Touch targets do not have sufficient size or spacing.",
+      "weight": 7
+     }
+    ],
+    "bestPractices": [],
+    "seo": [
+     {
+      "id": "is-crawlable",
+      "title": "Page is blocked from indexing",
+      "weight": 4.043478260869565
+     }
+    ]
+   },
+   "report": "reports/desktop-search-m2.html",
+   "url": "https://m2.michael-kuhlman.com/catalogsearch/result/?q=paddle",
+   "n": 5
+  },
+  "desktop/search/headless": {
+   "m": {
+    "fcp": 328,
+    "lcp": 818,
+    "tbt": 7,
+    "cls": 0,
+    "si": 359,
+    "tti": 927,
+    "ttfb": 52,
+    "mainThread": 821,
+    "bootup": 342,
+    "dom": 778,
+    "unusedJs": 21481,
+    "obsFcp": 258,
+    "obsLcp": 615,
+    "obsLoad": 306
+   },
+   "spread": {
+    "fcp": [
+     339,
+     309,
+     331,
+     325,
+     328
+    ],
+    "lcp": [
+     818,
+     769,
+     810,
+     831,
+     877
+    ],
+    "tbt": [
+     5,
+     7,
+     14,
+     10,
+     2
+    ],
+    "cls": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "si": [
+     363,
+     328,
+     359,
+     370,
+     356
+    ],
+    "tti": [
+     950,
+     846,
+     927,
+     930,
+     923
+    ],
+    "ttfb": [
+     40,
+     53,
+     52,
+     45,
+     67
+    ],
+    "mainThread": [
+     821,
+     765,
+     907,
+     912,
+     711
+    ],
+    "bootup": [
+     352,
+     313,
+     342,
+     404,
+     323
+    ],
+    "dom": [
+     778,
+     778,
+     778,
+     778,
+     778
+    ],
+    "unusedJs": [
+     21481,
+     21481,
+     21484,
+     21484,
+     21481
+    ],
+    "obsFcp": [
+     255,
+     223,
+     258,
+     270,
+     274
+    ],
+    "obsLcp": [
+     636,
+     578,
+     615,
+     680,
+     556
+    ],
+    "obsLoad": [
+     298,
+     306,
+     304,
+     322,
+     310
+    ]
+   },
+   "scores": {
+    "performance": 100,
+    "accessibility": 100,
+    "bestPractices": 100,
+    "seo": 66
+   },
+   "perfSpread": [
+    100,
+    100,
+    100,
+    99,
+    99
+   ],
+   "weight": {
+    "total": 676580,
+    "requests": 76,
+    "platform": 0,
+    "idle": 19571,
+    "thirdParty": 0,
+    "hinted": 0,
+    "byType": {
+     "html": {
+      "bytes": 8778,
+      "count": 1
+     },
+     "js": {
+      "bytes": 161040,
+      "count": 12
+     },
+     "css": {
+      "bytes": 19371,
+      "count": 1
+     },
+     "img": {
+      "bytes": 261619,
+      "count": 23
+     },
+     "font": {
+      "bytes": 116606,
+      "count": 2
+     },
+     "other": {
+      "bytes": 109242,
+      "count": 37
+     }
+    }
+   },
+   "lcp": {
+    "selector": "div.ts-card > div.ts-card__top > a.ts-card__media > img",
+    "snippet": "<img alt=\"\" decoding=\"async\" data-nimg=\"fill\" sizes=\"(max-width: 767px) 46vw, (max-width: 1023px) 31vw, (max-width: 1320px) 24v…\" srcset=\"/_next/image?url=https",
+    "isImage": true,
+    "label": "div.ts-card > div.ts-card__top > a.ts-card__media > img",
+    "parts": {
+     "timeToFirstByte": 82.187,
+     "resourceLoadDelay": 456.892,
+     "resourceLoadDuration": 19.849,
+     "elementRenderDelay": 77.246
+    }
+   },
+   "failing": {
+    "accessibility": [],
+    "bestPractices": [],
+    "seo": [
+     {
+      "id": "is-crawlable",
+      "title": "Page is blocked from indexing",
+      "weight": 4.043478260869565
+     }
+    ]
+   },
+   "report": "reports/desktop-search-headless.html",
+   "url": "https://headless.michael-kuhlman.com/catalogsearch/result?q=paddle",
+   "n": 5
+  },
+  "desktop/search/shopify": {
+   "m": {
+    "fcp": 557,
+    "lcp": 758,
+    "tbt": 20,
+    "cls": 0,
+    "si": 645,
+    "tti": 1265,
+    "ttfb": 260,
+    "mainThread": 1082,
+    "bootup": 308,
+    "dom": 1041,
+    "unusedJs": 38214,
+    "obsFcp": 553,
+    "obsLcp": 575,
+    "obsLoad": 1132
+   },
+   "spread": {
+    "fcp": [
+     563,
+     544,
+     589,
+     551,
+     557
+    ],
+    "lcp": [
+     934,
+     758,
+     749,
+     905,
+     754
+    ],
+    "tbt": [
+     13,
+     33,
+     20,
+     52,
+     0
+    ],
+    "cls": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "si": [
+     617,
+     659,
+     645,
+     591,
+     774
+    ],
+    "tti": [
+     1265,
+     1361,
+     1349,
+     1263,
+     758
+    ],
+    "ttfb": [
+     258,
+     281,
+     246,
+     260,
+     276
+    ],
+    "mainThread": [
+     1082,
+     1076,
+     1150,
+     1140,
+     1019
+    ],
+    "bootup": [
+     308,
+     294,
+     351,
+     311,
+     293
+    ],
+    "dom": [
+     1037,
+     1041,
+     1041,
+     1037,
+     1041
+    ],
+    "unusedJs": [
+     38211,
+     38218,
+     37909,
+     38214,
+     38214
+    ],
+    "obsFcp": [
+     551,
+     553,
+     566,
+     544,
+     575
+    ],
+    "obsLcp": [
+     675,
+     553,
+     566,
+     632,
+     575
+    ],
+    "obsLoad": [
+     1088,
+     1099,
+     1143,
+     1144,
+     1132
+    ]
+   },
+   "scores": {
+    "performance": 99,
+    "accessibility": 100,
+    "bestPractices": 73,
+    "seo": 69
+   },
+   "perfSpread": [
+    99,
+    99,
+    99,
+    99,
+    99
+   ],
+   "weight": {
+    "total": 1870928,
+    "requests": 219,
+    "platform": 1244587,
+    "idle": 994552,
+    "thirdParty": 42797,
+    "hinted": 0,
+    "byType": {
+     "html": {
+      "bytes": 59147,
+      "count": 3
+     },
+     "js": {
+      "bytes": 210697,
+      "count": 29
+     },
+     "css": {
+      "bytes": 24097,
+      "count": 3
+     },
+     "img": {
+      "bytes": 452774,
+      "count": 23
+     },
+     "font": {
+      "bytes": 117303,
+      "count": 2
+     },
+     "other": {
+      "bytes": 1010451,
+      "count": 159
+     }
+    }
+   },
+   "lcp": {
+    "selector": "div.ts-card > div.ts-card__top > a.ts-card__media > img",
+    "snippet": "<img src=\"https://shopify.michael-kuhlman.com/cdn/shop/files/coach-s-weighted-traine…\" alt=\"\" srcset=\"//shopify.michael-kuhlman.com/cdn/shop/files/coach-s-weigh",
+    "isImage": true,
+    "label": "div.ts-card > div.ts-card__top > a.ts-card__media > img",
+    "parts": {
+     "timeToFirstByte": 315.9549997558594,
+     "resourceLoadDelay": 89.62600024414063,
+     "resourceLoadDuration": 47.168,
+     "elementRenderDelay": 100.485
+    }
+   },
+   "failing": {
+    "accessibility": [],
+    "bestPractices": [
+     {
+      "id": "third-party-cookies",
+      "title": "Uses third-party cookies",
+      "weight": 5
+     },
+     {
+      "id": "errors-in-console",
+      "title": "Browser errors were logged to the console",
+      "weight": 1
+     },
+     {
+      "id": "inspector-issues",
+      "title": "Issues were logged in the `Issues` panel in Chrome Devtools",
+      "weight": 1
+     }
+    ],
+    "seo": [
+     {
+      "id": "is-crawlable",
+      "title": "Page is blocked from indexing",
+      "weight": 4.043478260869565
+     }
+    ]
+   },
+   "report": "reports/desktop-search-shopify.html",
+   "url": "https://shopify.michael-kuhlman.com/search?q=paddle",
+   "n": 5
+  },
+  "desktop/cart/m2": {
+   "m": {
+    "fcp": 284,
+    "lcp": 633,
+    "tbt": 12,
+    "cls": 0,
+    "si": 386,
+    "tti": 1773,
+    "ttfb": 204,
+    "mainThread": 1353,
+    "bootup": 638,
+    "dom": 246,
+    "unusedJs": 0,
+    "obsFcp": 390,
+    "obsLcp": 390,
+    "obsLoad": 974
+   },
+   "spread": {
+    "fcp": [
+     288,
+     284,
+     274,
+     282,
+     286
+    ],
+    "lcp": [
+     656,
+     633,
+     615,
+     629,
+     635
+    ],
+    "tbt": [
+     25,
+     0,
+     12,
+     120,
+     0
+    ],
+    "cls": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "si": [
+     635,
+     675,
+     367,
+     386,
+     377
+    ],
+    "tti": [
+     1853,
+     633,
+     1983,
+     1773,
+     635
+    ],
+    "ttfb": [
+     170,
+     233,
+     182,
+     213,
+     204
+    ],
+    "mainThread": [
+     1685,
+     1344,
+     1218,
+     1598,
+     1353
+    ],
+    "bootup": [
+     869,
+     621,
+     599,
+     865,
+     638
+    ],
+    "dom": [
+     246,
+     246,
+     246,
+     246,
+     246
+    ],
+    "unusedJs": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "obsFcp": [
+     321,
+     390,
+     353,
+     401,
+     398
+    ],
+    "obsLcp": [
+     321,
+     390,
+     353,
+     401,
+     398
+    ],
+    "obsLoad": [
+     974,
+     963,
+     880,
+     1008,
+     1023
+    ]
+   },
+   "scores": {
+    "performance": 100,
+    "accessibility": 100,
+    "bestPractices": 100,
+    "seo": 63
+   },
+   "perfSpread": [
+    100,
+    100,
+    100,
+    98,
+    100
+   ],
+   "weight": {
+    "total": 714443,
+    "requests": 198,
+    "platform": 0,
+    "idle": 0,
+    "thirdParty": 0,
+    "hinted": 0,
+    "byType": {
+     "html": {
+      "bytes": 41057,
+      "count": 1
+     },
+     "js": {
+      "bytes": 414742,
+      "count": 178
+     },
+     "css": {
+      "bytes": 91306,
+      "count": 3
+     },
+     "img": {
+      "bytes": 27364,
+      "count": 3
+     },
+     "font": {
+      "bytes": 120572,
+      "count": 3
+     },
+     "other": {
+      "bytes": 19429,
+      "count": 10
+     }
+    }
+   },
+   "lcp": {
+    "selector": "div.ts-footer > div.ts-footer__news > div.ts-footer__news-copy > h2",
+    "snippet": "<h2>",
+    "isImage": false,
+    "label": "Drills, gear drops and court notes. Twice a month, never more.",
+    "parts": {
+     "timeToFirstByte": 269.03000024414064,
+     "elementRenderDelay": 120.51599975585937
+    }
+   },
+   "failing": {
+    "accessibility": [],
+    "bestPractices": [],
+    "seo": [
+     {
+      "id": "is-crawlable",
+      "title": "Page is blocked from indexing",
+      "weight": 4.043478260869565
+     }
+    ]
+   },
+   "report": "reports/desktop-cart-m2.html",
+   "url": "https://m2.michael-kuhlman.com/checkout/cart/",
+   "n": 5
+  },
+  "desktop/cart/headless": {
+   "m": {
+    "fcp": 320,
+    "lcp": 759,
+    "tbt": 0,
+    "cls": 0,
+    "si": 345,
+    "tti": 762,
+    "ttfb": 91,
+    "mainThread": 445,
+    "bootup": 195,
+    "dom": 189,
+    "unusedJs": 22232,
+    "obsFcp": 266,
+    "obsLcp": 434,
+    "obsLoad": 317
+   },
+   "spread": {
+    "fcp": [
+     320,
+     319,
+     309,
+     325,
+     323
+    ],
+    "lcp": [
+     720,
+     759,
+     730,
+     769,
+     762
+    ],
+    "tbt": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "cls": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "si": [
+     345,
+     365,
+     314,
+     362,
+     323
+    ],
+    "tti": [
+     722,
+     762,
+     734,
+     771,
+     764
+    ],
+    "ttfb": [
+     99,
+     60,
+     68,
+     95,
+     91
+    ],
+    "mainThread": [
+     425,
+     433,
+     540,
+     445,
+     450
+    ],
+    "bootup": [
+     180,
+     195,
+     255,
+     164,
+     235
+    ],
+    "dom": [
+     189,
+     189,
+     189,
+     189,
+     189
+    ],
+    "unusedJs": [
+     22232,
+     22232,
+     22232,
+     22232,
+     22232
+    ],
+    "obsFcp": [
+     312,
+     186,
+     266,
+     335,
+     256
+    ],
+    "obsLcp": [
+     456,
+     403,
+     428,
+     497,
+     434
+    ],
+    "obsLoad": [
+     375,
+     267,
+     317,
+     379,
+     312
+    ]
+   },
+   "scores": {
+    "performance": 100,
+    "accessibility": 100,
+    "bestPractices": 100,
+    "seo": 66
+   },
+   "perfSpread": [
+    100,
+    100,
+    100,
+    100,
+    100
+   ],
+   "weight": {
+    "total": 378797,
+    "requests": 45,
+    "platform": 0,
+    "idle": 7902,
+    "thirdParty": 0,
+    "hinted": 0,
+    "byType": {
+     "html": {
+      "bytes": 8321,
+      "count": 1
+     },
+     "js": {
+      "bytes": 165314,
+      "count": 13
+     },
+     "css": {
+      "bytes": 19372,
+      "count": 1
+     },
+     "img": {
+      "bytes": 9762,
+      "count": 2
+     },
+     "font": {
+      "bytes": 116602,
+      "count": 2
+     },
+     "other": {
+      "bytes": 59427,
+      "count": 26
+     }
+    }
+   },
+   "lcp": {
+    "selector": "main#main > div.ts-container > div.ts-cart-empty > p",
+    "snippet": "<p>",
+    "isImage": false,
+    "label": "Start with a paddle, a sleeve of balls or something for the bag.",
+    "parts": {
+     "timeToFirstByte": 74.668,
+     "elementRenderDelay": 327.937
+    }
+   },
+   "failing": {
+    "accessibility": [],
+    "bestPractices": [],
+    "seo": [
+     {
+      "id": "is-crawlable",
+      "title": "Page is blocked from indexing",
+      "weight": 4.043478260869565
+     }
+    ]
+   },
+   "report": "reports/desktop-cart-headless.html",
+   "url": "https://headless.michael-kuhlman.com/checkout/cart",
+   "n": 5
+  },
+  "desktop/cart/shopify": {
+   "m": {
+    "fcp": 608,
+    "lcp": 643,
+    "tbt": 0,
+    "cls": 0,
+    "si": 632,
+    "tti": 644,
+    "ttfb": 21,
+    "mainThread": 875,
+    "bootup": 235,
+    "dom": 213,
+    "unusedJs": 41623,
+    "obsFcp": 388,
+    "obsLcp": 388,
+    "obsLoad": 796
+   },
+   "spread": {
+    "fcp": [
+     592,
+     632,
+     592,
+     608,
+     667
+    ],
+    "lcp": [
+     612,
+     652,
+     612,
+     643,
+     687
+    ],
+    "tbt": [
+     0,
+     14,
+     0,
+     0,
+     29
+    ],
+    "cls": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "si": [
+     629,
+     632,
+     599,
+     666,
+     667
+    ],
+    "tti": [
+     612,
+     1160,
+     612,
+     644,
+     1078
+    ],
+    "ttfb": [
+     16,
+     23,
+     15,
+     22,
+     21
+    ],
+    "mainThread": [
+     677,
+     886,
+     900,
+     861,
+     875
+    ],
+    "bootup": [
+     149,
+     275,
+     290,
+     235,
+     145
+    ],
+    "dom": [
+     213,
+     213,
+     213,
+     213,
+     213
+    ],
+    "unusedJs": [
+     41620,
+     41631,
+     41300,
+     41644,
+     41623
+    ],
+    "obsFcp": [
+     339,
+     475,
+     388,
+     386,
+     443
+    ],
+    "obsLcp": [
+     339,
+     475,
+     388,
+     386,
+     443
+    ],
+    "obsLoad": [
+     697,
+     996,
+     796,
+     767,
+     861
+    ]
+   },
+   "scores": {
+    "performance": 100,
+    "accessibility": 100,
+    "bestPractices": 73,
+    "seo": 61
+   },
+   "perfSpread": [
+    100,
+    100,
+    100,
+    100,
+    100
+   ],
+   "weight": {
+    "total": 1217528,
+    "requests": 161,
+    "platform": 1039998,
+    "idle": 783437,
+    "thirdParty": 53346,
+    "hinted": 22451,
+    "byType": {
+     "html": {
+      "bytes": 51819,
+      "count": 3
+     },
+     "js": {
+      "bytes": 222046,
+      "count": 29
+     },
+     "css": {
+      "bytes": 22451,
+      "count": 3
+     },
+     "img": {
+      "bytes": 9656,
+      "count": 2
+     },
+     "font": {
+      "bytes": 117066,
+      "count": 2
+     },
+     "other": {
+      "bytes": 797571,
+      "count": 122
+     }
+    }
+   },
+   "lcp": {
+    "selector": "div#shopify-section-template--24212677787873__main > div.ts-container > div.ts-cart-empty > p",
+    "snippet": "<p>",
+    "isImage": false,
+    "label": "Start with a paddle, a sleeve of balls or something for the bag.",
+    "parts": {
+     "timeToFirstByte": 87.13,
+     "elementRenderDelay": 298.654
+    }
+   },
+   "failing": {
+    "accessibility": [],
+    "bestPractices": [
+     {
+      "id": "third-party-cookies",
+      "title": "Uses third-party cookies",
+      "weight": 5
+     },
+     {
+      "id": "errors-in-console",
+      "title": "Browser errors were logged to the console",
+      "weight": 1
+     },
+     {
+      "id": "inspector-issues",
+      "title": "Issues were logged in the `Issues` panel in Chrome Devtools",
+      "weight": 1
+     }
+    ],
+    "seo": [
+     {
+      "id": "is-crawlable",
+      "title": "Page is blocked from indexing",
+      "weight": 4.043478260869565
+     },
+     {
+      "id": "meta-description",
+      "title": "Document does not have a meta description",
+      "weight": 1
+     }
+    ]
+   },
+   "report": "reports/desktop-cart-shopify.html",
+   "url": "https://shopify.michael-kuhlman.com/cart",
+   "n": 5
+  }
+ },
+ "race": {
+  "measured": "2026-10-17T04:01:20.938Z",
+  "throttle": {
+   "latency": 562.5,
+   "downloadThroughput": 188743.68,
+   "uploadThroughput": 86400,
+   "cpu": 4
+  },
+  "viewport": "412x823 @1.75x",
+  "runs": 3,
+  "results": {
+   "home/m2": {
+    "page": "home",
+    "stack": "m2",
+    "runs": [
+     {
+      "fcp": 1300,
+      "lcp": 3412,
+      "cls": 0.0005931475958672448,
+      "tbt": 302,
+      "load": 8110.099999904633,
+      "ttfb": 140.59999990463257,
+      "si": 1748.015411993506,
+      "vc": 5511.1337890625,
+      "bytes": 1074634,
+      "jsBytes": 434408,
+      "requests": 220
+     },
+     {
+      "fcp": 1236,
+      "lcp": 3468,
+      "cls": 0.0005931475958672448,
+      "tbt": 299,
+      "load": 8187.5,
+      "ttfb": 123.20000004768372,
+      "si": 1718.2667284751192,
+      "vc": 5502.635009765625,
+      "bytes": 1074608,
+      "jsBytes": 434419,
+      "requests": 220
+     },
+     {
+      "fcp": 1284,
+      "lcp": 3456,
+      "cls": 0.0005931475958672448,
+      "tbt": 200,
+      "load": 8150.699999809265,
+      "ttfb": 144.79999995231628,
+      "si": 1754.1019958160032,
+      "vc": 5483.06494140625,
+      "bytes": 1074590,
+      "jsBytes": 434405,
+      "requests": 220
+     }
+    ],
+    "median": {
+     "fcp": 1284,
+     "lcp": 3456,
+     "cls": 0.0005931475958672448,
+     "tbt": 200,
+     "load": 8150.699999809265,
+     "ttfb": 144.79999995231628,
+     "si": 1754.1019958160032,
+     "vc": 5483.06494140625,
+     "bytes": 1074590,
+     "jsBytes": 434405,
+     "requests": 220
+    },
+    "film": {
+     "file": "home-m2.webp",
+     "w": 240,
+     "h": 479,
+     "times": [
+      0,
+      2,
+      1283,
+      2618,
+      3057,
+      3455,
+      3554,
+      4836,
+      4866,
+      4901,
+      4934,
+      4989,
+      5013,
+      5054,
+      5084,
+      5136,
+      5202,
+      5270,
+      5369,
+      5518,
+      5802
+     ],
+     "done": [
+      0,
+      0,
+      0.743,
+      0.892,
+      0.901,
+      0.987,
+      0.994,
+      0.897,
+      0.905,
+      0.912,
+      0.919,
+      0.926,
+      0.934,
+      0.942,
+      0.95,
+      0.958,
+      0.966,
+      0.973,
+      0.979,
+      0.986,
+      0.993
+     ]
+    }
+   },
+   "home/headless": {
+    "page": "home",
+    "stack": "headless",
+    "runs": [
+     {
+      "fcp": 2172,
+      "lcp": 2416,
+      "cls": 0.00047452170495166144,
+      "tbt": 216,
+      "load": 3884.2999999523163,
+      "ttfb": 64.59999990463257,
+      "si": 2250.8475254082387,
+      "vc": 2874.25,
+      "bytes": 531318,
+      "jsBytes": 161044,
+      "requests": 43
+     },
+     {
+      "fcp": 2260,
+      "lcp": 2440,
+      "cls": 0.00047452170495166144,
+      "tbt": 209,
+      "load": 3935.300000190735,
+      "ttfb": 70.30000019073486,
+      "si": 2323.3280751130214,
+      "vc": 2952.031005859375,
+      "bytes": 531271,
+      "jsBytes": 161055,
+      "requests": 43
+     },
+     {
+      "fcp": 2212,
+      "lcp": 2476,
+      "cls": 0.00047452170495166144,
+      "tbt": 197,
+      "load": 3925.7999999523163,
+      "ttfb": 77.5,
+      "si": 2294.9430495057363,
+      "vc": 2924.408935546875,
+      "bytes": 531331,
+      "jsBytes": 161049,
+      "requests": 43
+     }
+    ],
+    "median": {
+     "fcp": 2260,
+     "lcp": 2440,
+     "cls": 0.00047452170495166144,
+     "tbt": 209,
+     "load": 3935.300000190735,
+     "ttfb": 70.30000019073486,
+     "si": 2323.3280751130214,
+     "vc": 2952.031005859375,
+     "bytes": 531271,
+     "jsBytes": 161055,
+     "requests": 43
+    },
+    "film": {
+     "file": "home-headless.webp",
+     "w": 240,
+     "h": 479,
+     "times": [
+      0,
+      7,
+      2257,
+      2437,
+      2553,
+      2752,
+      3302
+     ],
+     "done": [
+      0,
+      0,
+      0.758,
+      0.97,
+      0.976,
+      0.982,
+      0.987
+     ]
+    }
+   },
+   "home/shopify": {
+    "page": "home",
+    "stack": "shopify",
+    "runs": [
+     {
+      "fcp": 2360,
+      "lcp": 3932,
+      "cls": 0.00044700136904113385,
+      "tbt": 482.2000000476837,
+      "load": 5656.800000190735,
+      "ttfb": 42.90000009536743,
+      "si": 2407.2682951972142,
+      "vc": 3495.585205078125,
+      "bytes": 816249,
+      "jsBytes": 222356,
+      "requests": 74
+     },
+     {
+      "fcp": 2040,
+      "lcp": 4688,
+      "cls": 0.00044700136904113385,
+      "tbt": 458,
+      "load": 5603.5,
+      "ttfb": 65,
+      "si": 2235.533052496585,
+      "vc": 4586.265869140625,
+      "bytes": 802719,
+      "jsBytes": 208841,
+      "requests": 74
+     },
+     {
+      "fcp": 2104,
+      "lcp": 4648,
+      "cls": 0.00044700136904113385,
+      "tbt": 453,
+      "load": 5569.699999809265,
+      "ttfb": 84.79999995231628,
+      "si": 2258.9600832181673,
+      "vc": 4644.05078125,
+      "bytes": 802326,
+      "jsBytes": 208835,
+      "requests": 76
+     }
+    ],
+    "median": {
+     "fcp": 2104,
+     "lcp": 4648,
+     "cls": 0.00044700136904113385,
+     "tbt": 453,
+     "load": 5569.699999809265,
+     "ttfb": 84.79999995231628,
+     "si": 2258.9600832181673,
+     "vc": 4644.05078125,
+     "bytes": 802326,
+     "jsBytes": 208835,
+     "requests": 76
+    },
+    "film": {
+     "file": "home-shopify.webp",
+     "w": 240,
+     "h": 479,
+     "times": [
+      0,
+      9,
+      1885,
+      2101,
+      2368,
+      2485,
+      2936,
+      2985,
+      3485,
+      4644
+     ],
+     "done": [
+      0,
+      0,
+      0.089,
+      0.75,
+      0.759,
+      0.931,
+      0.937,
+      0.944,
+      0.981,
+      1
+     ]
+    }
+   },
+   "category/m2": {
+    "page": "category",
+    "stack": "m2",
+    "runs": [
+     {
+      "fcp": 1224,
+      "lcp": 2820,
+      "cls": 0.009405919879150668,
+      "tbt": 170,
+      "load": 7572.399999856949,
+      "ttfb": 185.79999995231628,
+      "si": 2149.829003606868,
+      "vc": 3030.43310546875,
+      "bytes": 933275,
+      "jsBytes": 468728,
+      "requests": 234
+     },
+     {
+      "fcp": 1216,
+      "lcp": 2780,
+      "cls": 0.009405919879150668,
+      "tbt": 159,
+      "load": 7530.700000047684,
+      "ttfb": 140.09999990463257,
+      "si": 2122.5159689299016,
+      "vc": 3009.81298828125,
+      "bytes": 933279,
+      "jsBytes": 468751,
+      "requests": 234
+     },
+     {
+      "fcp": 1244,
+      "lcp": 2776,
+      "cls": 0.009405919879150668,
+      "tbt": 289,
+      "load": 7321.199999809265,
+      "ttfb": 118.59999990463257,
+      "si": 2126.4813330159623,
+      "vc": 3008.625,
+      "bytes": 933358,
+      "jsBytes": 468805,
+      "requests": 234
+     }
+    ],
+    "median": {
+     "fcp": 1216,
+     "lcp": 2780,
+     "cls": 0.009405919879150668,
+     "tbt": 159,
+     "load": 7530.700000047684,
+     "ttfb": 140.09999990463257,
+     "si": 2122.5159689299016,
+     "vc": 3009.81298828125,
+     "bytes": 933279,
+     "jsBytes": 468751,
+     "requests": 234
+    },
+    "film": {
+     "file": "category-m2.webp",
+     "w": 240,
+     "h": 479,
+     "times": [
+      0,
+      15,
+      1213,
+      2601,
+      2647,
+      2665,
+      2779,
+      3010
+     ],
+     "done": [
+      0,
+      0,
+      0.386,
+      0.786,
+      0.808,
+      0.839,
+      0.912,
+      0.996
+     ]
+    }
+   },
+   "category/headless": {
+    "page": "category",
+    "stack": "headless",
+    "runs": [
+     {
+      "fcp": 2436,
+      "lcp": 2456,
+      "cls": 0,
+      "tbt": 202,
+      "load": 3463.899999856949,
+      "ttfb": 74.79999995231628,
+      "si": 2552.4030557541423,
+      "vc": 3452.201904296875,
+      "bytes": 474005,
+      "jsBytes": 161044,
+      "requests": 43
+     },
+     {
+      "fcp": 2336,
+      "lcp": 2348,
+      "cls": 0,
+      "tbt": 132,
+      "load": 3355.4000000953674,
+      "ttfb": 50.700000047683716,
+      "si": 2453.7061757151214,
+      "vc": 3356.030029296875,
+      "bytes": 474299,
+      "jsBytes": 161051,
+      "requests": 43
+     },
+     {
+      "fcp": 2396,
+      "lcp": 2412,
+      "cls": 0,
+      "tbt": 196,
+      "load": 3432.0999999046326,
+      "ttfb": 58.5,
+      "si": 2508.5744466855867,
+      "vc": 3437.360107421875,
+      "bytes": 474257,
+      "jsBytes": 161044,
+      "requests": 43
+     }
+    ],
+    "median": {
+     "fcp": 2396,
+     "lcp": 2412,
+     "cls": 0,
+     "tbt": 196,
+     "load": 3432.0999999046326,
+     "ttfb": 58.5,
+     "si": 2508.5744466855867,
+     "vc": 3437.360107421875,
+     "bytes": 474257,
+     "jsBytes": 161044,
+     "requests": 43
+    },
+    "film": {
+     "file": "category-headless.webp",
+     "w": 240,
+     "h": 479,
+     "times": [
+      0,
+      7,
+      2392,
+      2410,
+      3171,
+      3320,
+      3437
+     ],
+     "done": [
+      0,
+      0,
+      0.407,
+      0.874,
+      0.94,
+      0.967,
+      1
+     ]
+    }
+   },
+   "category/shopify": {
+    "page": "category",
+    "stack": "shopify",
+    "runs": [
+     {
+      "fcp": 2208,
+      "lcp": 3016,
+      "cls": 0,
+      "tbt": 598,
+      "load": 5165.200000047684,
+      "ttfb": 77.59999990463257,
+      "si": 2407.8263322571943,
+      "vc": 3245.927001953125,
+      "bytes": 701214,
+      "jsBytes": 208827,
+      "requests": 78
+     },
+     {
+      "fcp": 2180,
+      "lcp": 3284,
+      "cls": 0.009453179505615769,
+      "tbt": 557,
+      "load": 5082.299999952316,
+      "ttfb": 52.299999952316284,
+      "si": 2400.28816625132,
+      "vc": 3281.44287109375,
+      "bytes": 715411,
+      "jsBytes": 222372,
+      "requests": 79
+     },
+     {
+      "fcp": 2108,
+      "lcp": 3156,
+      "cls": 0.009453179505615769,
+      "tbt": 463,
+      "load": 5053.200000047684,
+      "ttfb": 49.09999990463257,
+      "si": 2354.0498766422115,
+      "vc": 3153.294921875,
+      "bytes": 702517,
+      "jsBytes": 210142,
+      "requests": 81
+     }
+    ],
+    "median": {
+     "fcp": 2108,
+     "lcp": 3156,
+     "cls": 0.009453179505615769,
+     "tbt": 463,
+     "load": 5053.200000047684,
+     "ttfb": 49.09999990463257,
+     "si": 2354.0498766422115,
+     "vc": 3153.294921875,
+     "bytes": 702517,
+     "jsBytes": 210142,
+     "requests": 81
+    },
+    "film": {
+     "file": "category-shopify.webp",
+     "w": 240,
+     "h": 479,
+     "times": [
+      0,
+      2,
+      1901,
+      2106,
+      2199,
+      2476,
+      2490,
+      3019,
+      3153
+     ],
+     "done": [
+      0,
+      0,
+      0.183,
+      0.384,
+      0.408,
+      0.47,
+      0.904,
+      0.966,
+      0.997
+     ]
+    }
+   },
+   "product/m2": {
+    "page": "product",
+    "stack": "m2",
+    "runs": [
+     {
+      "fcp": 1180,
+      "lcp": 2064,
+      "cls": 0.013757864683418752,
+      "tbt": 298,
+      "load": 6656,
+      "ttfb": 134.5,
+      "si": 2539.06985791444,
+      "vc": 11154.012939453125,
+      "bytes": 1095126,
+      "jsBytes": 499994,
+      "requests": 251
+     },
+     {
+      "fcp": 1160,
+      "lcp": 2100,
+      "cls": 0.013757864683418752,
+      "tbt": 396,
+      "load": 6692.799999952316,
+      "ttfb": 104.69999980926514,
+      "si": 2569.130344372059,
+      "vc": 11369.14501953125,
+      "bytes": 1095170,
+      "jsBytes": 500032,
+      "requests": 251
+     },
+     {
+      "fcp": 1164,
+      "lcp": 2068,
+      "cls": 0.013757864683418752,
+      "tbt": 268,
+      "load": 6647.5,
+      "ttfb": 119.70000004768372,
+      "si": 2536.7075623594556,
+      "vc": 11175.81396484375,
+      "bytes": 1095159,
+      "jsBytes": 500045,
+      "requests": 251
+     }
+    ],
+    "median": {
+     "fcp": 1164,
+     "lcp": 2068,
+     "cls": 0.013757864683418752,
+     "tbt": 268,
+     "load": 6647.5,
+     "ttfb": 119.70000004768372,
+     "si": 2536.7075623594556,
+     "vc": 11175.81396484375,
+     "bytes": 1095159,
+     "jsBytes": 500045,
+     "requests": 251
+    },
+    "film": {
+     "file": "product-m2.webp",
+     "w": 240,
+     "h": 479,
+     "times": [
+      0,
+      69,
+      1163,
+      2066,
+      2289,
+      2807,
+      11176
+     ],
+     "done": [
+      0,
+      0,
+      0.371,
+      0.915,
+      0.913,
+      0.911,
+      1
+     ]
+    }
+   },
+   "product/headless": {
+    "page": "product",
+    "stack": "headless",
+    "runs": [
+     {
+      "fcp": 2372,
+      "lcp": 2520,
+      "cls": 0,
+      "tbt": 148,
+      "load": 3879,
+      "ttfb": 46.5,
+      "si": 2461.667353689242,
+      "vc": 2792.739013671875,
+      "bytes": 568085,
+      "jsBytes": 161042,
+      "requests": 36
+     },
+     {
+      "fcp": 2384,
+      "lcp": 2524,
+      "cls": 0,
+      "tbt": 149,
+      "load": 3861.300000190735,
+      "ttfb": 35.90000009536743,
+      "si": 2463.07311587001,
+      "vc": 2789.031005859375,
+      "bytes": 568107,
+      "jsBytes": 161041,
+      "requests": 36
+     },
+     {
+      "fcp": 2344,
+      "lcp": 2528,
+      "cls": 0,
+      "tbt": 275,
+      "load": 3918.399999856949,
+      "ttfb": 65.89999985694885,
+      "si": 2443.570037921272,
+      "vc": 2824.257080078125,
+      "bytes": 568077,
+      "jsBytes": 161027,
+      "requests": 36
+     }
+    ],
+    "median": {
+     "fcp": 2384,
+     "lcp": 2524,
+     "cls": 0,
+     "tbt": 149,
+     "load": 3861.300000190735,
+     "ttfb": 35.90000009536743,
+     "si": 2463.07311587001,
+     "vc": 2789.031005859375,
+     "bytes": 568107,
+     "jsBytes": 161041,
+     "requests": 36
+    },
+    "film": {
+     "file": "product-headless.webp",
+     "w": 240,
+     "h": 479,
+     "times": [
+      0,
+      1,
+      2383,
+      2512,
+      2520
+     ],
+     "done": [
+      0,
+      0,
+      0.443,
+      0.942,
+      0.982
+     ]
+    }
+   },
+   "product/shopify": {
+    "page": "product",
+    "stack": "shopify",
+    "runs": [
+     {
+      "fcp": 1932,
+      "lcp": 3156,
+      "cls": 0,
+      "tbt": 673.7000000476837,
+      "load": 10445.200000047684,
+      "ttfb": 42.5,
+      "si": 2232.061514092424,
+      "vc": 3153.769775390625,
+      "bytes": 1779151,
+      "jsBytes": 208810,
+      "requests": 82
+     },
+     {
+      "fcp": 1976,
+      "lcp": 3096,
+      "cls": 0,
+      "tbt": 721.7000000476837,
+      "load": 10503.200000047684,
+      "ttfb": 49.90000009536743,
+      "si": 2236.945218977522,
+      "vc": 3094.755126953125,
+      "bytes": 1792652,
+      "jsBytes": 222308,
+      "requests": 84
+     },
+     {
+      "fcp": 2076,
+      "lcp": 3172,
+      "cls": 0,
+      "tbt": 607,
+      "load": 10445.100000143051,
+      "ttfb": 60,
+      "si": 2258.8676372280675,
+      "vc": 3171.942138671875,
+      "bytes": 1780524,
+      "jsBytes": 210094,
+      "requests": 84
+     }
+    ],
+    "median": {
+     "fcp": 1932,
+     "lcp": 3156,
+     "cls": 0,
+     "tbt": 673.7000000476837,
+     "load": 10445.200000047684,
+     "ttfb": 42.5,
+     "si": 2232.061514092424,
+     "vc": 3153.769775390625,
+     "bytes": 1779151,
+     "jsBytes": 208810,
+     "requests": 82
+    },
+    "film": {
+     "file": "product-shopify.webp",
+     "w": 240,
+     "h": 479,
+     "times": [
+      0,
+      1781,
+      1930,
+      2079,
+      2429,
+      3154
+     ],
+     "done": [
+      0,
+      0.247,
+      0.401,
+      0.444,
+      0.931,
+      0.989
+     ]
+    }
+   },
+   "cms/m2": {
+    "page": "cms",
+    "stack": "m2",
+    "runs": [
+     {
+      "fcp": 1116,
+      "lcp": 3252,
+      "cls": 0.00014614622682611097,
+      "tbt": 285,
+      "load": 6172.399999856949,
+      "ttfb": 132.39999985694885,
+      "si": 2298.0394264219394,
+      "vc": 3248.419921875,
+      "bytes": 787210,
+      "jsBytes": 411670,
+      "requests": 197
+     },
+     {
+      "fcp": 1148,
+      "lcp": 3360,
+      "cls": 0.00014614622682611097,
+      "tbt": 361,
+      "load": 6667.299999952316,
+      "ttfb": 151.79999995231628,
+      "si": 2346.6645508391994,
+      "vc": 3356.547119140625,
+      "bytes": 787274,
+      "jsBytes": 411715,
+      "requests": 197
+     },
+     {
+      "fcp": 1128,
+      "lcp": 3436,
+      "cls": 0.00014614622682611097,
+      "tbt": 103,
+      "load": 5931.300000190735,
+      "ttfb": 110.70000004768372,
+      "si": 2360.3320458090843,
+      "vc": 3432.657958984375,
+      "bytes": 787270,
+      "jsBytes": 411714,
+      "requests": 197
+     }
+    ],
+    "median": {
+     "fcp": 1148,
+     "lcp": 3360,
+     "cls": 0.00014614622682611097,
+     "tbt": 361,
+     "load": 6667.299999952316,
+     "ttfb": 151.79999995231628,
+     "si": 2346.6645508391994,
+     "vc": 3356.547119140625,
+     "bytes": 787274,
+     "jsBytes": 411715,
+     "requests": 197
+    },
+    "film": {
+     "file": "cms-m2.webp",
+     "w": 240,
+     "h": 479,
+     "times": [
+      0,
+      15,
+      1147,
+      2211,
+      2277,
+      2294,
+      2660,
+      2880,
+      2999,
+      3357
+     ],
+     "done": [
+      0,
+      0,
+      0.387,
+      0.382,
+      0.37,
+      0.391,
+      0.413,
+      0.681,
+      0.699,
+      1
+     ]
+    }
+   },
+   "cms/headless": {
+    "page": "cms",
+    "stack": "headless",
+    "runs": [
+     {
+      "fcp": 2204,
+      "lcp": 3116,
+      "cls": 0,
+      "tbt": 208,
+      "load": 3090.5999999046326,
+      "ttfb": 56.299999952316284,
+      "si": 2714.601569849139,
+      "vc": 3115.4482421875,
+      "bytes": 414783,
+      "jsBytes": 161023,
+      "requests": 35
+     },
+     {
+      "fcp": 2204,
+      "lcp": 3100,
+      "cls": 0,
+      "tbt": 158,
+      "load": 2960.899999856949,
+      "ttfb": 52.59999990463257,
+      "si": 2704.448688039902,
+      "vc": 3099.930908203125,
+      "bytes": 414783,
+      "jsBytes": 161047,
+      "requests": 35
+     },
+     {
+      "fcp": 2204,
+      "lcp": 3184,
+      "cls": 0,
+      "tbt": 136,
+      "load": 3171.5,
+      "ttfb": 51.90000009536743,
+      "si": 2731.3299284070035,
+      "vc": 3183.0380859375,
+      "bytes": 409944,
+      "jsBytes": 161072,
+      "requests": 34
+     }
+    ],
+    "median": {
+     "fcp": 2204,
+     "lcp": 3116,
+     "cls": 0,
+     "tbt": 208,
+     "load": 3090.5999999046326,
+     "ttfb": 56.299999952316284,
+     "si": 2714.601569849139,
+     "vc": 3115.4482421875,
+     "bytes": 414783,
+     "jsBytes": 161023,
+     "requests": 35
+    },
+    "film": {
+     "file": "cms-headless.webp",
+     "w": 240,
+     "h": 479,
+     "times": [
+      0,
+      15,
+      2202,
+      3038,
+      3115
+     ],
+     "done": [
+      0,
+      0,
+      0.403,
+      0.782,
+      1
+     ]
+    }
+   },
+   "cms/shopify": {
+    "page": "cms",
+    "stack": "shopify",
+    "runs": [
+     {
+      "fcp": 1884,
+      "lcp": 5116,
+      "cls": 0,
+      "tbt": 385,
+      "load": 5087.199999809265,
+      "ttfb": 47.299999952316284,
+      "si": 3493.1368578009915,
+      "vc": 5114.7138671875,
+      "bytes": 755754,
+      "jsBytes": 222385,
+      "requests": 65
+     },
+     {
+      "fcp": 1984,
+      "lcp": 5120,
+      "cls": 0,
+      "tbt": 556,
+      "load": 5098.700000047684,
+      "ttfb": 50.299999952316284,
+      "si": 3544.251846314165,
+      "vc": 5118.016845703125,
+      "bytes": 755644,
+      "jsBytes": 222365,
+      "requests": 66
+     },
+     {
+      "fcp": 1920,
+      "lcp": 5288,
+      "cls": 0,
+      "tbt": 402,
+      "load": 5274.799999952316,
+      "ttfb": 53.09999990463257,
+      "si": 3591.32093044137,
+      "vc": 5287.862060546875,
+      "bytes": 757708,
+      "jsBytes": 224412,
+      "requests": 69
+     }
+    ],
+    "median": {
+     "fcp": 1984,
+     "lcp": 5120,
+     "cls": 0,
+     "tbt": 556,
+     "load": 5098.700000047684,
+     "ttfb": 50.299999952316284,
+     "si": 3544.251846314165,
+     "vc": 5118.016845703125,
+     "bytes": 755644,
+     "jsBytes": 222365,
+     "requests": 66
+    },
+    "film": {
+     "file": "cms-shopify.webp",
+     "w": 240,
+     "h": 479,
+     "times": [
+      0,
+      4,
+      1743,
+      1983,
+      2034,
+      2105,
+      3882,
+      4855,
+      5118
+     ],
+     "done": [
+      0,
+      0,
+      0.177,
+      0.391,
+      0.412,
+      0.431,
+      0.499,
+      0.877,
+      1
+     ]
+    }
+   },
+   "search/m2": {
+    "page": "search",
+    "stack": "m2",
+    "runs": [
+     {
+      "fcp": 1264,
+      "lcp": 2756,
+      "cls": 0.04470459960529643,
+      "tbt": 196,
+      "load": 6680.100000143051,
+      "ttfb": 144.70000004768372,
+      "si": 2589.116905905954,
+      "vc": 9519.916259765625,
+      "bytes": 885442,
+      "jsBytes": 446723,
+      "requests": 227
+     },
+     {
+      "fcp": 1136,
+      "lcp": 2632,
+      "cls": 0.04470459960529643,
+      "tbt": 136,
+      "load": 6534.100000143051,
+      "ttfb": 148.70000004768372,
+      "si": 2493.384881495408,
+      "vc": 9393.56103515625,
+      "bytes": 885591,
+      "jsBytes": 446769,
+      "requests": 227
+     },
+     {
+      "fcp": 1220,
+      "lcp": 2708,
+      "cls": 0.04470459960529643,
+      "tbt": 163,
+      "load": 6625.5,
+      "ttfb": 130.70000004768372,
+      "si": 2586.2893246587028,
+      "vc": 9385.802001953125,
+      "bytes": 885461,
+      "jsBytes": 446723,
+      "requests": 227
+     }
+    ],
+    "median": {
+     "fcp": 1220,
+     "lcp": 2708,
+     "cls": 0.04470459960529643,
+     "tbt": 163,
+     "load": 6625.5,
+     "ttfb": 130.70000004768372,
+     "si": 2586.2893246587028,
+     "vc": 9385.802001953125,
+     "bytes": 885461,
+     "jsBytes": 446723,
+     "requests": 227
+    },
+    "film": {
+     "file": "search-m2.webp",
+     "w": 240,
+     "h": 479,
+     "times": [
+      0,
+      1218,
+      2705,
+      2912,
+      2986,
+      3182,
+      3461,
+      3970,
+      9386
+     ],
+     "done": [
+      0,
+      0.479,
+      0.538,
+      0.576,
+      0.604,
+      0.597,
+      0.892,
+      0.957,
+      1
+     ]
+    }
+   },
+   "search/headless": {
+    "page": "search",
+    "stack": "headless",
+    "runs": [
+     {
+      "fcp": 2164,
+      "lcp": 4620,
+      "cls": 0.00018383173185674336,
+      "tbt": 294,
+      "load": 2987.0999999046326,
+      "ttfb": 39.89999985694885,
+      "si": 3462.4351360659653,
+      "vc": 5075.26513671875,
+      "bytes": 499476,
+      "jsBytes": 161025,
+      "requests": 56
+     },
+     {
+      "fcp": 2160,
+      "lcp": 4784,
+      "cls": 0.00018383173185674336,
+      "tbt": 415,
+      "load": 3023.7999999523163,
+      "ttfb": 36.5,
+      "si": 3548.1751712649566,
+      "vc": 5199.64404296875,
+      "bytes": 499501,
+      "jsBytes": 161010,
+      "requests": 56
+     },
+     {
+      "fcp": 2120,
+      "lcp": 4640,
+      "cls": 0.00021135206776727095,
+      "tbt": 274,
+      "load": 2996.600000143051,
+      "ttfb": 50.5,
+      "si": 3451.0888866742034,
+      "vc": 5040.0458984375,
+      "bytes": 499419,
+      "jsBytes": 161038,
+      "requests": 56
+     }
+    ],
+    "median": {
+     "fcp": 2120,
+     "lcp": 4640,
+     "cls": 0.00021135206776727095,
+     "tbt": 274,
+     "load": 2996.600000143051,
+     "ttfb": 50.5,
+     "si": 3451.0888866742034,
+     "vc": 5040.0458984375,
+     "bytes": 499419,
+     "jsBytes": 161038,
+     "requests": 56
+    },
+    "film": {
+     "file": "search-headless.webp",
+     "w": 240,
+     "h": 479,
+     "times": [
+      0,
+      2,
+      2116,
+      2131,
+      2181,
+      2247,
+      2314,
+      2396,
+      2480,
+      2565,
+      2632,
+      2720,
+      2787,
+      3019,
+      3064,
+      3116,
+      3263,
+      3313,
+      3580,
+      3664,
+      3747,
+      3848,
+      3898,
+      4165,
+      4639,
+      4703,
+      4719,
+      5040
+     ],
+     "done": [
+      0,
+      0,
+      0.44,
+      0.449,
+      0.458,
+      0.466,
+      0.472,
+      0.475,
+      0.473,
+      0.467,
+      0.465,
+      0.456,
+      0.449,
+      0.434,
+      0.437,
+      0.439,
+      0.441,
+      0.446,
+      0.498,
+      0.504,
+      0.504,
+      0.501,
+      0.494,
+      0.551,
+      0.734,
+      0.866,
+      0.976,
+      1
+     ]
+    }
+   },
+   "search/shopify": {
+    "page": "search",
+    "stack": "shopify",
+    "runs": [
+     {
+      "fcp": 2012,
+      "lcp": 2144,
+      "cls": 0,
+      "tbt": 641,
+      "load": 5058.699999809265,
+      "ttfb": 295.5,
+      "si": 2429.754157405867,
+      "vc": 4281.380859375,
+      "bytes": 685513,
+      "jsBytes": 208845,
+      "requests": 79
+     },
+     {
+      "fcp": 2064,
+      "lcp": 2064,
+      "cls": 0,
+      "tbt": 649,
+      "load": 5227.199999809265,
+      "ttfb": 278.09999990463257,
+      "si": 2438.8693479530166,
+      "vc": 4290.58203125,
+      "bytes": 699004,
+      "jsBytes": 222379,
+      "requests": 79
+     },
+     {
+      "fcp": 2016,
+      "lcp": 2016,
+      "cls": 0,
+      "tbt": 437,
+      "load": 4974.400000095367,
+      "ttfb": 267.60000014305115,
+      "si": 2474.6555345707034,
+      "vc": 4306.69384765625,
+      "bytes": 698205,
+      "jsBytes": 222390,
+      "requests": 79
+     }
+    ],
+    "median": {
+     "fcp": 2064,
+     "lcp": 2064,
+     "cls": 0,
+     "tbt": 649,
+     "load": 5227.199999809265,
+     "ttfb": 278.09999990463257,
+     "si": 2438.8693479530166,
+     "vc": 4290.58203125,
+     "bytes": 699004,
+     "jsBytes": 222379,
+     "requests": 79
+    },
+    "film": {
+     "file": "search-shopify.webp",
+     "w": 240,
+     "h": 479,
+     "times": [
+      0,
+      6,
+      1847,
+      2062,
+      2320,
+      2336,
+      3039,
+      4112,
+      4291
+     ],
+     "done": [
+      0,
+      0,
+      0.27,
+      0.623,
+      0.653,
+      0.761,
+      0.854,
+      0.945,
+      1
+     ]
+    }
+   },
+   "cart/m2": {
+    "page": "cart",
+    "stack": "m2",
+    "runs": [
+     {
+      "fcp": 1100,
+      "lcp": 1100,
+      "cls": 0.0068073017967476964,
+      "tbt": 133,
+      "load": 5911.299999952316,
+      "ttfb": 217,
+      "si": 1217.7244031333626,
+      "vc": 2844.458251953125,
+      "bytes": 714534,
+      "jsBytes": 414787,
+      "requests": 198
+     },
+     {
+      "fcp": 1080,
+      "lcp": 1080,
+      "cls": 0.0068073017967476964,
+      "tbt": 44,
+      "load": 5763.600000143051,
+      "ttfb": 194.60000014305115,
+      "si": 1196.7392624151064,
+      "vc": 2842.18896484375,
+      "bytes": 714577,
+      "jsBytes": 414838,
+      "requests": 198
+     },
+     {
+      "fcp": 1176,
+      "lcp": 1176,
+      "cls": 0.0068073017967476964,
+      "tbt": 44,
+      "load": 5658.599999904633,
+      "ttfb": 228.20000004768372,
+      "si": 1289.2119212373118,
+      "vc": 2857.76025390625,
+      "bytes": 714492,
+      "jsBytes": 414770,
+      "requests": 198
+     }
+    ],
+    "median": {
+     "fcp": 1100,
+     "lcp": 1100,
+     "cls": 0.0068073017967476964,
+     "tbt": 133,
+     "load": 5911.299999952316,
+     "ttfb": 217,
+     "si": 1217.7244031333626,
+     "vc": 2844.458251953125,
+     "bytes": 714534,
+     "jsBytes": 414787,
+     "requests": 198
+    },
+    "film": {
+     "file": "cart-m2.webp",
+     "w": 240,
+     "h": 479,
+     "times": [
+      0,
+      7,
+      1100,
+      2498,
+      2844
+     ],
+     "done": [
+      0,
+      0,
+      0.927,
+      0.943,
+      1
+     ]
+    }
+   },
+   "cart/headless": {
+    "page": "cart",
+    "stack": "headless",
+    "runs": [
+     {
+      "fcp": 2168,
+      "lcp": 3460,
+      "cls": 0.00018383173185674336,
+      "tbt": 173,
+      "load": 2961.7999999523163,
+      "ttfb": 59.59999990463257,
+      "si": 2383.4798520651693,
+      "vc": 3738.554931640625,
+      "bytes": 370736,
+      "jsBytes": 165342,
+      "requests": 39
+     },
+     {
+      "fcp": 2116,
+      "lcp": 3296,
+      "cls": 0.00018383173185674336,
+      "tbt": 144,
+      "load": 2972,
+      "ttfb": 92.40000009536743,
+      "si": 2318.7613196168795,
+      "vc": 3575.0771484375,
+      "bytes": 366790,
+      "jsBytes": 165340,
+      "requests": 39
+     },
+     {
+      "fcp": 2644,
+      "lcp": 3824,
+      "cls": 0.00018383173185674336,
+      "tbt": 174,
+      "load": 3490,
+      "ttfb": 106.60000014305115,
+      "si": 2846.8214997278724,
+      "vc": 4105.819091796875,
+      "bytes": 366766,
+      "jsBytes": 165304,
+      "requests": 39
+     }
+    ],
+    "median": {
+     "fcp": 2168,
+     "lcp": 3460,
+     "cls": 0.00018383173185674336,
+     "tbt": 173,
+     "load": 2961.7999999523163,
+     "ttfb": 59.59999990463257,
+     "si": 2383.4798520651693,
+     "vc": 3738.554931640625,
+     "bytes": 370736,
+     "jsBytes": 165342,
+     "requests": 39
+    },
+    "film": {
+     "file": "cart-headless.webp",
+     "w": 240,
+     "h": 479,
+     "times": [
+      0,
+      10,
+      2164,
+      3739
+     ],
+     "done": [
+      0,
+      0,
+      0.86,
+      1
+     ]
+    }
+   },
+   "cart/shopify": {
+    "page": "cart",
+    "stack": "shopify",
+    "runs": [
+     {
+      "fcp": 1908,
+      "lcp": 1908,
+      "cls": 0,
+      "tbt": 643,
+      "load": 4119.899999856949,
+      "ttfb": 61.69999980926514,
+      "si": 1819.3147456674046,
+      "vc": 2103.427001953125,
+      "bytes": 458865,
+      "jsBytes": 210122,
+      "requests": 68
+     },
+     {
+      "fcp": 1908,
+      "lcp": 1908,
+      "cls": 0,
+      "tbt": 369,
+      "load": 3891.0999999046326,
+      "ttfb": 48.89999985694885,
+      "si": 1817.4266039315266,
+      "vc": 2108.403076171875,
+      "bytes": 457573,
+      "jsBytes": 208838,
+      "requests": 65
+     },
+     {
+      "fcp": 1908,
+      "lcp": 1908,
+      "cls": 0,
+      "tbt": 401,
+      "load": 3959.7999999523163,
+      "ttfb": 60.89999985694885,
+      "si": 1823.069990196037,
+      "vc": 2119.64794921875,
+      "bytes": 470620,
+      "jsBytes": 222367,
+      "requests": 65
+     }
+    ],
+    "median": {
+     "fcp": 1908,
+     "lcp": 1908,
+     "cls": 0,
+     "tbt": 369,
+     "load": 3891.0999999046326,
+     "ttfb": 48.89999985694885,
+     "si": 1817.4266039315266,
+     "vc": 2108.403076171875,
+     "bytes": 457573,
+     "jsBytes": 208838,
+     "requests": 65
+    },
+    "film": {
+     "file": "cart-shopify.webp",
+     "w": 240,
+     "h": 479,
+     "times": [
+      0,
+      15,
+      1733,
+      1906,
+      2108
+     ],
+     "done": [
+      0,
+      0,
+      0.554,
+      0.954,
+      1
+     ]
+    }
+   }
+  }
+ },
+ "journey": {
+  "measured": "2026-10-17T04:04:07.011Z",
+  "runs": 3,
+  "profiles": {
+   "mobile": "4G (150 ms, 9 Mbps) + 4x CPU, 412x823",
+   "desktop": "unthrottled, 1440x900"
+  },
+  "results": {
+   "mobile/m2": {
+    "steps": {
+     "home": 898,
+     "category": 1109,
+     "product": 4000,
+     "add": 1149,
+     "cart": 1079
+    },
+    "total": 8052,
+    "inp": {
+     "swatch": 224,
+     "add": 128
+    },
+    "runs": [
+     {
+      "steps": {
+       "home": 856,
+       "category": 1265,
+       "product": 4000,
+       "add": 1284,
+       "cart": 1079
+      },
+      "inp": {
+       "swatch": 232,
+       "add": 128
+      },
+      "total": 8484
+     },
+     {
+      "steps": {
+       "home": 906,
+       "category": 1109,
+       "product": 4077,
+       "add": 828,
+       "cart": 1132
+      },
+      "inp": {
+       "swatch": 224,
+       "add": 104
+      },
+      "total": 8052
+     },
+     {
+      "steps": {
+       "home": 898,
+       "category": 1102,
+       "product": 2870,
+       "add": 1149,
+       "cart": 991
+      },
+      "inp": {
+       "swatch": 184,
+       "add": 176
+      },
+      "total": 7010
+     }
+    ]
+   },
+   "mobile/headless": {
+    "steps": {
+     "home": 1127,
+     "category": 866,
+     "product": 648,
+     "add": 700,
+     "cart": 306
+    },
+    "total": 3646,
+    "inp": {
+     "swatch": 40,
+     "add": 64
+    },
+    "runs": [
+     {
+      "steps": {
+       "home": 1145,
+       "category": 866,
+       "product": 633,
+       "add": 757,
+       "cart": 306
+      },
+      "inp": {
+       "swatch": 40,
+       "add": 56
+      },
+      "total": 3707
+     },
+     {
+      "steps": {
+       "home": 1063,
+       "category": 883,
+       "product": 648,
+       "add": 700,
+       "cart": 352
+      },
+      "inp": {
+       "swatch": 40,
+       "add": 64
+      },
+      "total": 3646
+     },
+     {
+      "steps": {
+       "home": 1127,
+       "category": 847,
+       "product": 718,
+       "add": 516,
+       "cart": 271
+      },
+      "inp": {
+       "swatch": 40,
+       "add": 64
+      },
+      "total": 3479
+     }
+    ]
+   },
+   "mobile/shopify": {
+    "steps": {
+     "home": 1235,
+     "category": 1169,
+     "product": 1769,
+     "add": 1010,
+     "cart": 1276
+    },
+    "total": 6671,
+    "inp": {
+     "swatch": 104,
+     "add": 48
+    },
+    "runs": [
+     {
+      "steps": {
+       "home": 1235,
+       "category": 1273,
+       "product": 2124,
+       "add": 1164,
+       "cart": 1363
+      },
+      "inp": {
+       "swatch": 128,
+       "add": 48
+      },
+      "total": 7159
+     },
+     {
+      "steps": {
+       "home": 1225,
+       "category": 1169,
+       "product": 1525,
+       "add": 862,
+       "cart": 1276
+      },
+      "inp": {
+       "swatch": 104,
+       "add": 40
+      },
+      "total": 6057
+     },
+     {
+      "steps": {
+       "home": 1570,
+       "category": 1138,
+       "product": 1769,
+       "add": 1010,
+       "cart": 1184
+      },
+      "inp": {
+       "swatch": 96,
+       "add": 56
+      },
+      "total": 6671
+     }
+    ]
+   },
+   "desktop/m2": {
+    "steps": {
+     "home": 468,
+     "category": 647,
+     "product": 803,
+     "add": 862,
+     "cart": 1016
+    },
+    "total": 3869,
+    "inp": {
+     "swatch": 56,
+     "add": 32
+    },
+    "runs": [
+     {
+      "steps": {
+       "home": 597,
+       "category": 1049,
+       "product": 1005,
+       "add": 1157,
+       "cart": 944
+      },
+      "inp": {
+       "swatch": 48,
+       "add": 40
+      },
+      "total": 4752
+     },
+     {
+      "steps": {
+       "home": 446,
+       "category": 647,
+       "product": 772,
+       "add": 862,
+       "cart": 1142
+      },
+      "inp": {
+       "swatch": 56,
+       "add": 32
+      },
+      "total": 3869
+     },
+     {
+      "steps": {
+       "home": 468,
+       "category": 592,
+       "product": 803,
+       "add": 695,
+       "cart": 1016
+      },
+      "inp": {
+       "swatch": 80,
+       "add": 32
+      },
+      "total": 3574
+     }
+    ]
+   },
+   "desktop/headless": {
+    "steps": {
+     "home": 390,
+     "category": 212,
+     "product": 140,
+     "add": 732,
+     "cart": 189
+    },
+    "total": 1606,
+    "inp": {
+     "swatch": 16,
+     "add": 16
+    },
+    "runs": [
+     {
+      "steps": {
+       "home": 345,
+       "category": 212,
+       "product": 128,
+       "add": 732,
+       "cart": 189
+      },
+      "inp": {
+       "swatch": 16,
+       "add": 24
+      },
+      "total": 1606
+     },
+     {
+      "steps": {
+       "home": 506,
+       "category": 307,
+       "product": 140,
+       "add": 1102,
+       "cart": 171
+      },
+      "inp": {
+       "swatch": 16,
+       "add": 16
+      },
+      "total": 2226
+     },
+     {
+      "steps": {
+       "home": 390,
+       "category": 167,
+       "product": 162,
+       "add": 615,
+       "cart": 196
+      },
+      "inp": {
+       "swatch": 16,
+       "add": 16
+      },
+      "total": 1530
+     }
+    ]
+   },
+   "desktop/shopify": {
+    "steps": {
+     "home": 596,
+     "category": 435,
+     "product": 489,
+     "add": 854,
+     "cart": 436
+    },
+    "total": 3023,
+    "inp": {
+     "swatch": 40,
+     "add": 24
+    },
+    "runs": [
+     {
+      "steps": {
+       "home": 839,
+       "category": 435,
+       "product": 489,
+       "add": 905,
+       "cart": 355
+      },
+      "inp": {
+       "swatch": 40,
+       "add": 24
+      },
+      "total": 3023
+     },
+     {
+      "steps": {
+       "home": 596,
+       "category": 414,
+       "product": 435,
+       "add": 854,
+       "cart": 441
+      },
+      "inp": {
+       "swatch": 32,
+       "add": 16
+      },
+      "total": 2740
+     },
+     {
+      "steps": {
+       "home": 591,
+       "category": 729,
+       "product": 679,
+       "add": 740,
+       "cart": 436
+      },
+      "inp": {
+       "swatch": 72,
+       "add": 24
+      },
+      "total": 3175
+     }
+    ]
+   }
+  }
+ },
+ "psi": {
+  "measured": "2026-10-14T20:00:00Z",
+  "source": "PageSpeed Insights web UI, 14 Oct 2026, mean of 2 runs (recorded in the headless project notes). New PSI requests from the measuring server were rate-limited (HTTP 429) on 16 Oct; measure/psi.mjs refreshes this file when quota allows.",
+  "results": {
+   "mobile/home": {
+    "m2": {
+     "score": 84,
+     "lcp": 4400
+    },
+    "headless": {
+     "score": 89,
+     "lcp": 3600
+    }
+   },
+   "mobile/category": {
+    "m2": {
+     "score": 78,
+     "lcp": 5700
+    },
+    "headless": {
+     "score": 90,
+     "lcp": 3400
+    }
+   },
+   "mobile/product": {
+    "m2": {
+     "score": 88,
+     "lcp": 3700
+    },
+    "headless": {
+     "score": 84,
+     "lcp": 4000
+    }
+   },
+   "mobile/cms": {
+    "m2": {
+     "score": 89,
+     "lcp": 3900
+    },
+    "headless": {
+     "score": 94,
+     "lcp": 3000
+    }
+   }
+  }
+ }
+}

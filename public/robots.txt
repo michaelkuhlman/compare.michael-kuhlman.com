@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /reports/
+Disallow: /og/
+
+Sitemap: https://compare.michael-kuhlman.com/sitemap.xml

@@ -1,0 +1,11 @@
+---
+import '../styles/global.css';
+import Logo from '../components/Logo.astro';
+---
+<html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="robots" content="noindex" /><title>Out of bounds · Speed Trial</title><link rel="icon" href="/favicon.svg" type="image/svg+xml" /></head>
+<body><main class="nf"><Logo size={56} /><h1>Out of bounds.</h1><p>That page is not on the court.</p><a class="btn" href="/">Back to the results</a></main></body></html>
+<style>
+  .nf { min-height: 100vh; display: grid; place-content: center; justify-items: center; gap: 14px; text-align: center; padding: 24px; }
+  h1 { font: 400 clamp(48px, 9vw, 96px)/1 var(--serif); }
+  p { color: var(--muted); margin: 0 0 8px; }
+</style>

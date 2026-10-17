@@ -1,0 +1,132 @@
+---
+import { STACK_IDS, STACK_META, fmtMs, fmtSec, fmtInp, pct, bestOf } from '../lib/model';
+import { journey } from '../lib/data';
+const prof = 'mobile';
+const STEPS = [['home', 'Land on home', 'cold visit, empty cache'], ['category', 'Open “Paddles”', 'tap a category tile'], ['product', 'Open a paddle', 'until the buy button works'], ['add', 'Add to bag', 'until the bag shows 1'], ['cart', 'Go to bag', 'until the line item shows']] as const;
+const J = (p: string, s: string) => journey?.results?.[`${p}/${s}`];
+const maxTotal = (p: string) => Math.max(...STACK_IDS.map(s => J(p, s)?.total ?? 0));
+const M = maxTotal(prof) * 1.04 || 1;
+const inpMax = Math.max(600, ...['mobile', 'desktop'].flatMap(p => STACK_IDS.flatMap(s => [J(p, s)?.inp?.swatch ?? 0, J(p, s)?.inp?.add ?? 0]))) * 1.1;
+---
+<section class="sec" id="journey">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="kicker rv"><b>04</b> The shopper journey</p>
+      <h2 class="sec-title rv">From landing to <em>bag</em></h2>
+      <p class="dek rv">Page scores describe single visits. Shoppers click around. A script plays the same five steps on each store, timing each one from the tap until the next screen is usable. This is where a headless storefront’s in-app navigation should shine.</p>
+    </header>
+    {journey ? (
+    <div class="card jbox rv" data-journey>
+      <div class="jhead">
+        <ol class="steps-key" aria-label="Steps">
+          {STEPS.map(([, name, note], i) => <li><b>{i + 1}</b><span>{name}<small>{note}</small></span></li>)}
+        </ol>
+        <button type="button" class="btn ghost replay" data-jreplay><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.2 8a4.8 4.8 0 1 0 1.5-3.5M3 2.2v3h3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>Replay</button>
+      </div>
+      <div class="jlanes">
+        {STACK_IDS.map(s => {
+          const j = J(prof, s); let acc = 0;
+          return (
+            <div class="jlane" data-stack={s}>
+              <span class="key jl"><i class={`glyph ${STACK_META[s].shape}`}></i>{STACK_META[s].short}</span>
+              <div class="jtrack">
+                {STEPS.map(([k], i) => { const v = j?.steps?.[k] ?? 0; const seg = <i class="jseg" data-step={k} style={`--l:${pct((acc / M) * 100)};--w:${pct((v / M) * 100)};--o:${i % 2 ? 0.62 : 1}`}><span>{i + 1}</span></i>; acc += v; return seg; })}
+                <b class="jtot num" style={`--l:${pct((acc / M) * 100)}`}>{fmtSec(j?.total, 1)}</b>
+              </div>
+            </div>
+          );
+        })}
+        <div class="jaxis num" data-jaxis aria-hidden="true"></div>
+      </div>
+      <div tabindex="0" role="region" aria-label="Journey step times table" class="tbl-wrap jtable">
+        <table class="data" data-table="journey">
+          <caption class="sr-only">Time per step, median of {journey.runs} runs</caption>
+          <thead><tr><th>Step · median of {journey.runs}</th>{STACK_IDS.map(s => <th><span class="key" data-stack={s}><i class={`glyph ${STACK_META[s].shape}`}></i><span class="kt">{STACK_META[s].short}</span></span></th>)}</tr></thead>
+          <tbody>
+            {[...STEPS.map(([k, name]) => [k, name]), ['total', 'Whole journey']].map(([k, name]) => {
+              const vals = STACK_IDS.map(s => (k === 'total' ? J(prof, s)?.total : J(prof, s)?.steps?.[k]) ?? null);
+              const b = bestOf(vals);
+              return <tr data-k={k} class={k === 'total' ? 'tot' : ''}><td>{name}</td>{STACK_IDS.map((s, i) => <td data-stack={s} class={b === i ? 'best' : ''}>{fmtMs(vals[i])}</td>)}</tr>;
+            })}
+          </tbody>
+        </table>
+      </div>
+      <div class="inp">
+        <h3 class="inp-title">Tap response <span class="note">longest event-to-next-paint time of the tap (the measurement behind INP). Good ≤ 200 ms.</span></h3>
+        <div class="inp-grid" style={`--good:${pct((200 / inpMax) * 100)};--poor:${pct((500 / inpMax) * 100)}`} data-inpmax={inpMax}>
+          {[['swatch', 'Pick a colour'], ['add', 'Add to bag']].map(([k, name]) => (
+            <div class="inp-g" data-ik={k}>
+              <p class="inp-name">{name}</p>
+              {STACK_IDS.map(s => { const v = J(prof, s)?.inp?.[k] ?? null; return (
+                <div class="ib" data-stack={s}>
+                  <i class={`glyph ${STACK_META[s].shape}`}></i>
+                  <div class="ibt"><i class="zg"></i><i class="za"></i><i class="zp"></i><i class="ibar" style={`--w:${pct(((v ?? 0) / inpMax) * 100)}`}></i><span class="ibv num" style={`--w:${pct(((v ?? 0) / inpMax) * 100)}`}>{fmtInp(v)}</span></div>
+                </div>
+              ); })}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+    ) : <p class="note">Journey data has not been measured yet.</p>}
+    <p class="note foot rv" data-jprof>Mobile profile: 4G (150 ms latency, 9 Mbps), CPU slowed 4×, phone screen. Desktop profile: no throttling, 1440×900. Fresh browser per run (first page cold, the rest warm, like a real visit); median of three runs.</p>
+  </div>
+</section>
+<style>
+  .jbox { padding: 22px 24px 24px; }
+  .jhead { display: flex; justify-content: space-between; gap: 18px; align-items: flex-start; margin-bottom: 22px; }
+  .steps-key { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px 22px; }
+  .steps-key li { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; font-weight: 600; }
+  .steps-key b { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--ink); color: var(--page); font-size: 12px; flex: none; }
+  .steps-key small { display: block; font-weight: 400; font-size: 12px; color: var(--muted); }
+  .replay { flex: none; }
+  .jlanes { position: relative; }
+  .jlane { display: grid; grid-template-columns: 96px minmax(0, 1fr); align-items: center; gap: 10px; height: 46px; }
+  .jl { font-size: 14px; }
+  .jtrack { position: relative; height: 26px; margin-right: 64px; }
+  .jseg { position: absolute; top: 0; bottom: 0; left: var(--l); width: var(--w); background: var(--c); opacity: var(--o); border-right: 2px solid var(--surface); display: grid; place-items: center; overflow: hidden; transform-origin: 0 50%; }
+  .jseg:last-of-type { border-radius: 0 4px 4px 0; }
+  .jseg span { font-size: 11.5px; font-weight: 700; color: #fff; text-shadow: 0 0 2px rgba(0, 0, 0, 0.35); }
+  .jtot { position: absolute; left: var(--l); top: 50%; transform: translate(10px, -50%); font-size: 15px; font-weight: 650; white-space: nowrap; }
+  .js .jbox .jseg { transform: scaleX(0); }
+  .js .jbox .jtot { opacity: 0; }
+  .js .jbox.play .jseg { animation: grow var(--dur, 0.4s) linear forwards; animation-delay: var(--del, 0s); }
+  .js .jbox.play .jtot { animation: fade 0.4s var(--ease) forwards; animation-delay: var(--tdel, 1s); }
+  @keyframes grow { to { transform: scaleX(1); } }
+  @keyframes fade { to { opacity: 1; } }
+  .jaxis { position: relative; height: 20px; margin: 4px 64px 0 106px; border-top: 1px solid var(--axis); font-size: 11.5px; color: var(--muted); }
+  .jaxis :global(span) { position: absolute; top: 4px; transform: translateX(-50%); white-space: nowrap; }
+  .jaxis :global(span:first-child) { transform: none; }
+  .jtable { margin-top: 20px; }
+  .jtable .key { gap: 6px; } .jtable .glyph { width: 9px; height: 9px; }
+  .jtable tr.tot td { border-top: 1.5px solid var(--ink); font-weight: 600; }
+  .jtable td.best::after { content: 'best'; font: 600 9.5px/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; background: var(--volt); color: var(--volt-ink); padding: 3px 5px; border-radius: 999px; margin-left: 6px; vertical-align: 1px; }
+  .inp { margin-top: 26px; }
+  .inp-title { font-size: 16px; font-weight: 600; margin-bottom: 12px; }
+  .inp-title .note { font-weight: 400; display: block; margin-top: 2px; }
+  .inp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 40px; }
+  .inp-name { font-size: 14px; font-weight: 600; margin: 0 0 6px; }
+  .ib { display: grid; grid-template-columns: 16px minmax(0, 1fr); gap: 8px; align-items: center; height: 28px; }
+  .ib .glyph { width: 10px; height: 10px; }
+  .ibt { position: relative; height: 100%; margin-right: 64px; }
+  .ibt .zg, .ibt .za, .ibt .zp { position: absolute; top: 3px; bottom: 3px; }
+  .ibt .zg { left: 0; width: var(--good); background: var(--zone-good); } .ibt .za { left: var(--good); width: calc(var(--poor) - var(--good)); background: var(--zone-average); } .ibt .zp { left: var(--poor); right: -64px; background: var(--zone-poor); }
+  .ibar { position: absolute; left: 0; top: 50%; height: 12px; margin-top: -6px; width: var(--w); background: var(--c); border-radius: 0 4px 4px 0; transition: width 1s var(--ease); }
+  .ibv { position: absolute; left: var(--w); top: 50%; transform: translate(8px, -50%); font-size: 13px; font-weight: 600; white-space: nowrap; transition: left 1s var(--ease); }
+  .js .jbox:not(.in) .ibar { width: 0; } .js .jbox:not(.in) .ibv { left: 0; }
+  .foot { margin-top: 16px; max-width: 820px; }
+  @media (max-width: 520px) {
+    .jtable td.best::after { content: ''; display: inline-block; width: 7px; height: 7px; padding: 0; margin-left: 4px; vertical-align: 2px; }
+  }
+  @media (max-width: 760px) {
+    .jbox { padding: 16px 14px 18px; }
+    .jhead { flex-direction: column; }
+    .steps-key { display: grid; grid-template-columns: 1fr 1fr; }
+    .jlane { grid-template-columns: 74px minmax(0, 1fr); gap: 6px; }
+    .jl { font-size: 12.5px; gap: 5px; } .jl .glyph { width: 9px; height: 9px; }
+    .jtrack { margin-right: 52px; }
+    .jtot { font-size: 13px; transform: translate(6px, -50%); }
+    .jaxis { margin: 4px 52px 0 80px; }
+    .inp-grid { grid-template-columns: 1fr; }
+  }
+</style>

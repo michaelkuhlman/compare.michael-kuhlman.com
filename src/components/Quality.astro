@@ -1,0 +1,50 @@
+---
+import { STACK_IDS, STACK_META, scoreBand } from '../lib/model';
+import { quality } from '../lib/data';
+const form = 'mobile';
+const CATS = [['a11y', 'Accessibility', 'Can everyone use it: contrast, labels, keyboard, screen readers.'], ['bp', 'Best practices', 'Security headers, console errors, third-party cookies, modern APIs.'], ['seo', 'SEO basics', 'Crawlable, titled, described. All three demo stores are deliberately set to noindex, which costs each the same points.']] as const;
+---
+<section class="sec" id="quality">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="kicker rv"><b>06</b> Beyond speed</p>
+      <h2 class="sec-title rv">The other three <em>Lighthouse</em> scores</h2>
+      <p class="dek rv">Averaged over the six pages. Underneath each score: every check that failed on at least one page.</p>
+    </header>
+    <div class="qgrid">
+      {CATS.map(([k, name, what], ci) => (
+        <article class="card qcat rv" data-q={k} style={`--d:${ci * 0.06}s`}>
+          <h3>{name}</h3>
+          <p class="qwhat">{what}</p>
+          <ul class="qlist">
+            {STACK_IDS.map(s => {
+              const q = quality[form][s];
+              const v = q.scores[ci];
+              return (
+                <li data-stack={s}>
+                  <span class="key"><i class={`glyph ${STACK_META[s].shape}`}></i>{STACK_META[s].short}</span>
+                  <b class={`qv num b-${scoreBand(v ?? 0)}`} data-qv>{v == null ? '–' : Math.round(v)}</b>
+                  <p class="qfails" data-qf>{q.fails[k].length ? q.fails[k].join(' · ') : 'No failed checks'}</p>
+                </li>
+              );
+            })}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+<style>
+  .qgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  .qcat { padding: 20px 22px; }
+  .qcat h3 { font: 400 30px/1.05 var(--serif); }
+  .qwhat { font-size: 13.5px; color: var(--muted); margin: 6px 0 12px; min-height: 4.2em; }
+  .qlist { list-style: none; margin: 0; padding: 0; }
+  .qlist li { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 2px 10px; padding: 11px 0; border-top: 1px solid var(--grid); }
+  .qlist .key { font-size: 14.5px; }
+  .qv { font-size: 30px; font-weight: 650; letter-spacing: -0.03em; display: inline-flex; align-items: center; gap: 7px; }
+  .qv::before { content: ''; width: 9px; height: 9px; border-radius: 50%; }
+  .qv.b-good::before { background: var(--good); } .qv.b-average::before { background: var(--average); border-radius: 1px; } .qv.b-poor::before { background: var(--poor); clip-path: polygon(50% 0, 100% 100%, 0 100%); border-radius: 0; }
+  .qfails { grid-column: 1 / -1; font-size: 12.5px; color: var(--muted); margin: 0; line-height: 1.45; }
+  @media (max-width: 960px) { .qgrid { grid-template-columns: 1fr; } .qwhat { min-height: 0; } }
+</style>

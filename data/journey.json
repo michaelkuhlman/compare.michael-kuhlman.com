@@ -1,0 +1,358 @@
+{
+ "measured": "2026-10-17T04:04:07.011Z",
+ "runs": 3,
+ "profiles": {
+  "mobile": "4G (150 ms, 9 Mbps) + 4x CPU, 412x823",
+  "desktop": "unthrottled, 1440x900"
+ },
+ "results": {
+  "mobile/m2": {
+   "steps": {
+    "home": 898,
+    "category": 1109,
+    "product": 4000,
+    "add": 1149,
+    "cart": 1079
+   },
+   "total": 8052,
+   "inp": {
+    "swatch": 224,
+    "add": 128
+   },
+   "runs": [
+    {
+     "steps": {
+      "home": 856,
+      "category": 1265,
+      "product": 4000,
+      "add": 1284,
+      "cart": 1079
+     },
+     "inp": {
+      "swatch": 232,
+      "add": 128
+     },
+     "total": 8484
+    },
+    {
+     "steps": {
+      "home": 906,
+      "category": 1109,
+      "product": 4077,
+      "add": 828,
+      "cart": 1132
+     },
+     "inp": {
+      "swatch": 224,
+      "add": 104
+     },
+     "total": 8052
+    },
+    {
+     "steps": {
+      "home": 898,
+      "category": 1102,
+      "product": 2870,
+      "add": 1149,
+      "cart": 991
+     },
+     "inp": {
+      "swatch": 184,
+      "add": 176
+     },
+     "total": 7010
+    }
+   ]
+  },
+  "mobile/headless": {
+   "steps": {
+    "home": 1127,
+    "category": 866,
+    "product": 648,
+    "add": 700,
+    "cart": 306
+   },
+   "total": 3646,
+   "inp": {
+    "swatch": 40,
+    "add": 64
+   },
+   "runs": [
+    {
+     "steps": {
+      "home": 1145,
+      "category": 866,
+      "product": 633,
+      "add": 757,
+      "cart": 306
+     },
+     "inp": {
+      "swatch": 40,
+      "add": 56
+     },
+     "total": 3707
+    },
+    {
+     "steps": {
+      "home": 1063,
+      "category": 883,
+      "product": 648,
+      "add": 700,
+      "cart": 352
+     },
+     "inp": {
+      "swatch": 40,
+      "add": 64
+     },
+     "total": 3646
+    },
+    {
+     "steps": {
+      "home": 1127,
+      "category": 847,
+      "product": 718,
+      "add": 516,
+      "cart": 271
+     },
+     "inp": {
+      "swatch": 40,
+      "add": 64
+     },
+     "total": 3479
+    }
+   ]
+  },
+  "mobile/shopify": {
+   "steps": {
+    "home": 1235,
+    "category": 1169,
+    "product": 1769,
+    "add": 1010,
+    "cart": 1276
+   },
+   "total": 6671,
+   "inp": {
+    "swatch": 104,
+    "add": 48
+   },
+   "runs": [
+    {
+     "steps": {
+      "home": 1235,
+      "category": 1273,
+      "product": 2124,
+      "add": 1164,
+      "cart": 1363
+     },
+     "inp": {
+      "swatch": 128,
+      "add": 48
+     },
+     "total": 7159
+    },
+    {
+     "steps": {
+      "home": 1225,
+      "category": 1169,
+      "product": 1525,
+      "add": 862,
+      "cart": 1276
+     },
+     "inp": {
+      "swatch": 104,
+      "add": 40
+     },
+     "total": 6057
+    },
+    {
+     "steps": {
+      "home": 1570,
+      "category": 1138,
+      "product": 1769,
+      "add": 1010,
+      "cart": 1184
+     },
+     "inp": {
+      "swatch": 96,
+      "add": 56
+     },
+     "total": 6671
+    }
+   ]
+  },
+  "desktop/m2": {
+   "steps": {
+    "home": 468,
+    "category": 647,
+    "product": 803,
+    "add": 862,
+    "cart": 1016
+   },
+   "total": 3869,
+   "inp": {
+    "swatch": 56,
+    "add": 32
+   },
+   "runs": [
+    {
+     "steps": {
+      "home": 597,
+      "category": 1049,
+      "product": 1005,
+      "add": 1157,
+      "cart": 944
+     },
+     "inp": {
+      "swatch": 48,
+      "add": 40
+     },
+     "total": 4752
+    },
+    {
+     "steps": {
+      "home": 446,
+      "category": 647,
+      "product": 772,
+      "add": 862,
+      "cart": 1142
+     },
+     "inp": {
+      "swatch": 56,
+      "add": 32
+     },
+     "total": 3869
+    },
+    {
+     "steps": {
+      "home": 468,
+      "category": 592,
+      "product": 803,
+      "add": 695,
+      "cart": 1016
+     },
+     "inp": {
+      "swatch": 80,
+      "add": 32
+     },
+     "total": 3574
+    }
+   ]
+  },
+  "desktop/headless": {
+   "steps": {
+    "home": 390,
+    "category": 212,
+    "product": 140,
+    "add": 732,
+    "cart": 189
+   },
+   "total": 1606,
+   "inp": {
+    "swatch": 16,
+    "add": 16
+   },
+   "runs": [
+    {
+     "steps": {
+      "home": 345,
+      "category": 212,
+      "product": 128,
+      "add": 732,
+      "cart": 189
+     },
+     "inp": {
+      "swatch": 16,
+      "add": 24
+     },
+     "total": 1606
+    },
+    {
+     "steps": {
+      "home": 506,
+      "category": 307,
+      "product": 140,
+      "add": 1102,
+      "cart": 171
+     },
+     "inp": {
+      "swatch": 16,
+      "add": 16
+     },
+     "total": 2226
+    },
+    {
+     "steps": {
+      "home": 390,
+      "category": 167,
+      "product": 162,
+      "add": 615,
+      "cart": 196
+     },
+     "inp": {
+      "swatch": 16,
+      "add": 16
+     },
+     "total": 1530
+    }
+   ]
+  },
+  "desktop/shopify": {
+   "steps": {
+    "home": 596,
+    "category": 435,
+    "product": 489,
+    "add": 854,
+    "cart": 436
+   },
+   "total": 3023,
+   "inp": {
+    "swatch": 40,
+    "add": 24
+   },
+   "runs": [
+    {
+     "steps": {
+      "home": 839,
+      "category": 435,
+      "product": 489,
+      "add": 905,
+      "cart": 355
+     },
+     "inp": {
+      "swatch": 40,
+      "add": 24
+     },
+     "total": 3023
+    },
+    {
+     "steps": {
+      "home": 596,
+      "category": 414,
+      "product": 435,
+      "add": 854,
+      "cart": 441
+     },
+     "inp": {
+      "swatch": 32,
+      "add": 16
+     },
+     "total": 2740
+    },
+    {
+     "steps": {
+      "home": 591,
+      "category": 729,
+      "product": 679,
+      "add": 740,
+      "cart": 436
+     },
+     "inp": {
+      "swatch": 72,
+      "add": 24
+     },
+     "total": 3175
+    }
+   ]
+  }
+ }
+}

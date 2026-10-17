@@ -1,0 +1,10 @@
+{
+ "measured": "2026-10-14T20:00:00Z",
+ "source": "PageSpeed Insights web UI, 14 Oct 2026, mean of 2 runs (recorded in the headless project notes). New PSI requests from the measuring server were rate-limited (HTTP 429) on 16 Oct; measure/psi.mjs refreshes this file when quota allows.",
+ "results": {
+  "mobile/home": { "m2": { "score": 84, "lcp": 4400 }, "headless": { "score": 89, "lcp": 3600 } },
+  "mobile/category": { "m2": { "score": 78, "lcp": 5700 }, "headless": { "score": 90, "lcp": 3400 } },
+  "mobile/product": { "m2": { "score": 88, "lcp": 3700 }, "headless": { "score": 84, "lcp": 4000 } },
+  "mobile/cms": { "m2": { "score": 89, "lcp": 3900 }, "headless": { "score": 94, "lcp": 3000 } }
+ }
+}

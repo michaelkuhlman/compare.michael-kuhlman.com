@@ -1,0 +1,109 @@
+---
+import { STACK_IDS, STACK_META, PAGE_IDS, PAGE_META } from '../lib/model';
+import { measured, lh, psi, forms } from '../lib/data';
+import results from '../../data/results.json';
+const R: any = results;
+const fmtDate = (d: string) => new Date(d).toLocaleString('en-US', { day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: '2-digit', timeZone: 'America/Los_Angeles', timeZoneName: 'short' });
+const urlOf = (p: string, s: string) => R.lh[`mobile/${p}/${s}`]?.url ?? '';
+---
+<section class="sec" id="method">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="kicker rv"><b>08</b> Method &amp; data</p>
+      <h2 class="sec-title rv">How it was <em>measured</em></h2>
+      <p class="dek rv">Fair means identical treatment: same machine, same browser, same settings, same pages, many runs, medians. Everything is downloadable.</p>
+    </header>
+    <div class="mgrid">
+      <article class="card mc rv">
+        <h3>Lighthouse runs</h3>
+        <ul>
+          <li><b>{measured.totalRuns}</b> runs: 6 pages × 3 stacks × {forms.length} device profiles × {measured.runsPerCombo} runs, interleaved (run 1 of everything, then run 2…) so a slow minute hits all stacks alike.</li>
+          <li>Lighthouse <b>{measured.lighthouse}</b> CLI, Chrome <b>{measured.chrome}</b> headless, default settings. Mobile = moto g power emulation, simulated slow 4G (150 ms RTT, 1.6 Mbps) and 4× CPU slowdown. Desktop = Lighthouse’s desktop preset.</li>
+          <li>Reported values are <b>medians</b> per page; averages are the mean of the six page medians.</li>
+          <li>Measured {fmtDate(measured.from)} to {fmtDate(measured.to)}, from one server (Lighthouse CPU benchmark {Math.round(measured.benchmarkIndex)}).</li>
+        </ul>
+      </article>
+      <article class="card mc rv" style="--d:.05s">
+        <h3>Getting past Shopify’s password</h3>
+        <ul>
+          <li>The Shopify store is a free development store, which Shopify keeps behind a storefront password. Public tools such as PageSpeed Insights only ever see the password page.</li>
+          <li>The harness submits the password form like a visitor, then sends the resulting <code>_shopify_essential</code> cookie with each Lighthouse request. Every run checks it landed on the real page (final URL, no redirect to <code>/password</code>), otherwise it is retried.</li>
+          <li>Magento and headless get no special treatment. All three caches were warmed before measuring.</li>
+          <li>Shopify sends its stylesheets early with <em>103 Early Hints</em>, which Lighthouse logs as 0 bytes. Their real compressed size was measured and added back to Shopify’s totals.</li>
+        </ul>
+      </article>
+      <article class="card mc rv" style="--d:.1s">
+        <h3>Caveats, honestly</h3>
+        <ul>
+          <li>Lab data, not real users. Demo stores are not indexed and get almost no traffic, so Google has no field (CrUX) data for them.</li>
+          <li>Magento and headless run on the same small VPS as the measuring browser and reach it through Cloudflare. Shopify is served from its own edge. Throttling evens out most of the network difference.</li>
+          <li>Lighthouse in headless Chrome tends to report a later mobile LCP than PageSpeed Insights for all three: compare stacks with each other, not with other sites.</li>
+          <li>Scores move a few points between runs; the run ticks in the charts show how much.</li>
+        </ul>
+      </article>
+    </div>
+    <div class="card dl rv">
+      <div>
+        <h3>Download the data</h3>
+        <p class="note">Every run, every metric. Measured pages listed below.</p>
+      </div>
+      <div class="dl-btns">
+        <a class="btn" href="/data/lighthouse-runs.csv" download><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m0 0L4.5 6.5M8 10l3.5-3.5M2.5 13.5h11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>All runs (CSV)</a>
+        <a class="btn ghost" href="/data/results.json" download><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8m0 0L4.5 6.5M8 10l3.5-3.5M2.5 13.5h11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>Summary (JSON)</a>
+      </div>
+    </div>
+    <details class="tv rv" open>
+      <summary>Measured pages and full Lighthouse reports</summary>
+      <div tabindex="0" role="region" aria-label="Measured pages table" class="tbl-wrap">
+        <table class="data urls">
+          <thead><tr><th>Page</th>{STACK_IDS.map(s => <th>{STACK_META[s].name}</th>)}</tr></thead>
+          <tbody>
+            {PAGE_IDS.map(p => (
+              <tr><td><b>{PAGE_META[p].name}</b></td>{STACK_IDS.map(s => {
+                const u = urlOf(p, s);
+                return <td><a href={u} rel="noopener nofollow" target="_blank">{u.replace(/^https:\/\/[^/]+/, '')}</a><span class="reps">{forms.map(f => lh[f][p][s]?.rep && <a href={'/' + lh[f][p][s]!.rep} target="_blank" rel="noopener">{f} report</a>)}</span></td>;
+              })}</tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </details>
+    {psi && psi.results && Object.keys(psi.results).length > 0 && (
+      <details class="tv rv">
+        <summary>Cross-check: Google PageSpeed Insights (Magento and headless only)</summary>
+        <p class="note psi-note">PageSpeed Insights runs Lighthouse on Google’s servers. It cannot get past Shopify’s password, so only the two Magento-based stores are checked here. {psi.source}</p>
+        <div tabindex="0" role="region" aria-label="PageSpeed Insights table" class="tbl-wrap"><table class="data">
+          <thead><tr><th>Page</th><th>Profile</th><th>Magento 2 score / LCP</th><th>Headless score / LCP</th></tr></thead>
+          <tbody>{Object.entries<any>(psi.results).map(([k, v]) => <tr><td>{PAGE_META[k.split('/')[1] as keyof typeof PAGE_META]?.name}</td><td>{k.split('/')[0]}</td><td>{v.m2 ? `${v.m2.score} / ${(v.m2.lcp / 1000).toFixed(1)} s` : '–'}</td><td>{v.headless ? `${v.headless.score} / ${(v.headless.lcp / 1000).toFixed(1)} s` : '–'}</td></tr>)}</tbody>
+        </table></div>
+      </details>
+    )}
+    <div class="card rerun rv">
+      <h3>Re-run it</h3>
+      <p class="note">The whole trial is one command on the measuring server. It re-measures everything (about 90 minutes, strictly one page load at a time so no store is hammered), regenerates this page and its downloads.</p>
+      <pre tabindex="0"><code>npm run measure   # Lighthouse matrix, filmstrips, shopper journey, then rebuild</code></pre>
+    </div>
+  </div>
+</section>
+<style>
+  .mgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  .mc { padding: 22px; }
+  .mc h3, .dl h3, .rerun h3 { font: 400 27px/1.1 var(--serif); margin-bottom: 10px; }
+  .mc ul { margin: 0; padding-left: 18px; display: grid; gap: 9px; font-size: 14.5px; color: var(--ink-2); line-height: 1.5; }
+  .mc b { color: var(--ink); }
+  code { font-family: var(--mono); font-size: 0.88em; background: var(--surface-2); padding: 1px 5px; border-radius: 4px; }
+  .dl { margin-top: 18px; padding: 20px 22px; display: flex; justify-content: space-between; align-items: center; gap: 18px; flex-wrap: wrap; }
+  .dl .note { margin: 0; }
+  .dl-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+  .urls td, .urls th { font-size: 13px; text-align: left !important; vertical-align: top; }
+  .urls td a { display: inline-block; }
+  .urls a { color: var(--ink-2); }
+  .reps { display: flex; gap: 10px; margin-top: 2px; }
+  .reps a { font-size: 12px; color: var(--muted); }
+  .psi-note { margin: 8px 0 0; max-width: 760px; }
+  .rerun { margin-top: 18px; padding: 20px 22px; }
+  .rerun .note { max-width: 760px; }
+  pre { margin: 0; overflow-x: auto; background: var(--ink); color: var(--page); padding: 14px 16px; border-radius: 10px; font-size: 13.5px; }
+  pre code { background: none; padding: 0; color: inherit; }
+  @media (max-width: 960px) { .mgrid { grid-template-columns: 1fr; } }
+</style>

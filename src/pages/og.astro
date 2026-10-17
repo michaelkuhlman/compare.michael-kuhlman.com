@@ -1,0 +1,31 @@
+---
+// 1200x630 social card, screenshotted to public/og.png by measure/og.mjs. Not linked.
+import '../styles/global.css';
+import Logo from '../components/Logo.astro';
+import { STACK_IDS, STACK_META } from '../lib/model';
+import { avg, measured } from '../lib/data';
+---
+<html lang="en"><head><meta charset="utf-8" /><meta name="robots" content="noindex" /><title>og</title></head>
+<body>
+  <div class="og">
+    <div class="top"><Logo size={44} /><span>Speed Trial</span><em>{measured.totalRuns} Lighthouse runs · {new Date(measured.to).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</em></div>
+    <h1>Same store. <i>Three stacks.</i> One stopwatch.</h1>
+    <div class="row">
+      {STACK_IDS.map(s => <div class="c" data-stack={s}><span class="key"><i class={`glyph ${STACK_META[s].shape}`}></i>{STACK_META[s].name}</span><b>{Math.round(avg.mobile[s].perf ?? 0)}</b><small>mobile score</small></div>)}
+    </div>
+  </div>
+</body></html>
+<style>
+  body { margin: 0; color-scheme: light; }
+  .og { width: 1200px; height: 630px; box-sizing: border-box; padding: 56px 64px; background: #f4f2ec; color: #0b0b0b; display: flex; flex-direction: column; --m2: #eb6834; --headless: #2a78d6; --shopify: #1baf7a; }
+  .top { display: flex; align-items: center; gap: 14px; font: 400 34px/1 var(--serif); }
+  .top em { margin-left: auto; font: 500 18px/1 var(--mono); font-style: normal; color: #64625d; letter-spacing: 0.06em; text-transform: uppercase; }
+  h1 { font: 400 92px/0.95 var(--serif); letter-spacing: -0.02em; margin: 40px 0 0; max-width: 1000px; }
+  h1 i { color: #4a4945; }
+  .row { margin-top: auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .c { background: #fcfbf8; border-radius: 16px; padding: 20px 24px; border-top: 6px solid var(--c); display: grid; grid-template-columns: 1fr auto; align-items: end; }
+  .c .key { font-size: 24px; grid-column: 1 / -1; }
+  .c .glyph { width: 16px; height: 16px; }
+  .c b { font: 700 64px/1 var(--sans); letter-spacing: -0.04em; margin-top: 8px; }
+  .c small { font-size: 16px; color: #64625d; align-self: end; padding-bottom: 8px; }
+</style>

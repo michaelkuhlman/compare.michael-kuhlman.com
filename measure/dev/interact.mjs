@@ -1,0 +1,31 @@
+// Dev check: clicks every control and screenshots the results (runs/shots/ix-*.png). node measure/dev/interact.mjs [width]
+import { createRequire } from 'node:module';
+import { chromePath } from '../config.mjs';
+const require = createRequire(import.meta.url);
+const { chromium } = require('/opt/playwright/node_modules/playwright');
+const W = +(process.argv[2] || 1440);
+const OUT = new URL('../../runs/shots/', import.meta.url).pathname;
+const b = await chromium.launch({ executablePath: chromePath(), args: ['--no-sandbox'] });
+const p = await b.newPage({ viewport: { width: W, height: 900 }, deviceScaleFactor: 1 });
+const errs = []; p.on('pageerror', e => errs.push(e.message)); p.on('console', m => m.type() === 'error' && errs.push(m.text()));
+await p.goto('https://compare.michael-kuhlman.com/', { waitUntil: 'networkidle' });
+const H = await p.evaluate(() => document.body.scrollHeight);
+for (let y = 0; y < H; y += 600) { await p.evaluate(v => scrollTo(0, v), y); await p.waitForTimeout(100); }
+await p.click('[data-form="desktop"]'); await p.waitForTimeout(1500);
+console.log('verdict desktop:', await p.textContent('[data-verdict]'));
+console.log('hero perf:', await p.$$eval('[data-h="perf"]', e => e.map(x => x.textContent)), await p.$$eval('[data-h="rank"]', e => e.map(x => x.textContent)));
+await (await p.$('#scoreboard .board')).screenshot({ path: OUT + 'ix-board-desktop.png' });
+await p.click('[data-form="mobile"]'); await p.waitForTimeout(300);
+await p.locator('#vitals [data-page="product"]').click(); await p.waitForTimeout(1400);
+console.log('weight tab synced:', await p.getAttribute('#weight [data-page="product"]', 'aria-selected'));
+await (await p.$('#vitals .metrics')).screenshot({ path: OUT + 'ix-vitals-product.png' });
+await p.focus('#vitals [data-page="product"]'); await p.keyboard.press('ArrowRight'); await p.waitForTimeout(300);
+console.log('arrow key ->', await p.evaluate(() => document.activeElement.textContent));
+await p.locator('[data-rpage="product"]').scrollIntoViewIfNeeded(); await p.locator('[data-rpage="product"]').click(); await p.waitForTimeout(1500);
+await p.fill('[data-scrub]', '2200'); await p.dispatchEvent('[data-scrub]', 'input'); await p.waitForTimeout(300);
+await (await p.$('[data-race]')).screenshot({ path: OUT + 'ix-race-product-2.2s.png' });
+await p.click('[data-play]'); await p.waitForTimeout(1200); console.log('playing:', await p.$eval('[data-race]', e => e.className));
+await p.click('[data-form="desktop"]'); await p.waitForTimeout(3500);
+await (await p.$('[data-journey]')).screenshot({ path: OUT + 'ix-journey-desktop.png' });
+console.log('errors:', errs.length ? errs : 'none');
+await b.close();

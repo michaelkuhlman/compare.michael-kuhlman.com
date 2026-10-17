@@ -1,0 +1,128 @@
+---
+import { STACK_IDS, STACK_META, fmtMs, fmtBytes, placing, type Form } from '../lib/model';
+import { avg, measured, ranking } from '../lib/data';
+import { verdicts, findings } from '../lib/story';
+const finds = findings();
+const form: Form = 'mobile';
+const rank = ranking(form);
+const C = 2 * Math.PI * 52;
+const date = new Date(measured.to).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'America/Los_Angeles' });
+const stores: Record<string, string> = { m2: 'https://m2.michael-kuhlman.com', headless: 'https://headless.michael-kuhlman.com', shopify: 'https://shopify.michael-kuhlman.com' };
+---
+<section class="hero" id="top">
+  <svg class="court" viewBox="0 0 440 880" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+    <g fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="20" y="20" width="400" height="840" rx="2" />
+      <path d="M20 440H420" stroke-width="3" /><path d="M20 300H420M20 580H420" />
+      <path d="M220 20V300M220 580V860" />
+    </g>
+    <circle class="ball b1" cx="140" cy="200" r="9" /><circle class="ball b2" cx="300" cy="680" r="9" />
+  </svg>
+  <div class="wrap hero-in">
+    <p class="kicker hr"><b>A performance trial</b><span class="kdate">measured {date}</span></p>
+    <h1 class="title hr" style="--d:.06s">Same store. <em>Three stacks.</em> One stopwatch.</h1>
+    <p class="lede hr" style="--d:.12s">
+      <strong>Third Shot Supply Co.</strong> is one pickleball shop built three times: as a classic <span class="key" data-stack="m2"><i class="glyph circle"></i>Magento&nbsp;2</span> store,
+      as a <span class="key" data-stack="headless"><i class="glyph square"></i>headless</span> Next.js storefront on that same Magento, and on <span class="key" data-stack="shopify"><i class="glyph triangle"></i>Shopify</span>.
+      Same products, photos and design. We put all three on the clock: <span class="num">{measured.totalRuns}</span> Lighthouse runs, real-browser filmstrips and a scripted shopper.
+    </p>
+    <p class="verdict hr" style="--d:.18s" data-verdict aria-live="polite" set:html={verdicts[form]} />
+    <ol class="cards" aria-label="Average results per stack">
+      {STACK_IDS.map((s, i) => {
+        const a = avg[form][s];
+        const pl = placing(Object.fromEntries(STACK_IDS.map(x => [x, avg[form][x].perf])), s); const r = pl.r;
+        return (
+          <li class="card sc rv" data-stack={s} style={`--d:${0.22 + i * 0.08}s`}>
+            <div class="sc-top">
+              <span class="key"><i class={`glyph ${STACK_META[s].shape}`}></i>{STACK_META[s].name}</span>
+              <span class={`rank r${r}`} data-h="rank">{pl.label}</span>
+            </div>
+            <p class="tech">{STACK_META[s].tech}</p>
+            <div class="gauge">
+              <svg viewBox="0 0 120 120" aria-hidden="true">
+                <circle cx="60" cy="60" r="52" class="ring-bg" />
+                <circle cx="60" cy="60" r="52" class="ring-fg" data-h="ring" style={`stroke-dasharray:${C.toFixed(1)};--off:${(C * (1 - (a.perf ?? 0) / 100)).toFixed(1)}`} />
+              </svg>
+              <div class="g-val">
+                <span class="big" data-h="perf" data-count>{Math.round(a.perf ?? 0)}</span>
+                <span class="g-lab">Lighthouse<br />performance</span>
+              </div>
+            </div>
+            <dl class="mini">
+              <div><dt>LCP</dt><dd class="num" data-h="lcp">{fmtMs(a.lcp)}</dd></div>
+              <div><dt>Blocking</dt><dd class="num" data-h="tbt">{fmtMs(a.tbt)}</dd></div>
+              <div><dt>Weight</dt><dd class="num" data-h="total">{fmtBytes(a.total)}</dd></div>
+              <div><dt>Page wins</dt><dd class="num" data-h="wins">{a.wins} of 6</dd></div>
+            </dl>
+            <a class="visit" href={stores[s]} rel="noopener" target="_blank">Visit the {STACK_META[s].short} store<span aria-hidden="true"> ↗</span>{s === 'shopify' && <span class="pw"> · password <code>thirdshot</code></span>}</a>
+          </li>
+        );
+      })}
+    </ol>
+    <ol class="finds" aria-label="Key findings">
+      {finds.map((f, i) => <li class="rv" style={`--d:${i * 0.08}s`}><span class="fn">{String(i + 1).padStart(2, '0')}</span><h2>{f.title}</h2><p>{f.body}</p></li>)}
+    </ol>
+    <p class="note rv avg-note">Averages over six equivalent pages (home, category, product, content, search, cart), median of {measured.runsPerCombo} runs each. <span data-form-label>Mobile: moto g class phone, 4× slower CPU, throttled 4G.</span> Switch to desktop at the top.</p>
+  </div>
+</section>
+<style>
+  .hero { position: relative; overflow: hidden; padding: clamp(48px, 8vw, 104px) 0 0; }
+  .court { position: absolute; right: max(-140px, calc((100vw - var(--wrap)) / 2 - 220px)); top: -40px; width: 460px; height: auto; color: var(--axis); opacity: 0.55; transform: rotate(-12deg); pointer-events: none; }
+  .ball { fill: var(--volt); stroke: var(--ink); stroke-width: 2; }
+  .js .b1 { animation: rally 7s var(--ease) infinite alternate; }
+  .js .b2 { animation: rally 9s var(--ease) infinite alternate-reverse; }
+  @keyframes rally { 0% { transform: translate(0, 0); } 50% { transform: translate(60px, 260px); } 100% { transform: translate(-30px, 420px); } }
+  .hero-in { position: relative; }
+  .kdate::before { content: '· '; }
+  @media (max-width: 520px) { .kdate::before { content: none; } }
+  .hr { animation: rise 1s var(--ease) both; animation-delay: var(--d, 0s); }
+  @keyframes rise { from { transform: translateY(16px); } }
+  .title { font: 400 clamp(52px, 8.6vw, 124px)/0.94 var(--serif); letter-spacing: -0.02em; margin: 22px 0 28px; max-width: 12ch; }
+  .title em { font-style: italic; color: var(--ink-2); }
+  .lede { font-size: clamp(18px, 1.7vw, 21px); line-height: 1.55; max-width: 760px; color: var(--ink-2); }
+  .lede strong { color: var(--ink); }
+  .lede .key { font-weight: 600; color: var(--ink); gap: 6px; }
+  .lede .glyph { width: 10px; height: 10px; }
+  .verdict { font: 400 clamp(25px, 2.6vw, 34px)/1.25 var(--serif); max-width: 900px; margin: 34px 0 40px; padding-left: 20px; border-left: 3px solid var(--volt); }
+  .verdict :global(b) { font-weight: 400; font-style: italic; }
+  .cards { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  .sc { padding: 22px 22px 18px; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+  .sc::before { content: ''; position: absolute; inset: 0 0 auto; height: 4px; background: var(--c); }
+  .sc-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; font-size: 18px; }
+  .rank { font: 600 11px/1 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 9px; border-radius: 999px; border: 1px solid var(--hair); color: var(--muted); }
+  .rank.r0 { background: var(--volt); color: var(--volt-ink); border-color: transparent; }
+  .tech { font-size: 13px; color: var(--muted); margin: 6px 0 10px; }
+  .gauge { position: relative; width: 168px; height: 168px; margin: 6px auto 14px; }
+  .gauge svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+  .ring-bg { fill: none; stroke: var(--grid); stroke-width: 7; }
+  .ring-fg { fill: none; stroke: var(--c); stroke-width: 7; stroke-linecap: round; stroke-dashoffset: var(--off); transition: stroke-dashoffset 1.4s var(--ease); }
+  .js .sc:not(.in) .ring-fg { stroke-dashoffset: 326.7; }
+  .g-val { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; }
+  .big { font: 650 58px/1 var(--sans); letter-spacing: -0.035em; }
+  .g-lab { font-size: 11px; line-height: 1.25; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 6px; }
+  .mini { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin: 0 0 14px; border-top: 1px solid var(--grid); }
+  .mini div { padding: 10px 0 8px; border-bottom: 1px solid var(--grid); }
+  .mini div:nth-child(odd) { padding-right: 10px; border-right: 1px solid var(--grid); }
+  .mini div:nth-child(even) { padding-left: 14px; }
+  .mini dt { font-size: 12px; color: var(--muted); }
+  .mini dd { margin: 2px 0 0; font-size: 18px; font-weight: 600; letter-spacing: -0.01em; }
+  .visit { margin-top: auto; font-size: 14px; font-weight: 600; text-decoration: none; color: var(--ink-2); }
+  .visit:hover { color: var(--ink); text-decoration: underline; }
+  .pw { font-weight: 400; color: var(--muted); }
+  .pw code { font-family: var(--mono); font-size: 13px; }
+  .avg-note { margin-top: 16px; max-width: 760px; }
+  .finds { list-style: none; margin: 44px 0 0; padding: 26px 0 0; border-top: 1.5px solid var(--ink); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+  .finds li { position: relative; }
+  .fn { font: 500 12px/1 var(--mono); color: var(--muted); letter-spacing: 0.1em; }
+  .finds h2 { font: 400 27px/1.1 var(--serif); margin: 8px 0 8px; }
+  .finds p { font-size: 15px; color: var(--ink-2); margin: 0; line-height: 1.55; }
+  @media (max-width: 900px) { .finds { grid-template-columns: 1fr; gap: 22px; } }
+  @media (max-width: 900px) {
+    .cards { grid-template-columns: 1fr; }
+    .sc { display: grid; grid-template-columns: 132px 1fr; grid-template-areas: 'top top' 'tech tech' 'gauge mini' 'visit visit'; column-gap: 18px; }
+    .sc-top { grid-area: top; } .tech { grid-area: tech; } .gauge { grid-area: gauge; width: 132px; height: 132px; margin: 0; } .mini { grid-area: mini; align-self: center; margin: 0; } .visit { grid-area: visit; margin-top: 12px; }
+    .big { font-size: 44px; } .g-lab { font-size: 9.5px; }
+    .court { width: 300px; right: -110px; opacity: 0.4; }
+  }
+  @media (max-width: 400px) { .sc { grid-template-columns: 112px 1fr; padding: 18px 16px 14px; column-gap: 14px; } .gauge { width: 112px; height: 112px; } .big { font-size: 38px; } .mini dd { font-size: 16px; } }
+</style>
