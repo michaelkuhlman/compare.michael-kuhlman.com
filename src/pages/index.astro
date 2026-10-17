@@ -10,6 +10,7 @@ import Weight from '../components/Weight.astro';
 import Quality from '../components/Quality.astro';
 import Stacks from '../components/Stacks.astro';
 import Method from '../components/Method.astro';
+import Versus from '../components/Versus.astro';
 import Footer from '../components/Footer.astro';
 import { clientData, avg, ranking, measured } from '../lib/data';
 import { verdicts } from '../lib/story';
@@ -56,6 +57,7 @@ const desc = `One pickleball store built three ways, timed with ${measured.total
       <Weight />
       <Quality />
       <Stacks />
+      <Versus />
       <Method />
     </main>
     <Footer />

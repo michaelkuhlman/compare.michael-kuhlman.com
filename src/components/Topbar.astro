@@ -1,6 +1,6 @@
 ---
 import Logo from './Logo.astro';
-const links = [['#scoreboard', 'Scores'], ['#vitals', 'Vitals'], ['#race', 'Race'], ['#journey', 'Journey'], ['#weight', 'Weight'], ['#stacks', 'Stacks'], ['#method', 'Method']];
+const links = [['#scoreboard', 'Scores'], ['#vitals', 'Vitals'], ['#race', 'Race'], ['#journey', 'Journey'], ['#weight', 'Weight'], ['#stacks', 'Stacks'], ['#versus', 'Shopify vs M2'], ['#method', 'Method']];
 ---
 <header class="topbar">
   <div class="wrap topbar-in">
@@ -35,6 +35,6 @@ const links = [['#scoreboard', 'Scores'], ['#vitals', 'Vitals'], ['#race', 'Race
   .device { flex: none; }
   .progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; }
   .progress i { display: block; height: 100%; width: 100%; transform-origin: 0 50%; transform: scaleX(var(--p, 0)); background: linear-gradient(90deg, var(--m2), var(--headless), var(--shopify)); }
-  @media (max-width: 1060px) { .nav { display: none; } .device { margin-left: auto; } }
+  @media (max-width: 1180px) { .nav { display: none; } .device { margin-left: auto; } }
   @media (max-width: 420px) { .brand-name { font-size: 22px; } .device button { padding: 7px 11px; } .topbar-in { gap: 12px; } }
 </style>

@@ -31,7 +31,7 @@ const io = new IntersectionObserver(entries => {
     io.unobserve(el);
     $$('[data-count]', el).forEach(c => { if (!counted.has(c)) { counted.add(c); countTo(c, +(c.textContent || 0)); } });
     if (el.matches('.board')) setTimeout(() => el.classList.add('ready'), 1600);
-    if (el.matches('[data-journey]')) playJourney();
+    if (el.matches('[data-journey]')) { updateJourney(); playJourney(); }
   }
 }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
 $$('.rv').forEach(el => io.observe(el));
@@ -180,6 +180,7 @@ function updateJourney() {
   if (!box || !D.journey) return;
   const M = journeyMax();
   const ANIM = 2600;
+  const laneW = $('.jtrack', box)?.clientWidth ?? 600; // one layout read, before any writes
   for (const s of STACK_IDS) {
     const j = D.journey.results[`${state.form}/${s}`];
     const lane = $(`.jlane[data-stack="${s}"]`, box)!;
@@ -191,7 +192,7 @@ function updateJourney() {
       seg.style.setProperty('--w', pct((v / M) * 100));
       seg.style.setProperty('--del', `${((acc / M) * ANIM) / 1000}s`);
       seg.style.setProperty('--dur', `${Math.max(0.05, ((v / M) * ANIM) / 1000)}s`);
-      $('span', seg)!.style.visibility = (v / M) * lane.clientWidth > 26 ? 'visible' : 'hidden';
+      $('span', seg)!.style.visibility = (v / M) * laneW > 26 ? 'visible' : 'hidden';
       acc += v;
     });
     const tot = $('.jtot', lane)!;
@@ -346,5 +347,33 @@ if (rbox && D.race) {
   vis.observe($('.lanes', rbox)!);
 }
 
-/* ---------------- first paint is server-rendered for mobile/home; fill in what needs layout ---------------- */
-updateJourney();
+/* ---------------- Shopify vs Magento: priorities chooser ---------------- */
+const ch = $('[data-chooser]');
+if (ch) {
+  const PRI: { id: string; label: string; s: number; m: number; h: number }[] = JSON.parse(ch.dataset.pri || '[]');
+  const names: Record<string, string> = { shopify: 'Shopify', m2: 'Magento 2', headless: 'a headless storefront on Magento' };
+  const out = $('[data-ch-out]', ch)!;
+  const update = () => {
+    const on = $$('.chip[aria-pressed="true"]', ch).map(b => PRI.find(p => p.id === b.dataset.pri)!).filter(Boolean);
+    const max = on.reduce((t, p) => t + Math.max(p.s, p.m, p.h), 0);
+    const pts = { shopify: on.reduce((t, p) => t + p.s, 0), m2: on.reduce((t, p) => t + p.m, 0), headless: on.reduce((t, p) => t + p.h, 0) };
+    const pctOf = (v: number) => (max ? Math.round((v / max) * 100) : 0);
+    const best = Math.max(...Object.values(pts));
+    for (const k of Object.keys(pts) as (keyof typeof pts)[]) {
+      const row = $(`.fit[data-stack="${k}"]`, ch)!;
+      $('.fit-bar', row)!.style.setProperty('--w', `${pctOf(pts[k])}%`);
+      setText($('[data-fit]', row), max ? `${pctOf(pts[k])}%` : '–');
+      row.classList.toggle('top', !!max && pts[k] === best);
+    }
+    if (!max) { out.textContent = 'Pick at least one priority to see a suggestion.'; return; }
+    const leaders = (Object.keys(pts) as (keyof typeof pts)[]).filter(k => pts[k] === best);
+    if (leaders.length === 3) out.textContent = 'All three fit equally well. Add another priority to break the tie.';
+    else if (leaders.length === 2 && leaders.includes('m2') && leaders.includes('headless')) out.textContent = 'Magento 2 fits. Go headless on top of it if browsing speed matters too.';
+    else if (leaders.length === 2) out.textContent = `A close call between ${names[leaders[0]]} and ${names[leaders[1]]}.`;
+    else out.textContent = `Best fit: ${names[leaders[0]]}.`;
+  };
+  $$('.chip', ch).forEach(b => b.addEventListener('click', () => { b.setAttribute('aria-pressed', String(b.getAttribute('aria-pressed') !== 'true')); update(); }));
+  $('[data-ch-reset]', ch)?.addEventListener('click', () => { $$('.chip', ch).forEach(b => b.setAttribute('aria-pressed', 'false')); update(); });
+}
+
+/* first paint is server-rendered for mobile/home; the journey fills in its layout-dependent bits when it is revealed */

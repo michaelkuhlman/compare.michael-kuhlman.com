@@ -2,6 +2,7 @@
 import { STACK_IDS, STACK_META, PAGE_IDS, PAGE_META } from '../lib/model';
 import { measured, lh, psi, forms } from '../lib/data';
 import results from '../../data/results.json';
+import { SOURCES } from '../lib/versus';
 const R: any = results;
 const fmtDate = (d: string) => new Date(d).toLocaleString('en-US', { day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: '2-digit', timeZone: 'America/Los_Angeles', timeZoneName: 'short' });
 const urlOf = (p: string, s: string) => R.lh[`mobile/${p}/${s}`]?.url ?? '';
@@ -9,7 +10,7 @@ const urlOf = (p: string, s: string) => R.lh[`mobile/${p}/${s}`]?.url ?? '';
 <section class="sec" id="method">
   <div class="wrap">
     <header class="sec-head">
-      <p class="kicker rv"><b>08</b> Method &amp; data</p>
+      <p class="kicker rv"><b>09</b> Method &amp; data</p>
       <h2 class="sec-title rv">How it was <em>measured</em></h2>
       <p class="dek rv">Fair means identical treatment: same machine, same browser, same settings, same pages, many runs, medians. Everything is downloadable.</p>
     </header>
@@ -78,6 +79,11 @@ const urlOf = (p: string, s: string) => R.lh[`mobile/${p}/${s}`]?.url ?? '';
         </table></div>
       </details>
     )}
+    <div class="card sources rv" id="sources">
+      <h3>Sources: Shopify vs Magento 2</h3>
+      <p class="note">Checked 16 October 2026. Prices in US dollars, before tax; Adobe Commerce does not publish prices, so those figures are third-party estimates.</p>
+      <ol>{SOURCES.map(x => <li id={`src-${x.n}`}><a href={x.url} rel="noopener nofollow" target="_blank">{x.label}</a></li>)}</ol>
+    </div>
     <div class="card rerun rv">
       <h3>Re-run it</h3>
       <p class="note">The whole trial is one command on the measuring server. It re-measures everything (about 90 minutes, strictly one page load at a time so no store is hammered), regenerates this page and its downloads.</p>
@@ -102,6 +108,12 @@ const urlOf = (p: string, s: string) => R.lh[`mobile/${p}/${s}`]?.url ?? '';
   .reps a { font-size: 12px; color: var(--muted); }
   .psi-note { margin: 8px 0 0; max-width: 760px; }
   .rerun { margin-top: 18px; padding: 20px 22px; }
+  .sources { margin-top: 18px; padding: 20px 22px; }
+  .sources h3 { font: 400 27px/1.1 var(--serif); margin-bottom: 8px; }
+  .sources ol { margin: 10px 0 0; padding-left: 22px; display: grid; gap: 6px; font-size: 14px; }
+  .sources li { scroll-margin-top: 90px; }
+  .sources li:target { background: color-mix(in srgb, var(--volt) 40%, transparent); border-radius: 4px; }
+  .sources a { color: var(--ink-2); }
   .rerun .note { max-width: 760px; }
   pre { margin: 0; overflow-x: auto; background: var(--ink); color: var(--page); padding: 14px 16px; border-radius: 10px; font-size: 13.5px; }
   pre code { background: none; padding: 0; color: inherit; }
