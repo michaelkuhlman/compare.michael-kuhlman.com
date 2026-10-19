@@ -2,7 +2,7 @@
 
 Performance comparison of the Third Shot Supply Co. demo store on three stacks: m2.michael-kuhlman.com (Magento 2 / Luma),
 headless.michael-kuhlman.com (Next.js on the same Magento) and shopify.michael-kuhlman.com (Shopify dev store, password
-`thirdshot`). Full record: /home/kai/vault/kai-brain/projects/compare-site.md.
+`demo123`, was `thirdshot` until 2026-10-19). Full record: /home/kai/vault/kai-brain/projects/compare-site.md.
 
 ## Layout
 - Static Astro 7 site. `npm run build` -> `dist/` (+ `measure/postbuild.mjs`: sitemap, .br/.gz siblings). nginx serves
