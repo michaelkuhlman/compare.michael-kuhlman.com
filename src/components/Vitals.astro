@@ -8,7 +8,7 @@ const page: PageId = 'home';
 <section class="sec" id="vitals">
   <div class="wrap">
     <header class="sec-head">
-      <p class="kicker rv"><b>02</b> Core Web Vitals &amp; friends</p>
+      <p class="kicker rv"><b>04</b> Core Web Vitals &amp; friends</p>
       <h2 class="sec-title rv">Where the <em>milliseconds</em> go</h2>
       <p class="dek rv">The metrics behind the score, page by page. Shaded zones are Google’s thresholds: <span class="zl g">good</span>, <span class="zl a">needs work</span>, <span class="zl p">poor</span>. Ticks on each bar are the five individual runs.</p>
     </header>
@@ -54,7 +54,7 @@ const page: PageId = 'home';
         );
       })}
     </div>
-    <p class="note foot rv">Lighthouse lab data with <strong>simulated throttling</strong> (the method PageSpeed Insights uses). A second opinion from a real, throttled browser is in the race below. There is no real-user (CrUX) data: demo stores get too little traffic and are not indexed.</p>
+    <p class="note foot rv">Lighthouse lab data with <strong>simulated throttling</strong> (the method PageSpeed Insights uses). A second opinion from a real, throttled browser is in the race above. There is no real-user (CrUX) data: demo stores get too little traffic and are not indexed.</p>
     <details class="tv rv">
       <summary>Show as a table</summary>
       <div tabindex="0" role="region" aria-label="Vitals table" class="tbl-wrap"><table class="data" data-table="vitals"><thead><tr><th>Metric</th>{STACK_IDS.map(s => <th>{STACK_META[s].name}</th>)}</tr></thead>
