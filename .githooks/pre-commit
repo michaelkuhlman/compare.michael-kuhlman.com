@@ -1,16 +1,130 @@
 #!/usr/bin/env bash
-# Blocks secrets, build output and leftover copies from being committed (compare.michael-kuhlman.com).
-set -e
+# compare.michael-kuhlman.com pre-commit guard. Tracked in .githooks/ and active through core.hooksPath on the server
+# (cmpgit) and in every laptop clone, so every commit gets it, whoever makes it. THE GITHUB REPO IS PUBLIC: whatever
+# gets committed is world-readable for good, so this hook is strict.
+# It checks the STAGED version of each added or changed file and blocks the commit on:
+#   - secrets: token-shaped strings, and (on the server) the real values from ~/.config/shopify/account.env and the
+#     Cloudflare env. The Shopify STOREFRONT password is public on purpose (the site prints it) and is allowed.
+#   - credential / database / dump files and editor or backup leftovers
+#   - installed, built or raw-measurement output (node_modules/, dist/, .dist-*/, .astro/, runs/, public/reports/)
+#   - files over 5 MB, unresolved merge-conflict markers, hooks or deploy scripts that lost their executable bit
+#   - invalid JSON / XML / SVG, JavaScript and shell syntax errors
+#   - a failing `astro build` (about 3 s, into a temp folder, never into the live dist/) when the staged files can
+#     change the site. Skipped while a measurement runs (it would skew the numbers) and where node_modules is missing.
+# Fix what it reports, re-stage, commit again. Never bypass it with --no-verify.
+# Audit every tracked file instead of the staged ones:  CMP_PRECOMMIT_ALL=1 cmpgit hook run pre-commit
+set -u
+export LC_ALL=C
 fail=0
-files=$(git diff --cached --name-only --diff-filter=ACM)
-for f in $files; do
-  [ "$f" = .githooks/pre-commit ] && continue
-  case "$f" in
-    node_modules/*|dist/*|runs/*|public/reports/*) echo "pre-commit: $f is generated, do not commit"; fail=1;;
-    *.bak|*.old|*.orig|*.production|*.env) echo "pre-commit: leftover/secret file $f"; fail=1;;
-  esac
-  if git show ":$f" 2>/dev/null | grep -nE '(shpat_|shpss_|shpca_|STOREFRONT_PASSWORD=[A-Za-z0-9]|SHOPIFY_ACCOUNT_PASSWORD=[A-Za-z0-9]|CF_API_TOKEN=[A-Za-z0-9]|BEGIN (RSA|OPENSSH|EC) PRIVATE KEY)' >/dev/null; then
-    echo "pre-commit: possible secret in $f"; fail=1
-  fi
+err()  { printf 'pre-commit: %s\n' "$*" >&2; fail=1; }
+
+py=
+for c in python3 python; do
+  if command -v "$c" >/dev/null 2>&1 && "$c" -c 'import sys' >/dev/null 2>&1; then py=$c; break; fi
 done
-exit $fail
+node=
+command -v node >/dev/null 2>&1 && node=node
+
+secret_re='sk-ant-[A-Za-z0-9_-]{20,}|gh[pousr]_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{30,}|AKIA[0-9A-Z]{16}|-----BEGIN [A-Z ]*PRIVATE KEY-----|shp(at|ss|ca|pa)_[A-Fa-f0-9]{32}|[sr]k_live_[A-Za-z0-9]{16,}|sk_test_[A-Za-z0-9]{16,}|xox[baprs]-[A-Za-z0-9-]{16,}|[0-9]{8,10}:AA[A-Za-z0-9_-]{33}|AIza[0-9A-Za-z_-]{35}|cfat_[A-Za-z0-9_-]{20,}|(SHOPIFY_ACCOUNT_PASSWORD|CF_API_TOKEN)=[A-Za-z0-9]'
+
+# Real secret values (server only; the files are absent elsewhere): every *PASS* / *SECRET* / *TOKEN* / *KEY* value
+# of 8+ characters except the public STOREFRONT_PASSWORD. Only line numbers are ever printed.
+vals=$(mktemp) || exit 1
+tmpd=$(mktemp -d) || exit 1
+trap 'rm -rf "$vals" "$tmpd"' EXIT
+chmod 600 "$vals"
+for f in "$HOME/.config/shopify/account.env" "$HOME/.config/cloudflare/michael-kuhlman.env"; do
+  [ -r "$f" ] && grep -v -E '^[[:space:]]*(export[[:space:]]+)?STOREFRONT_PASSWORD[[:space:]]*=' "$f" | sed -nE \
+    's/^[[:space:]]*(export[[:space:]]+)?[A-Za-z0-9_]*(PASS|SECRET|TOKEN|KEY)[A-Za-z0-9_]*[[:space:]]*=[[:space:]]*//p'
+done 2>/dev/null | sed -E "s/^[\"']//; s/[\"'][[:space:]]*\$//" | awk 'length($0) >= 8' > "$vals"
+
+if [ "${CMP_PRECOMMIT_ALL:-}" = 1 ]; then list() { git ls-files -z; }
+else list() { git diff --cached --name-only --diff-filter=ACMR -z; }
+fi
+
+n=0
+build=0
+while IFS= read -r -d '' p; do
+  n=$((n + 1))
+  case "$p" in
+    *.example|*.example.*|*.sample) ;;
+    .env|*/.env|.env.*|*/.env.*|*.env|.npmrc|*/.npmrc|*.pem|*.key|*.p12|*.pfx|*id_rsa*|*id_ed25519*|*_github|*_github.pub|*cookies*.json|*storage-state*.json)
+      err "$p: looks like a credential or session file. Secrets live in ~/.config/shopify/account.env, never in git." ;;
+    *.sql|*.sql.gz|*.dump|*.sqlite|*.sqlite3|*.db|*.db-wal|*.db-shm)
+      err "$p: database or dump file. Keep it out of git." ;;
+  esac
+  case "$p" in
+    *.bak|*.old|*.orig|*.rej|*.production|*.save|*.swp|*.swo|*.tmp|*~)
+      err "$p: editor or backup leftover. Delete it; git history is the backup." ;;
+  esac
+  case "$p" in
+    node_modules/*|*/node_modules/*|dist/*|.dist-*|.astro/*|runs/*|public/reports/*|*.log)
+      err "$p: installed, built or raw-measurement output. Regenerate it, never commit it (git add -f bypasses .gitignore)." ;;
+  esac
+  case "$p" in
+    .githooks/*|deploy/*)
+      mode=$(git ls-files -s -- "$p" | awk '{print $1; exit}')
+      [ "$mode" = 100755 ] || err "$p: not executable (mode $mode); git would skip it. Run: cmpgit update-index --chmod=+x $p" ;;
+  esac
+  case "$p" in
+    src/*|public/*|astro.config.mjs|package.json|package-lock.json|measure/postbuild.mjs|data/*) build=1 ;;
+  esac
+
+  size=$(git cat-file -s ":$p" 2>/dev/null || echo 0)
+  if [ "$size" -gt 5242880 ]; then
+    err "$p: $((size / 1024)) KB, over the 5 MB limit. Compress it (race sprites are ~100 KB webp) or keep it out of git."
+  fi
+
+  if [ "$p" != .githooks/pre-commit ]; then
+    lines=$(git show ":$p" 2>/dev/null | grep -I -n -o -E "$secret_re" | cut -d: -f1 | sort -un | paste -sd, -)
+    [ -n "$lines" ] && err "$p: token-shaped secret on line(s) $lines. Secrets live outside the repo, never in git."
+  fi
+  if [ -s "$vals" ]; then
+    lines=$(git show ":$p" 2>/dev/null | grep -I -n -F -f "$vals" | cut -d: -f1 | sort -un | paste -sd, -)
+    [ -n "$lines" ] && err "$p: contains a real secret value from the server env files (line(s) $lines)."
+  fi
+  lines=$(git show ":$p" 2>/dev/null | grep -I -n -E '^(<{7}|>{7})( |$)' | cut -d: -f1 | sort -un | paste -sd, -)
+  [ -n "$lines" ] && err "$p: unresolved merge-conflict marker on line(s) $lines."
+
+  case "$p" in
+    *.json|*.webmanifest)
+      if [ -n "$py" ]; then
+        out=$(git show ":$p" | "$py" -c 'import json,sys; json.loads(sys.stdin.buffer.read().decode("utf-8-sig"))' 2>&1) || err "$p: invalid JSON: $(printf '%s\n' "$out" | tail -n 1)"
+      fi ;;
+    *.xml|*.svg)
+      if [ -n "$py" ]; then
+        out=$(git show ":$p" | "$py" -c 'import sys,xml.dom.minidom as m; m.parseString(sys.stdin.buffer.read())' 2>&1) || err "$p: invalid XML: $(printf '%s\n' "$out" | tail -n 1)"
+      fi ;;
+    *.js|*.cjs|*.mjs)
+      if [ -n "$node" ]; then
+        t="$tmpd/check.${p##*.}"
+        git show ":$p" > "$t" 2>/dev/null
+        out=$("$node" --check "$t" 2>&1) || err "$p: JavaScript syntax error: $(printf '%s\n' "$out" | grep -m1 -E 'Error' || printf '%s\n' "$out" | tail -n 1)"
+      fi ;;
+  esac
+  case "$p" in
+    *.sh|.githooks/*|deploy/*)
+      out=$(git show ":$p" | bash -n 2>&1) || err "$p: shell syntax error: $(printf '%s\n' "$out" | head -n 1)" ;;
+  esac
+done < <(list)
+
+# Build check: one `astro build` of the work tree into a temp folder (the live dist/ is never touched). It judges the
+# work tree, so another session's unstaged edits count too; if the error is in a file you are not committing, say so.
+top=$(git rev-parse --show-toplevel 2>/dev/null)
+if [ "$fail" -eq 0 ] && [ "$build" = 1 ] && [ "${CMP_PRECOMMIT_ALL:-}" != 1 ] && [ "${CMP_SKIP_BUILD:-}" != 1 ] && [ -n "$top" ]; then
+  if [ ! -x "$top/node_modules/.bin/astro" ]; then
+    echo "pre-commit: WARNING no node_modules here, so the build was not checked (cmp-deploy builds before it swaps)." >&2
+  elif command -v flock >/dev/null 2>&1 && ! flock -n /tmp/compare-measure.lock true 2>/dev/null; then
+    echo "pre-commit: WARNING a measurement is running (measure/run-all.sh): build check skipped so it does not skew TBT." >&2
+  elif ! out=$(cd "$top" && ./node_modules/.bin/astro build --outDir "$tmpd/dist" --silent 2>&1); then
+    err "astro build fails with the work tree as it is:"
+    printf '%s\n' "$out" | grep -v '^[[:space:]]*$' | tail -n 15 | sed 's/^/  | /' >&2
+  fi
+fi
+
+if [ "$fail" -ne 0 ]; then
+  echo "pre-commit: commit blocked (see above). Fix the files, re-stage them and commit again. Do not use --no-verify." >&2
+  exit 1
+fi
+[ "${CMP_PRECOMMIT_ALL:-}" = 1 ] && echo "pre-commit: $n tracked files checked, all clean."
+exit 0

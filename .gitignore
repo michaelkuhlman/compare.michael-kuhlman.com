@@ -1,16 +1,49 @@
-# dependencies / build output (dist/ is what nginx serves: rebuild with `npm run build`)
+# THIS REPOSITORY IS PUBLIC (github.com/michaelkuhlman/compare.michael-kuhlman.com). Anything committed is
+# world-readable for good, so keep secrets, sessions and raw captures out. .githooks/pre-commit enforces it.
+
+# dependencies / build output (dist/ is what nginx serves; cmp-deploy builds .dist-next and swaps it in)
 node_modules/
 dist/
+.dist-next/
+.dist-prev/
+.dist-rb/
 .astro/
-# raw measurement runs (gzipped Lighthouse reports, frames) and generated full reports
+.vite/
+.cache/
+
+# raw measurement runs (gzipped Lighthouse reports, frames, logs) and the full HTML reports generated from them
 runs/
 public/reports/
-# never commit secrets (the Shopify storefront password is read from ~/.config/shopify/account.env)
+*.log
+
+# secrets and browser sessions: the Shopify passwords live in ~/.config/shopify/account.env, Cloudflare in
+# ~/.config/cloudflare/. Templates may be committed as *.example.
 .env
+.env.*
 *.env
-# leftovers
+!*.example
+.npmrc
+*.pem
+*.key
+*cookies*.json
+*storage-state*.json
+
+# leftovers (git history is the backup)
 *.bak
 *.old
 *.orig
+*.rej
 *.production
-*.log
+*.save
+*.swp
+*.swo
+*.tmp
+*~
+
+# OS / editor noise (laptop clones)
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.lnk

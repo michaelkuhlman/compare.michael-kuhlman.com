@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# compare.michael-kuhlman.com post-commit (post-merge, and post-rewrite after a rebase, run it too): push main to
+# GitHub straight away, so GitHub (the off-site copy) and any laptop clone never lag the live site. Tracked in
+# .githooks/. It never fails the commit; a failed push says so loudly, with the fix for where you are.
+# Skips: other branches, a rebase in progress, no origin, nothing to push, CMP_NO_AUTOPUSH=1 (one command).
+[ "${CMP_NO_AUTOPUSH:-}" = 1 ] && exit 0
+branch=$(git symbolic-ref --quiet --short HEAD 2>/dev/null) || exit 0
+[ "$branch" = main ] || exit 0
+gd=$(git rev-parse --git-dir)
+if [ "${CMP_FROM_REWRITE:-}" != 1 ]; then
+  { [ -e "$gd/rebase-merge" ] || [ -e "$gd/rebase-apply" ]; } && exit 0
+fi
+git remote get-url origin >/dev/null 2>&1 || exit 0
+ahead=$(git rev-list --count origin/main..HEAD 2>/dev/null || echo 1)
+[ "$ahead" -gt 0 ] || exit 0
+
+t=
+command -v timeout >/dev/null 2>&1 && t="timeout 90"
+if out=$($t git push --quiet origin main 2>&1); then
+  echo "post-commit: pushed to GitHub (origin/main = $(git rev-parse --short HEAD))"
+else
+  {
+    echo "post-commit: AUTO-PUSH FAILED. The commit is saved here but is NOT on GitHub yet:"
+    printf '%s\n' "$out" | sed 's/^/  | /'
+    case "$gd" in
+      /home/kai/backups/*)   # the live server tree: other sessions' uncommitted edits sit in it, so never rebase or stash
+        echo "  Fix it now: ~/bin/cmp-deploy --sync-only (merges GitHub's new commits into this tree and pushes; no build)." ;;
+      *)                     # a laptop clone: this commit was never pushed, so rebasing it is safe
+        echo "  Fix it now: git pull --rebase origin main (your unpushed commit goes on top; it then pushes itself)." ;;
+    esac
+    echo "  Never --force, never --no-verify."
+  } >&2
+fi
+exit 0

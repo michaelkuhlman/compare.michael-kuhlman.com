@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# A merge commit (cmp-deploy's GitHub sync, pull --no-ff) does not run post-commit, so push it the same way. A plain
+# fast-forward has nothing to push and exits at once.
+exec "$(dirname "$0")/post-commit"

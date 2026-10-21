@@ -1,0 +1,129 @@
+#!/usr/bin/env bash
+# cmp-deploy: bring compare.michael-kuhlman.com level with GitHub, build it and swap the new build in, then purge its
+# Cloudflare edge cache (filmstrips, og.png and /data/ have fixed names, so the edge would keep the old run for a day).
+#   ~/bin/cmp-deploy              on the server (~/bin/cmp-deploy is a symlink to this tracked file, deploy/cmp-deploy)
+#   ssh atlas bin/cmp-deploy      from a laptop clone, right after pushing
+#   cmp-deploy --sync-only        only step 1: merge GitHub's new commits into this tree and push the server's own
+#   cmp-deploy --no-sync          skip step 1: build and swap the tree as it is
+#   cmp-deploy --rollback         no sync, no build: swap the previous build (.dist-prev) back in
+# 1. git: fetch GitHub; fast-forward to it, push this server's unpushed commits, or merge when both moved (the merge
+#    commit pushes itself through .githooks/post-merge). A conflict, or an incoming change to a file somebody is
+#    editing here, aborts cleanly and changes nothing. npm ci --include=dev when the incoming commits change the
+#    lockfile. GitHub unreachable: a warning, then the deploy goes ahead with the tree as it is.
+# 2. Build: `astro build` into .dist-next (about 3 s), postbuild (sitemap, .br/.gz) on it, sanity checks, then two
+#    renames: dist -> .dist-prev, .dist-next -> dist. nginx serves dist/, so it never sees a half-written build.
+#    Refuses while a measurement runs (measure/run-all.sh holds /tmp/compare-measure.lock; a build would skew TBT).
+# It builds the WORK TREE, uncommitted edits included, and lists any such files at the end: commit them (by name).
+set -euo pipefail
+DOC=/var/www/compare.michael-kuhlman.com
+G=/home/kai/bin/cmpgit
+HOST=compare.michael-kuhlman.com
+say() { printf 'cmp-deploy: %s\n' "$*"; }
+die() { printf 'cmp-deploy: %s\n' "$*" >&2; exit 1; }
+
+mode=deploy
+case "${1:-}" in
+  '') ;;
+  --sync-only) mode=sync ;;
+  --no-sync) mode=build ;;
+  --rollback) mode=rollback ;;
+  -h|--help) sed -n '2,16p' "$(readlink -f "$0")" | sed 's/^# \{0,1\}//'; exit 0 ;;
+  *) die "unknown option '$1' (use --sync-only, --no-sync, --rollback or nothing)" ;;
+esac
+
+exec 9>/tmp/cmp-deploy.lock
+flock -n 9 || die "another deploy is running"
+if [ "$mode" != sync ]; then
+  exec 8>/tmp/compare-measure.lock
+  flock -n 8 || die "a measurement is running (measure/run-all.sh, up to 2 h); deploy after it finishes. --sync-only works now."
+fi
+cd "$DOC"
+
+# ---- 1. git
+sync_github() {
+  local before there err
+  err=$(mktemp)
+  if ! $G fetch --quiet origin main 2>"$err"; then
+    say "WARNING git: GitHub unreachable ($(tail -n 1 "$err")); going on with the tree as it is"
+    rm -f "$err"; return 0
+  fi
+  rm -f "$err"
+  before=$($G rev-parse HEAD)
+  there=$($G rev-parse origin/main)
+  if [ "$before" = "$there" ]; then
+    say "git: up to date with GitHub at ${before:0:7}"
+  elif $G merge-base --is-ancestor origin/main HEAD; then
+    say "git: pushing this server's $($G rev-list --count origin/main..HEAD) unpushed commit(s) to GitHub"
+    $G push --quiet origin main
+  elif $G merge-base --is-ancestor HEAD origin/main; then
+    $G merge --ff-only --quiet origin/main || die "fast-forward refused (an uncommitted edit here touches an incoming file?). Nothing changed."
+    say "git: fast-forwarded ${before:0:7} -> $($G rev-parse --short HEAD)"
+  else
+    if ! $G merge --no-ff --no-edit --quiet origin/main; then
+      $G merge --abort 2>/dev/null || true
+      die "the server and GitHub changed the same lines; merge aborted, nothing changed. Merge by hand: cmpgit merge origin/main, fix, commit."
+    fi
+    say "git: merged GitHub's commits into this tree (merge $($G rev-parse --short HEAD), pushed by post-merge)"
+  fi
+  if ! $G diff --quiet "$before" HEAD -- package-lock.json; then
+    say "npm: the lockfile changed, running npm ci --include=dev"
+    npm ci --include=dev --no-audit --no-fund --silent
+  fi
+}
+
+purge_edge() {
+  local env=$HOME/.config/cloudflare/michael-kuhlman.env out
+  [ -r "$env" ] || { say "WARNING no $env, so the edge cache was not purged"; return 0; }
+  out=$( . "$env"; curl -sS -m 30 -X POST -H "Authorization: Bearer $CF_API_TOKEN" -H "Content-Type: application/json" \
+    "https://api.cloudflare.com/client/v4/zones/$CF_ZONE_ID/purge_cache" --data "{\"hosts\":[\"$HOST\"]}" 2>&1 || true)
+  case "$out" in
+    *'"success":true'*) say "edge cache purged ($HOST)" ;;
+    *) say "WARNING edge cache purge failed; images and /data/ may show the old run until their cache expires (1 day)" ;;
+  esac
+  curl -s -o /dev/null -m 20 -w "cmp-deploy: through Cloudflare: HTTP %{http_code} in %{time_total}s\n" "https://$HOST/" || true
+}
+
+check_origin() {
+  local got code
+  got=$(mktemp)
+  code=$(curl -s -o "$got" -m 20 -w '%{http_code}' --resolve "$HOST:443:127.0.0.1" "https://$HOST/" || true)
+  if [ "$code" = 200 ] && cmp -s "$got" dist/index.html; then say "origin serves the new build (HTTP 200)"
+  else say "WARNING origin answered HTTP $code and/or not with the new dist/index.html; check nginx"; fi
+  rm -f "$got"
+}
+
+if [ "$mode" = rollback ]; then
+  [ -d .dist-prev ] || die "no .dist-prev to roll back to"
+  rm -rf .dist-rb
+  mv dist .dist-rb && mv .dist-prev dist && mv .dist-rb .dist-prev
+  say "rolled back: the previous build is live, the one it replaced is in .dist-prev (run --rollback again to undo)"
+  check_origin; purge_edge
+  exit 0
+fi
+
+[ "$mode" = build ] || sync_github
+[ "$mode" = sync ] && exit 0
+
+# ---- 2. build into .dist-next, check it, swap it in
+[ -x node_modules/.bin/astro ] || die "node_modules missing: npm ci --include=dev"
+rm -rf .dist-next
+s=$(date +%s)
+./node_modules/.bin/astro build --outDir .dist-next --silent || die "astro build failed; the live site is unchanged"
+CMP_DIST=.dist-next node measure/postbuild.mjs >/dev/null || die "postbuild failed; the live site is unchanged"
+[ -s .dist-next/index.html ] && [ "$(wc -c < .dist-next/index.html)" -gt 20000 ] && grep -q '<title>' .dist-next/index.html \
+  || die "the new build has no proper index.html (under 20 KB or no <title>); the live site is unchanged"
+[ -s .dist-next/404.html ] && [ -s .dist-next/sitemap.xml ] || die "the new build lacks 404.html or sitemap.xml; the live site is unchanged"
+rm -rf .dist-prev
+[ -d dist ] && mv dist .dist-prev
+mv .dist-next dist
+say "built in $(( $(date +%s) - s ))s and swapped in at $($G rev-parse --short HEAD) (previous build kept in .dist-prev)"
+check_origin
+purge_edge
+
+# ---- 3. what is live but not in git
+dirty=$($G status --porcelain --untracked-files=all -- src public data astro.config.mjs package.json package-lock.json \
+        measure/postbuild.mjs | cut -c4- || true)
+if [ -n "$dirty" ]; then
+  say "NOTE live now but NOT committed (commit them by name once they are right):"
+  printf '%s\n' "$dirty" | head -n 20 | sed 's/^/  | /'
+fi

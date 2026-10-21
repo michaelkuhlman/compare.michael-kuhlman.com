@@ -1,0 +1,12 @@
+# LF everywhere, also in Windows laptop clones: the hooks and deploy script run under bash, and CRLF breaks them.
+* text=auto eol=lf
+
+*.webp binary
+*.png binary
+*.ico binary
+*.woff2 binary
+
+# measurement output the site is built from: GitHub collapses it in diffs and leaves it out of language stats
+data/*.json linguist-generated=true
+public/data/* linguist-generated=true
+package-lock.json linguist-generated=true

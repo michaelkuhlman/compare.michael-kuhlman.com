@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# After `git pull --rebase` (laptop) puts unpushed commits on top of GitHub's new ones, push them like any
+# commit. (An amend is left alone: post-commit already ran for it, and pre-push refuses to rewrite pushed history.)
+[ "${1:-}" = rebase ] || exit 0
+cat >/dev/null   # the rewritten-commit list on stdin is not needed
+CMP_FROM_REWRITE=1 exec "$(dirname "$0")/post-commit"

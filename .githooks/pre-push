@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# compare.michael-kuhlman.com pre-push: refuse force-pushes and branch deletions. A GitHub ruleset on main refuses
+# them too; this hook says why before the push leaves the machine. Pushed history is the site's history; undo a
+# change with a new commit (git revert), never by rewriting. Tracked in .githooks/.
+case "$(git rev-parse --git-dir)" in
+  /home/kai/backups/*) catchup="~/bin/cmp-deploy --sync-only" ;;       # server tree: never rebase or stash here
+  *)                   catchup="git pull --rebase origin main" ;;   # laptop clone: unpushed commits rebase safely
+esac
+while read -r lref lsha rref rsha; do
+  case "$lsha" in *[!0]*) ;; *) echo "pre-push: refusing to delete $rref on GitHub." >&2; exit 1 ;; esac
+  case "$rsha" in *[!0]*) ;; *) continue ;; esac   # a new branch on GitHub: nothing to overwrite
+  if ! git cat-file -e "$rsha^{commit}" 2>/dev/null; then
+    echo "pre-push: GitHub's $rref has new commits from another session. Run: $catchup" >&2
+    exit 1
+  fi
+  if ! git merge-base --is-ancestor "$rsha" "$lsha"; then
+    echo "pre-push: this would rewrite $rref on GitHub (force-push, or amended/rebased pushed commits). Refused." >&2
+    echo "pre-push: undo with git revert instead. If GitHub simply moved on, run: $catchup" >&2
+    exit 1
+  fi
+done
+exit 0
